@@ -1,7 +1,5 @@
 # Semester Assignment 1
 
-# First Contributions
-
 ## Fork this repository
 
 Fork this repository by clicking on the fork button on the top of this page.
