@@ -6,27 +6,27 @@
 #
 #######################################################################################
 
-cppDir=./ # The directory with the .cpp files, with ending '/'. (If all in same directory leave as '.')
-incDir=./ # The directory with the .h files, with ending '/'. (If all in same directory leave as '.')
+cppDir=./src/ # The directory with the .cpp files, with ending '/'. (If all in same directory leave as '.')
+incDir=./include/ # The directory with the .h files, with ending '/'. (If all in same directory leave as '.')
 # NOTE: If no other directories and you have the above 2 lines equal to '.', then you should change line 18 from #include "../${fileNameH}" to #include "${fileNameH}"
 
-mkdir -p ${cppDir} ${incDir};
+#mkdir -p ${cppDir} ${incDir};
 
 for fileName in "$@"
 do
-fileNameUp=${fileName^^}
+fileNameUp=$(echo "$fileName" | awk '{print toupper($0)}')
 fileNameC=${cppDir}
 fileNameC+=${fileName}.cpp
 fileNameH=${incDir}
 fileNameH+=${fileName}.h
 
-# cat <<EOF > ${fileNameC}
-# #include "../${fileNameH}"
+cat <<EOF > ${fileNameC}
+#include ".${fileNameH}"
 
-# ${fileName}::${fileName}() {}
+${fileName}::${fileName}() {}
 
-# ${fileName}::~${fileName}() {}
-# EOF
+${fileName}::~${fileName}() {}
+EOF
 
 cat <<EOF > ${fileNameH}
 /****************************************************************************************************
