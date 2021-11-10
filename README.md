@@ -1,4 +1,3 @@
-=======
 # Semester Assignment 1
 
 ## Fork this repository
