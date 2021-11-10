@@ -1,6 +1,9 @@
 # Semester Assignment 1 - COS214
 
-## Clone the repository
+## 0. Install git
+<a target="#" href="https://git-scm.com/book/en/v2/Getting-Started-Installing-Git">Follow this link for a guide(This will open in a new tab)</a>
+
+## 1. Clone the repository
 
 <img align="right" width="300" src="https://firstcontributions.github.io/assets/Readme/clone.png" alt="clone this repository" />
 
@@ -8,23 +11,11 @@ Now clone the forked repository to your machine. Go to your GitHub account, open
 
 Open a terminal and run the following git command:
 
-```
-git clone "url you just copied"
-```
-
-where "url you just copied" (without the quotation marks) is the url to this repository (your fork of this project). See the previous steps to obtain the url.
-
-<img align="right" width="300" src="https://firstcontributions.github.io/assets/Readme/copy-to-clipboard.png" alt="copy URL to clipboard" />
-
-For example:
-
-```
-git clone https://github.com/this-is-you/first-contributions.git
+```bash
+git clone https://github.com/sKorpion19091/Semester-Assignment-COS214.git
 ```
 
-where `this-is-you` is your GitHub username. Here you're copying the contents of the first-contributions repository on GitHub to your computer.
-
-## Create a branch
+## 2. Checkout the branch
 
 Change to the repository directory on your computer (if you are not already there):
 
