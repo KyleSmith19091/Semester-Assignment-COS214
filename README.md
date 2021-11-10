@@ -1,10 +1,5 @@
 # Semester Assignment 1
 
-## Fork this repository
-
-Fork this repository by clicking on the fork button on the top of this page.
-This will create a copy of this repository in your account.
-
 ## Clone the repository
 
 <img align="right" width="300" src="https://firstcontributions.github.io/assets/Readme/clone.png" alt="clone this repository" />
