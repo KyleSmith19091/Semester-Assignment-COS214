@@ -1,4 +1,4 @@
-# Semester Assignment 1
+# Semester Assignment 1 - COS214
 
 ## Clone the repository
 
