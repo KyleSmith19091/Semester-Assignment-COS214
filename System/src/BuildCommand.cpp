@@ -1,4 +1,4 @@
-#include "../inc/BuildCommand.h"
+#include "../include/BuildCommand.h"
 
 BuildCommand::BuildCommand() {}
 

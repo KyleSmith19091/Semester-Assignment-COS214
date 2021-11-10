@@ -1,4 +1,4 @@
-#include "../inc/Simulate.h"
+#include "../include/Simulate.h"
 
 Simulate::Simulate() {}
 

@@ -1,4 +1,4 @@
-#include "../inc/BuildSimulation.h"
+#include "../include/BuildSimulation.h"
 
 BuildSimulation::BuildSimulation() {}
 

@@ -1,4 +1,4 @@
-#include "../inc/Simulation.h"
+#include "../include/Simulation.h"
 
 Simulation::Simulation() {
     state = new State("Cargo");

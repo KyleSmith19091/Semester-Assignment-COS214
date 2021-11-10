@@ -1,4 +1,4 @@
-#include "../inc/SelectCommand.h"
+#include "../include/SelectCommand.h"
 
 SelectCommand::SelectCommand() {}
 
