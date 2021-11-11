@@ -1,5 +1,19 @@
 # Semester Assignment 1 - COS214
 
+## Git Branching Strategy
+- ```master``` this branch contains the production code, this code needs to work at all times. This is what we are handing in.
+- ```develop``` this branch contains the code before it is merge into the master branch.
+- ```feature-*``` used to develop new features for the project. Branches off from the development branch.
+
+---
+<img src="https://nvie.com/img/git-model@2x.png" align="center" width="500px" height="500px"/>
+
+fig. (<a href="https://nvie.com/posts/a-successful-git-branching-model/">Original Article</a>)
+
+---
+
+Follow the instructions below to get a local git repo going and to create a branch(using the above mentioned naming convention).
+
 ## 0. Install git
 <a target="#" href="https://git-scm.com/book/en/v2/Getting-Started-Installing-Git">Follow this link for a guide(This will open in a new tab)</a>
 
