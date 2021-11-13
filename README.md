@@ -6,6 +6,7 @@
 - ```feature-*``` used to develop new features for the project. Branches off from the development branch.
 
 ---
+
 <img src="https://nvie.com/img/git-model@2x.png" align="center" width="500px" height="500px"/>
 
 fig. (<a href="https://nvie.com/posts/a-successful-git-branching-model/">Original Article</a>)
