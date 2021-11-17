@@ -13,14 +13,14 @@
 
 #include "Dragon.h"
 
-class CrewDragon : public Dragon {
-    public:
-        /**
-         *  @fn CrewDragon()
-         *  @brief The constructor for the class.
-         */
-        CrewDragon();
+#include <vector>
 
+class CrewDragon : public Dragon {
+    private: 
+        std::vector<Crew*> crewMembers;
+        std::vector<Cargo*> cargoList;
+
+    public:
         /**
          *  @fn ~CrewDragon()
          *  @brief The destructor for the class.

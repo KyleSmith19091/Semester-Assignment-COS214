@@ -14,7 +14,19 @@
 #include "Spacecraft.h"
 
 class Dragon : public Spacecraft {
-    protected:
+    public: 
+        /**
+         *  @fn ~Dragon()
+         *  @brief The destructor for the class.
+         */
+        Dragon();
+
+        /**
+         *  @fn Dragon()
+         *  @brief The destructor for the class.
+         */
+        virtual ~Dragon();
+
         /**
          *  @fn load()
          *  @brief Template method to load the content of the dragon spacecraft.

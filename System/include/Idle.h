@@ -1,25 +1,24 @@
 /****************************************************************************************************
- *  @file ./include/Seperated.h
- *  @brief The header file for the Seperated class.
+ *  @file ./include/Idle.h
+ *  @brief The header file for the Idle class.
  ***************************************************************************************************/
 
-#ifndef SEPERATED_H
-#define SEPERATED_H
+#ifndef IDLE_H
+#define IDLE_H
 
 #include "FalconState.h"
 
 /****************************************************************************************************
- *  @class Seperated
- *  @brief "Seperated falcon state"
+ *  @class Idle
+ *  @brief "Idle Falcon State"
  ***************************************************************************************************/
-
-class Seperated : public FalconState {
+class Idle : public FalconState {
     public:
         /**
-         *  @fn ~Seperated()
+         *  @fn ~Idle()
          *  @brief The destructor for the class.
          */
-        ~Seperated();
+        ~Idle();
 
         /**
          *  @fn handleChange()
@@ -38,4 +37,4 @@ class Seperated : public FalconState {
         std::string getCurrentState() override;
 };
 
-#endif  //SEPERATED_H
+#endif  //IDLE_H

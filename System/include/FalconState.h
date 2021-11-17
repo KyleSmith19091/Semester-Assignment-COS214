@@ -1,4 +1,4 @@
-/****************************************************************************************************
+/***************************************************************************************************
  *  @file ./include/FalconState.h
  *  @brief The header file for the FalconState class.
  ***************************************************************************************************/
@@ -22,7 +22,6 @@ class FalconState {
          */
         virtual ~FalconState();
 
-    protected:
         /**
          *  @fn handleChange()
          *  @brief Handles a change in seperation state.
