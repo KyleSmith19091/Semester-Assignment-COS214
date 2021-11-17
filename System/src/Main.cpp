@@ -3,7 +3,11 @@
 #include "../include/VectorOfCargo.h"
 #include "../include/CargoIterator.h"
 #include "../include/CarryType.h"
+#include "../include/Simulate.h"
+#include "../include/SelectCommand.h"
 #include <iostream>
+
+void commandTest();
 
 int main() {
 	//////////////////////////////////////////////////////////////// Iterator
@@ -26,6 +30,8 @@ int main() {
 		
 	}
 
+	delete CI;
+
 	////////////////////////////////////////////////////////////////
 
 	SelectSimulation* select = new SelectSimulation();
@@ -34,5 +40,24 @@ int main() {
 
 	delete select;
 
+	/////////////////////////////////////////////////////////////// Command Implementation
+
+	commandTest();
+
+	/////////////////////////////////////////////////////////////// End of Command Implementation
+
 	return 0;
+}
+
+void commandTest() {
+	Simulate* sim = new Simulate();
+	SelectSimulation* select = new SelectSimulation();
+	SelectCommand* sCom = new SelectCommand(select);
+	
+	sim->setSelect(sCom);
+	sim->select();
+
+	delete sim;
+	delete sCom;
+	delete select;
 }

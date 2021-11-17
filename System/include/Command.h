@@ -1,5 +1,5 @@
 /****************************************************************************************************
- *  @file inc/Command.h
+ *  @file include/Command.h
  *  @brief The header file for the Command class.
  ***************************************************************************************************/
 
@@ -8,7 +8,7 @@
 
 /****************************************************************************************************
  *  @class Command
- *  @brief "Insert brief description here."
+ *  @brief The Command for the Command Design Pattern.
  ***************************************************************************************************/
 class Command
 {
@@ -20,10 +20,16 @@ class Command
         Command();
 
         /**
-         *  @fn ~Command()
+         *  @fn virtual ~Command()
          *  @brief The destructor for the class.
          */
-        ~Command();
+        virtual ~Command();
+
+        /**
+         *  @fn virtual void execute() = 0
+         *  @brief The pure virtual execute method.
+         */
+        virtual void execute() = 0;
 };
 
 #endif  //COMMAND_H

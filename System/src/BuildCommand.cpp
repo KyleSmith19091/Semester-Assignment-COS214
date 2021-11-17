@@ -1,5 +1,9 @@
 #include "../include/BuildCommand.h"
 
-BuildCommand::BuildCommand() {}
+BuildCommand::BuildCommand(BuildSimulation* s) : mySim(s) {}
 
 BuildCommand::~BuildCommand() {}
+
+void BuildCommand::execute() {
+    mySim->startSim();
+}
