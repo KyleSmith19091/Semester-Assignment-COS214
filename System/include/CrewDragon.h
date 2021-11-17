@@ -12,6 +12,8 @@
  ***************************************************************************************************/
 
 #include "Dragon.h"
+#include "Crew.h"
+#include "Cargo.h"
 
 #include <vector>
 
@@ -21,6 +23,8 @@ class CrewDragon : public Dragon {
         std::vector<Cargo*> cargoList;
 
     public:
+        CrewDragon(Falcon*);
+
         /**
          *  @fn ~CrewDragon()
          *  @brief The destructor for the class.

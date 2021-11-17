@@ -12,6 +12,9 @@
  ***************************************************************************************************/
 
 #include "Spacecraft.h"
+#include "Falcon.h"
+
+#include <fstream>
 
 class Dragon : public Spacecraft {
     public: 
@@ -19,7 +22,7 @@ class Dragon : public Spacecraft {
          *  @fn ~Dragon()
          *  @brief The destructor for the class.
          */
-        Dragon();
+        Dragon(Falcon*);
 
         /**
          *  @fn Dragon()
@@ -33,6 +36,9 @@ class Dragon : public Spacecraft {
          *  @return void
          */
         virtual void load() =0;
+
+    private:
+        Falcon* falconHeavy;
 };
 
 #endif

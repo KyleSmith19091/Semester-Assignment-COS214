@@ -1,7 +1,11 @@
 #include "../include/Dragon.h"
 
-Dragon::Dragon() : Spacecraft("Dragon") {
+Dragon::Dragon(Falcon* falcon) : Spacecraft("Dragon") {
+    this->falconHeavy = falcon;
 }
 
 Dragon::~Dragon() {
+    if(falconHeavy) {
+        delete falconHeavy;
+    }
 }

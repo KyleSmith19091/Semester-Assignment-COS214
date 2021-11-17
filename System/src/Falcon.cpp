@@ -1,14 +1,11 @@
 #include "../include/Falcon.h"
-#include "../include/Launched.h"
+#include "../include/Idle.h"
 
 Falcon::Falcon() : Spacecraft("Falcon") {
-    launchState = new Launched();
+    launchState = new Idle();
 }
 
 Falcon::~Falcon() {
-    for(auto it = coreList.begin(); it != coreList.end(); ++it) {
-        delete (*it);
-    }
     delete launchState;
 }
 

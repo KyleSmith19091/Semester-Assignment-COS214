@@ -37,6 +37,13 @@ class Loader
          *  @return void
          */
         void load();
+
+        /**
+         *  @fn ~Loader()
+         *  @brief Changes the reference to the dragon that is going to be loaded.
+         *  @return void
+         */
+        void setDragon(Dragon*);
 };
 
 #endif  //LOADER_H

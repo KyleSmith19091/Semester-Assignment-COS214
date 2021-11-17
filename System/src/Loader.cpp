@@ -5,11 +5,13 @@ Loader::Loader(Dragon* dragon) {
 }
 
 Loader::~Loader() {
-    if(dragon) {
-        delete dragon;
-    }
 }
 
 void Loader::load() {
     this->dragon->load();
+}
+
+void Loader::setDragon(Dragon* newDragon) {
+    delete dragon;
+    this->dragon = newDragon;
 }
