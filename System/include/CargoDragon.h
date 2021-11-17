@@ -21,18 +21,13 @@
 using namespace std;
 
 class CargoDragon : public Dragon {
-    private:
-        vector<Cargo*> cargoList;         
-        Falcon* falconHeavy;
-
     public:
         /**
          *  @fn CargoDragon()
          *  @brief The constructor for the class.
          *  @param[in] Falcon* Falcon carrying that will carry this dragon spacecraft
-         *  @param[in] vector<Cargo*> List of cargo to load
          */
-        CargoDragon(Falcon*, vector<Cargo*>);
+        CargoDragon(Falcon*);
 
         /**
          *  @fn ~CargoDragon()
@@ -46,5 +41,8 @@ class CargoDragon : public Dragon {
          *  @return void
          */
         void load() override;
+
+    private:
+        vector<Cargo*> cargoList;         
 };	
 #endif

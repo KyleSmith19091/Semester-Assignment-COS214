@@ -12,14 +12,18 @@
  ***************************************************************************************************/
 
 #include "Dragon.h"
+#include "Crew.h"
+#include "Cargo.h"
+
+#include <vector>
 
 class CrewDragon : public Dragon {
+    private: 
+        std::vector<Crew*> crewMembers;
+        std::vector<Cargo*> cargoList;
+
     public:
-        /**
-         *  @fn CrewDragon()
-         *  @brief The constructor for the class.
-         */
-        CrewDragon();
+        CrewDragon(Falcon*);
 
         /**
          *  @fn ~CrewDragon()

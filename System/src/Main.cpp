@@ -3,6 +3,11 @@
 #include "../include/VectorOfCargo.h"
 #include "../include/CargoIterator.h"
 #include "../include/CarryType.h"
+#include "../include/Dragon.h"
+#include "../include/CrewDragon.h"
+#include "../include/CargoDragon.h"
+#include "../include/Loader.h"
+#include "../include/Falcon.h"
 #include <iostream>
 
 int main() {
@@ -26,7 +31,31 @@ int main() {
 		
 	}
 
-	////////////////////////////////////////////////////////////////
+	////////////////////////////////////////////////////////////////  Strategy
+     Falcon* falconHeavy = new Falcon();
+	 Dragon* dragon = new CrewDragon(falconHeavy);
+     Loader* loader = new Loader(dragon); 
+     loader->load();
+
+     Dragon* cargoDragon = new CargoDragon(falconHeavy);
+     loader->setDragon(cargoDragon);
+     loader->load();
+
+     delete loader;
+
+	////////////////////////////////////////////////////////////////  State
+     Falcon* falconWithState = new Falcon();
+     std::cout << "Falcon current State: " << falconWithState->getCurrentState() << "\n";
+     falconWithState->change();
+     std::cout << "Falcon current State: " << falconWithState->getCurrentState() << "\n";
+     falconWithState->change();
+     std::cout << "Falcon current State: " << falconWithState->getCurrentState() << "\n";
+     falconWithState->change();
+     std::cout << "Falcon current State: " << falconWithState->getCurrentState() << "\n";
+     falconWithState->change();
+     std::cout << "Falcon current State: " << falconWithState->getCurrentState() << "\n";
+
+	//////////////////////////////////////////////////////////////// 
 
 	SelectSimulation* select = new SelectSimulation();
 
