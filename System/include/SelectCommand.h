@@ -36,7 +36,7 @@ class SelectCommand : public Command
          *  @fn virtual void execute() override
          *  @brief The implementation of the pure virtual execute method.
          */
-        virtual void execute() override;
+        virtual std::vector<State*> execute() override;
 };
 
 #endif  //SELECTCOMMAND_H

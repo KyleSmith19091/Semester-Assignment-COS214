@@ -4,16 +4,16 @@ Simulate::Simulate() {}
 
 Simulate::~Simulate() {}
 
-void Simulate::select() {
+std::vector<State*> Simulate::select() {
     if (selectCommand != 0)
-        selectCommand->execute();
+        return selectCommand->execute();
     else
         std::cout << "No command set." << std::endl;
 }
 
-void Simulate::build() {
+std::vector<State*> Simulate::build() {
     if (buildCommand != 0)
-        buildCommand->execute();
+        return buildCommand->execute();
     else
         std::cout << "No command set." << std::endl;
 }

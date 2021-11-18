@@ -9,6 +9,7 @@
 #include <iostream>
 
 #include "Command.h"
+#include "State.h"
 /****************************************************************************************************
  *  @class Simulate
  *  @brief The invoker for the Command Design Pattern.
@@ -27,22 +28,22 @@ class Simulate
         Simulate();
 
         /**
-         *  @fn ~Simulate()
+         *  @fn ~Simulate()std::vector<State*>
          *  @brief The destructor for the class.
          */
         ~Simulate();
 
         /**
-         *  @fn void select()
+         *  @fn std::vector<State*> select()
          *  @brief The method to call selectCommand execute().
          */
-        void select();
+        std::vector<State*> select();
 
         /**
-         *  @fn void build()
+         *  @fn std::vector<State*> build()
          *  @brief The method to call buildCommand execute().
          */
-        void build();
+        std::vector<State*> build();
 
         /**
          *  @fn void setSelect(Command* c)

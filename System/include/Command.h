@@ -6,6 +6,9 @@
 #ifndef COMMAND_H
 #define COMMAND_H
 
+#include <vector>
+#include "State.h"
+
 /****************************************************************************************************
  *  @class Command
  *  @brief The Command for the Command Design Pattern.
@@ -29,7 +32,7 @@ class Command
          *  @fn virtual void execute() = 0
          *  @brief The pure virtual execute method.
          */
-        virtual void execute() = 0;
+        virtual std::vector<State*> execute() = 0;
 };
 
 #endif  //COMMAND_H

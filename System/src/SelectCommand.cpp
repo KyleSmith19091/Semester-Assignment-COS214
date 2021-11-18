@@ -4,6 +4,6 @@ SelectCommand::SelectCommand(SelectSimulation* s) : mySim(s) {}
 
 SelectCommand::~SelectCommand() {}
 
-void SelectCommand::execute() {
-    mySim->startSim();
+std::vector<State*> SelectCommand::execute() {
+    return mySim->startSim();
 }

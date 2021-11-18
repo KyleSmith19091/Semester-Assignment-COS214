@@ -4,6 +4,6 @@ BuildCommand::BuildCommand(BuildSimulation* s) : mySim(s) {}
 
 BuildCommand::~BuildCommand() {}
 
-void BuildCommand::execute() {
-    mySim->startSim();
+std::vector<State*> BuildCommand::execute() {
+    return mySim->startSim();
 }

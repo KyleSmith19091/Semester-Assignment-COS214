@@ -6,20 +6,21 @@
 #ifndef SELECTSIMULATION_H
 #define SELECTSIMULATION_H
 
-#include <vector>
 #include <fstream>
 
 #include "Store.h"
 #include "Simulation.h"
 /****************************************************************************************************
  *  @class SelectSimulation
- *  @brief "Insert brief description here."
+ *  @brief The implementation of the selection process.
  ***************************************************************************************************/
 class SelectSimulation : public Simulation
 {
     private:
+        std::vector<State*> sVector;
         Store* store;
         std::vector<Memento*> prefabs;
+        int iExit = 100;
     public:
         /**
          *  @fn SelectSimulation()
@@ -33,7 +34,12 @@ class SelectSimulation : public Simulation
          */
         ~SelectSimulation();
 
-        virtual void startSim() override;
+        virtual std::vector<State*> startSim() override;
+
+        void simulateSingle();
+        void simulateBatch();
+        void exitProgram();
+        void loadPrefabs();
 };
 
 #endif  //SELECTSIMULATION_H
