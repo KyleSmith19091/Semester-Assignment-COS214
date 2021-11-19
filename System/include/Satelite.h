@@ -23,12 +23,15 @@
 using namespace std;
 
 class Satelite : public Spacecraft {
+    private:
+        int id;
+
     public:
         /**
          *  @fn Satelite()
          *  @brief The constructor for the class.
          */
-        Satelite();
+        Satelite(int);
 
         /**
          *  @fn Satelite(const Satelite&)
@@ -43,7 +46,7 @@ class Satelite : public Spacecraft {
          */
         Satelite* clone();
 
-        void spreadOut();
+        void positionSelf();
 };
 
 #endif

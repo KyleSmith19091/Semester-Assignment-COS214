@@ -57,11 +57,11 @@ int main() {
      std::cout << "Falcon current State: " << falconWithState->getCurrentState() << "\n";
 
 	////////////////////////////////////////////////////////////////  Satelite
-     Satelite* s = new Satelite();
-     s->spreadOut();
+     Satelite* s = new Satelite(1);
+     s->positionSelf();
     
      for(int i = 0; i < 60; i++) {
-         s->clone()->spreadOut();
+         s->clone()->positionSelf();
      }
 
      delete s;
