@@ -2,11 +2,11 @@
 #include "../include/CarryType.h"
 #include <iostream>
 
-CarryType* Iterator::first() {}
+CarryType* Iterator::first() {return nullptr; }
 
-CarryType* Iterator::next() {}
+CarryType* Iterator::next() {return nullptr; }
 
-CarryType* Iterator::current() {}
+CarryType* Iterator::current() { return nullptr; }
 
 bool Iterator::isDone() {
 	return false;
