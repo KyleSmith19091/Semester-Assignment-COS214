@@ -6,12 +6,12 @@
 #ifndef ENGINE_H 
 #define ENGINE_H
 
-#include "MerlinCore.h"
-
 /****************************************************************************************************
  *  @class Engine
  *  @brief "Interface for Engine"
  ***************************************************************************************************/
+
+class MerlinCore;
 
 class Engine {
     private:
@@ -25,13 +25,6 @@ class Engine {
          *  @return void
          */
         virtual bool getOn() const;
-
-        /**
-         *  @fn setOn()
-         *  @brief Set on state.
-         *  @return void
-         */
-        virtual void setOn();
 
         /**
          *  @fn clone()
@@ -93,5 +86,13 @@ class Engine {
          */
         void checkEngine();
 
-};	
+        /**
+         *  @fn setOn()
+         *  @brief Set on state.
+         *  @return void
+         */
+        virtual void setOn(bool);
+
+};
+#include "MerlinCore.h"	
 #endif

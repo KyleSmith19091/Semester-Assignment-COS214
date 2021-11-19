@@ -1,5 +1,31 @@
 #include "../include/MerlinCore.h"
 
-MerlinCore::MerlinCore() {}
+/**
+*  @fn MerlinCore()
+*  @brief The constructor for the class.
+*/
+MerlinCore::MerlinCore(vector<Engine*> list) {
+    engineList=list;
+}
 
-MerlinCore::~MerlinCore() {}
+/* Destructor*/
+MerlinCore::~MerlinCore() {
+    engineList.clear();
+}
+/*
+ * @fn on(Engine* colleague)
+ * @brief Sets the on to true for the engine parameter
+ * @return void
+*/
+void MerlinCore::on(Engine *colleague) {
+    colleague->setOn(true);
+}
+
+/*
+ * @fn off(Engine* colleague)
+ * @brief Sets the on to flase for the engine parameter
+ * @return void
+*/
+void MerlinCore::off(Engine *colleague) {
+    colleague->setOn(false);
+}
