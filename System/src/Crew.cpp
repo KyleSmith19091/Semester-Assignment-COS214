@@ -6,6 +6,9 @@ Crew::Crew(string name, string jobTitle){
     this->jobTitle = jobTitle;
 }
 
+Crew::~Crew() {
+}
+
 string Crew::getName(){
     return name;
 }

@@ -1,39 +1,60 @@
 /****************************************************************************************************
- *  @file Cluster.h 
+ *  @file ./include/Cluster.h
  *  @brief The header file for the Cluster class.
  ***************************************************************************************************/
 
-#ifndef CLUSTER_H 
+#ifndef CLUSTER_H
 #define CLUSTER_H
+
+#include "Satelite.h"
+#include "MissionControl.h"
+#include "Falcon.h"
+
+#include <vector>
 
 /****************************************************************************************************
  *  @class Cluster
- *  @brief "Container for starlink satelites"
+ *  @brief "Represents a cluster of satellite"
  ***************************************************************************************************/
-
-#include "Satelite.h"
-#include "Falcon.h"
-
-using namespace std;
-
 class Cluster {
-    private:
-        Satelite sateliteList[60];
-        Falcon* falcon9;
-
     public:
         /**
          *  @fn Cluster()
-         *  @brief        The constructor for the class.
-         *  @param[in]    Satelite*     Satelite list
-         *  @param[in]    Falcon* Falcon carrying satelite
+         *  @brief The constructor for the class.
          */
-        Cluster(Satelite*, Falcon*);
+        Cluster(Falcon*);
 
         /**
          *  @fn ~Cluster()
          *  @brief The destructor for the class.
          */
         ~Cluster();
-};	
-#endif
+
+        /**
+         * @fn addSatellite(Satellite*)
+         * @brief Add a satellite to a cluster
+         * @param[in] Satellite* Pointer to satellite that will be added to cluster
+         * @return void
+         */
+        void addSatellite(Satelite*);
+
+        /**
+         * @fn generateSatellites()
+         * @brief Generate 60 satellites and populate cluster
+         * @return void
+         */
+        void generateSatellites(MissionControl*,int);
+
+        /**
+         * @fn addSatellite(Satellite*)
+         * @brief Add a satellite to a cluster
+         * @return void
+         */
+        void spreadOutSatellites();
+
+    private:
+        Falcon* falcon;
+        std::vector<Satelite*> clusterSatellites;
+};
+
+#endif  //CLUSTER_H

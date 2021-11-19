@@ -19,11 +19,21 @@ private:
 	string name;
 	string jobTitle;
 public:
+
+    Crew* next;
+
 	/**
          *  @fn Crew(string name, string jobTitle)
          *  @brief The constructor of the class.
          */
 	Crew(string name, string jobTitle);
+
+	/**
+        *  @fn Crew()
+        *  @brief The destructor of the class.
+        */
+    ~Crew(); 
+
 	/**
          *  @fn getName()
          *  @brief Getter for the Crew member's name.

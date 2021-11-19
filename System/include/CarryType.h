@@ -17,6 +17,12 @@ using namespace std;
 class CarryType {
     public:
     /**
+         *  @fn ~CarryType()
+         *  @brief Destructor for this class.
+         */
+        virtual ~CarryType();
+
+    /**
          *  @fn toString()
          *  @brief Returns a summary of the Carry type object.
          *  @return string

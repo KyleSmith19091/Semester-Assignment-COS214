@@ -13,11 +13,12 @@
 
 #include "Spacecraft.h"
 #include "MerlinCore.h"
-#include "FalconState.h"
 
 #include <vector>
 
 using namespace std;
+
+class FalconState;
 
 class Falcon : public Spacecraft {
     private:
@@ -59,4 +60,7 @@ class Falcon : public Spacecraft {
          */
         void setState(FalconState*);
 };	
+
+#include "FalconState.h"
+
 #endif

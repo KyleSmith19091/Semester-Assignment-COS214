@@ -6,12 +6,7 @@
 #ifndef ENGINE_H 
 #define ENGINE_H
 
-#include "MerlinCore.h"
-
-/****************************************************************************************************
- *  @class Engine
- *  @brief "Interface for Engine"
- ***************************************************************************************************/
+class MerlinCore;       
 
 class Engine {
     private:
@@ -27,39 +22,25 @@ class Engine {
         virtual bool getOn() const;
 
         /**
-         *  @fn setOn()
-         *  @brief Set on state.
-         *  @return void
-         */
-        virtual void setOn();
-
-        /**
-         *  @fn clone()
-         *  @brief Clone current engine.
-         *  @return Engine* 
-         */
-        virtual Engine* clone();
-
-        /**
          *  @fn checkTemp()
          *  @brief Check Temperature of Engine.
          *  @return void
          */
-        virtual void checkTemp();
+        virtual void checkTemperature()=0;
+
+        /**
+         *  @fn startEngine()
+         *  @brief Completes the check up and finally start up the Engine.
+         *  @return void
+         */
+        virtual void startEngine()=0;
 
         /**
          *  @fn checkOil()
          *  @brief Check Oil level in Engine.
          *  @return void
          */
-        virtual void checkOil();
-
-        /**
-         *  @fn staticFire()
-         *  @brief Perform Static Fire Test.
-         *  @return void
-         */
-        virtual void staticFire();
+        virtual void checkOil()=0;
     
     public:
         /**
@@ -73,13 +54,13 @@ class Engine {
          *  @brief The constructor for the class.
          *  @param[in] MerlinCore* Desc
          */
-        Engine(MerlinCore*);
+        Engine(MerlinCore* m);
 
         /**
          *  @fn ~Engine()
          *  @brief The destructor for the class.
          */
-        ~Engine();
+        virtual ~Engine();
 
         /**
          *  @fn turnOn()
@@ -93,5 +74,13 @@ class Engine {
          */
         void checkEngine();
 
-};	
+        /**
+         *  @fn setOn()
+         *  @brief Set on state.
+         *  @return void
+         */
+        void setOn(bool);
+
+};
+#include "MerlinCore.h"	
 #endif

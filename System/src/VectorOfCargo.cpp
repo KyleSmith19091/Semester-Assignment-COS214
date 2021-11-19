@@ -15,11 +15,9 @@ Iterator* VectorOfCargo::createIterator() {
 void VectorOfCargo::removeCargo(Cargo* cargo) {
 	vector<Cargo*>::iterator ptr;
 
-	for (ptr = CargoList.begin(); ptr < CargoList.end(); ptr++)
-	{
+	for (ptr = CargoList.begin(); ptr < CargoList.end(); ptr++) {
 		if ((*ptr) == cargo)
 			CargoList.erase(ptr);
-
 	}
 }
 
