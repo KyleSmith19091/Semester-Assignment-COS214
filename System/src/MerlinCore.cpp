@@ -10,8 +10,11 @@ MerlinCore::MerlinCore(vector<Engine*> list) {
 
 /* Destructor*/
 MerlinCore::~MerlinCore() {
-    engineList.clear();
+    for(auto it : engineList) {
+        delete it;
+    }
 }
+
 /*
  * @fn on(Engine* colleague)
  * @brief Sets the on to true for the engine parameter
@@ -28,4 +31,11 @@ void MerlinCore::on(Engine *colleague) {
 */
 void MerlinCore::off(Engine *colleague) {
     colleague->setOn(false);
+}
+
+void MerlinCore::initiateEngineChecks(){
+    	vector<Engine*>::iterator it;
+
+	for (it = engineList.begin(); it != engineList.end(); ++it)
+		(*it)->checkEngine();
 }

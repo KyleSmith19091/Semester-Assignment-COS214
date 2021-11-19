@@ -13,26 +13,30 @@
 #include "CarryType.h"
 #include "Iterator.h"
 #include "Crew.h"
+#include "LinkedListOfCrew.h"
 #include <vector>
 
 using namespace std;
-////////////////////////////////////////////////////INVALID AT THE MOMENT
+
 class CrewIterator :public Iterator{
     private:
-    Crew** crewList[4];
+    LinkedListOfCrew* list;
     int index;
 
-    CrewIterator();
     public:
 
-      
-        ~CrewIterator();
+        /**
+         *  @fn CrewIterator()
+         *  @brief Constructor for this class
+         *  @param[in] LinkedListOfCrew* list of crew members
+         */
+        CrewIterator(LinkedListOfCrew* list);
 
         /**
-         *  @brief Gets the first element in the list/collection
-         *  @return CarryType* the first element in the list/collection
+         *  @fn ~CrewIterator()
+         *  @brief Destructor for this class
          */
-        CrewIterator(Crew** list);
+        ~CrewIterator();
 
         /**
          *  @brief Gets the first element in the list/collection

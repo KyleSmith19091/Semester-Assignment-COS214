@@ -6,9 +6,9 @@
 #ifndef MERLINCORE_H
 #define MERLINCORE_H
 
-class Engine;
-
 #include <vector>
+
+class Engine;
 
 using namespace std;
 
@@ -45,6 +45,12 @@ public:
      *  @brief The destructor for the class.
      */
     ~MerlinCore();
+    /*
+     * @fn initiateEngineChecks()
+     * @brief check every engine
+     * @return void
+     */
+    void initiateEngineChecks();
 };
 
 #include "Engine.h"

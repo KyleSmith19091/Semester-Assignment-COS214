@@ -20,6 +20,8 @@ private:
 	string jobTitle;
 public:
 
+    Crew* next;
+
 	/**
          *  @fn Crew(string name, string jobTitle)
          *  @brief The constructor of the class.
