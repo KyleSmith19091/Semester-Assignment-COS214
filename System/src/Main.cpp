@@ -15,7 +15,6 @@ bool bRunning = true;
 
 void exitProgram();
 void saveSimulation(/*sumulationObjectorType*/  );
-void commandTest();
 void simTest();
 void runSims(std::vector<State*> s);
 
@@ -26,14 +25,16 @@ int main() {
 }
 
 void simTest() {
-	Simulate* sim = new Simulate();
+    Command* sim = new Command();
+    vector<State*> retVector;
+    retVector.clear();
 	SelectSimulation* selectSim = new SelectSimulation();
 	BuildSimulation* buildSim = new BuildSimulation();
 	SelectCommand* sCom = new SelectCommand(selectSim);
 	BuildCommand* bCom = new BuildCommand(buildSim);
-	
-	sim->setSelect(sCom);
-	sim->setBuild(bCom);
+
+    sim->add(sCom);
+    sim->add(bCom);
 	
 	while(bRunning == true){
         cout << "Welcome to Starlink. Here you can create and simulate various rockets.\n"
@@ -56,16 +57,20 @@ void simTest() {
         cin.clear();
         cin >> optionSelector;
         while (optionSelector != 0 && optionSelector != 1 && optionSelector !=iExit){
-            cout << "Please enter a 0 or a 1\n";
+            cout << "Please enter a 0 or a 1: \n";
             cin >> optionSelector;
         }
         switch (optionSelector)
         {
             case 0:
-                runSims(sim->build());
+                retVector.clear();
+                sim->execute("b", &retVector);
+                runSims(retVector);
                 break;
             case 1:
-                runSims(sim->select());
+                retVector.clear();
+                sim->execute("s", &retVector);
+                runSims(retVector);
                 break;
             case iExit:
 				delete sim;
@@ -96,17 +101,4 @@ void runSims(vector<State*> s) {
 	for (auto it = s.begin(); it != s.end(); it++) {
 		cout << (*it)->getName() << endl;
 	}
-}
-
-void commandTest() {
-	Simulate* sim = new Simulate();
-	SelectSimulation* select = new SelectSimulation();
-	SelectCommand* sCom = new SelectCommand(select);
-	
-	sim->setSelect(sCom);
-	sim->select();
-
-	delete sim;
-	delete sCom;
-	delete select;
 }

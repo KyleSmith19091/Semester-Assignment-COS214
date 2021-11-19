@@ -17,7 +17,6 @@
 class SelectSimulation : public Simulation
 {
     private:
-        std::vector<State*> sVector;
         Store* store;
         std::vector<Memento*> prefabs;
         int iExit = 100;
@@ -34,10 +33,10 @@ class SelectSimulation : public Simulation
          */
         ~SelectSimulation();
 
-        virtual std::vector<State*> startSim() override;
+        virtual void startSim(std::vector<State*>* sVector) override;
 
-        void simulateSingle();
-        void simulateBatch();
+        void simulateSingle(std::vector<State*>* sVector);
+        void simulateBatch(std::vector<State*>* sVector);
         void exitProgram();
         void loadPrefabs();
 };

@@ -1,6 +1,6 @@
 #include "../include/SelectSimulation.h"
 
-SelectSimulation::SelectSimulation() : sVector() {}
+SelectSimulation::SelectSimulation() {}
 
 SelectSimulation::~SelectSimulation() {
     Memento* tmp;
@@ -15,7 +15,7 @@ SelectSimulation::~SelectSimulation() {
     }
 }
 
-std::vector<State*> SelectSimulation::startSim() {
+void SelectSimulation::startSim(std::vector<State*>* sVector) {
     this->loadPrefabs();
 
     cout << "\n==========You Have now entered the simulation phase.==========\n\n";
@@ -25,25 +25,25 @@ std::vector<State*> SelectSimulation::startSim() {
     int optionSelector = -1;
     cin >> optionSelector;
     while (optionSelector != 0 && optionSelector != 1 && optionSelector != iExit){
-        cout << "Please enter a 0 or a 1\n";
+        cout << "Please enter a 0 or a 1: \n";
         cin >> optionSelector;
     }
+    std::cout << "\n";
     switch (optionSelector)
     {
         case 0:
             cout << "===Simulation single mode===\n";
-            this->simulateSingle();
+            this->simulateSingle(sVector);
             break;
         case 1:
             cout << "===Simulation batch mode===\n";
-            this->simulateBatch();
+            this->simulateBatch(sVector);
             break;
         case 100:
             exitProgram();
             break;
     }
-    cout << "Finished with simulation returning to main\n";
-    return sVector;
+    cout << "\n";
 }
 
 void SelectSimulation::loadPrefabs() {
@@ -83,7 +83,7 @@ void SelectSimulation::exitProgram() {
         exit(0);
 }
 
-void SelectSimulation::simulateSingle() {
+void SelectSimulation::simulateSingle(std::vector<State*>* sVector) {
     int selection = 0;
 
     std::cout << "Please select the simulation you would like to run." << std::endl;
@@ -98,27 +98,28 @@ void SelectSimulation::simulateSingle() {
 
     if (selection < 1 || selection > prefabs.size()) {
         std::cout << "The number that you input was not available in the provided selection." << std::endl << std::endl;
-        return;
+        this->simulateSingle(sVector);
     }
 
-    sVector.push_back(prefabs[--selection]->getState());
+    sVector->push_back(prefabs[--selection]->getState());
     std::vector<Memento*>::iterator rem = prefabs.begin() + selection;
     prefabs.erase(rem);
     //std::cout << "Hello, I am now a " << prefabs[--selection]->getState()->getName() << " ship." << std::endl;
 }
 
-void SelectSimulation::simulateBatch() {
+void SelectSimulation::simulateBatch(std::vector<State*>* sVector) {
     bool bFinished = false;
     while(bFinished == false){
-        this->simulateSingle();
+        this->simulateSingle(sVector);
 
         cout << "\nWould you like to add another simulation.\n"
-                "0:no, 1:Yes\n";
+                "\t0: No\n\t1: Yes\n";
+        cout << "Please select the appropriate option: ";
         int optionSelector=-1;
         cin.clear();
         cin >> optionSelector;
         while (optionSelector != 0 && optionSelector != 1 && optionSelector !=iExit){
-            cout << "Please enter a 0 or a 1\n";
+            cout << "Please enter a 0 or a 1: \n";
             cin.clear();
             cin >> optionSelector;
         }
@@ -130,7 +131,7 @@ void SelectSimulation::simulateBatch() {
                 break;
             }
             case 1: {
-                cout << "Simulation batch mode";
+                cout << "===Simulation batch mode===\n";
                 break;
             }
             case 100:
@@ -138,5 +139,5 @@ void SelectSimulation::simulateBatch() {
                 break;
         }
     }
-    cout<<"finished with batch\n";
+    cout<<"\n";
 }

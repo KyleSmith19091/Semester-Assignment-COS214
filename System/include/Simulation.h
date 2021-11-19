@@ -53,7 +53,7 @@ class Simulation
          *  
          *  @return std::vector<State*>: States to run.
          */
-        virtual std::vector<State*> startSim() = 0;
+        virtual void startSim(std::vector<State*>* sVector) = 0;
 
         std::string getFilePath();
 };

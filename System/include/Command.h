@@ -7,14 +7,18 @@
 #define COMMAND_H
 
 #include <vector>
-#include "State.h"
+#include <iostream>
+#include <string>
 
+#include "State.h"
 /****************************************************************************************************
  *  @class Command
  *  @brief The Command for the Command Design Pattern.
  ***************************************************************************************************/
 class Command
 {
+    private:
+        Command* next;
     public:
         /**
          *  @fn Command()
@@ -29,10 +33,12 @@ class Command
         virtual ~Command();
 
         /**
-         *  @fn virtual void execute() = 0
-         *  @brief The pure virtual execute method.
+         *  @fn virtual void execute()
+         *  @brief The virtual execute method.
          */
-        virtual std::vector<State*> execute() = 0;
+        virtual void execute(std::string s, std::vector<State*>* v);
+
+        void add(Command* c);
 };
 
 #endif  //COMMAND_H

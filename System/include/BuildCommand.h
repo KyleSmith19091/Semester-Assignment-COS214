@@ -36,7 +36,7 @@ class BuildCommand : public Command
          *  @fn virtual void execute() override
          *  @brief The implementation of the pure virtual execute method.
          */
-        virtual std::vector<State*> execute() override;
+        virtual void execute(std::string s, std::vector<State*>* v);
 };
 
 #endif  //BUILDCOMMAND_H

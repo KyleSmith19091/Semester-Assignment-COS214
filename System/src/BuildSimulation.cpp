@@ -1,25 +1,26 @@
 #include "../include/BuildSimulation.h"
 
-BuildSimulation::BuildSimulation() : sVector() {}
+BuildSimulation::BuildSimulation() {}
 
 BuildSimulation::~BuildSimulation() {}
 
-std::vector<State*> BuildSimulation::startSim() {
-    std::cout << "\nYou Have now entered the building phase.\n";
-    std::cout << "Would you like to build in test mode? 0:no,1:yes\n";
+void BuildSimulation::startSim(std::vector<State*>* sVector) {
+    std::cout << "\n==========You Have now entered the building phase.==========\n";
+    std::cout << "Would you like to build in test mode?\n\t0: No\n\t1: Yes\n";
+    std::cout << "Please choose the apropriate option: ";
     int optionSelector = -1;
     cin >> optionSelector;
     while (optionSelector != 0 && optionSelector != 1 && optionSelector != iExit){
-        std::cout << "Please enter a 0 or a 1\n";
+        std::cout << "Please enter a 0 or a 1: \n";
         std::cin >> optionSelector;
     }
     switch (optionSelector)
     {
         case 0:
-            buildMode();
+            buildMode(sVector);
             break;
         case 1:{
-            buildTestMode();
+            buildTestMode(sVector);
             break;
 
         }
@@ -27,11 +28,9 @@ std::vector<State*> BuildSimulation::startSim() {
             exitProgram();
             break;
     }
-
-    return sVector;
 }
 
-void BuildSimulation::buildMode() {
+void BuildSimulation::buildMode(std::vector<State*>* sVector) {
     int selection = 0;
 
     std::cout << "What kind of payload do you want to send?" << std::endl;
@@ -41,7 +40,7 @@ void BuildSimulation::buildMode() {
 
     if (selection < 0 || selection > 2) {
         std::cout << "Choice is not a valid option." << std::endl;
-        buildMode();
+        buildMode(sVector);
     }
 
     switch (selection)
@@ -56,7 +55,7 @@ void BuildSimulation::buildMode() {
         switch (selection)
         {
         case 0:
-            this->falconHeavy(0);
+            this->falconHeavy(0, sVector);
             break;
         
         default:
@@ -69,7 +68,7 @@ void BuildSimulation::buildMode() {
     }
 }
 
-void BuildSimulation::buildTestMode() {
+void BuildSimulation::buildTestMode(std::vector<State*>* sVector) {
 
 }
 
@@ -93,7 +92,7 @@ void BuildSimulation::saveToFile(State* s) {
     outFile << "\n" << s->getName();
 }
 
-void BuildSimulation::falconHeavy(int c) {
+void BuildSimulation::falconHeavy(int c, std::vector<State*>* sVector) {
     int selection = 0;
     State* tmp;
 
@@ -101,7 +100,7 @@ void BuildSimulation::falconHeavy(int c) {
     {
     case 0:
         tmp = new State("Satellites on Falcon Heavy");
-        sVector.push_back(tmp);
+        sVector->push_back(tmp);
 
         std::cout << "Would you like to save the current sim?" << std::endl;
         std::cout << "\t0: Yes\n\t1: No\n" << std::endl;

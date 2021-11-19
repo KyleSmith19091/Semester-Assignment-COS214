@@ -18,7 +18,6 @@ class BuildSimulation : public Simulation
 {
     private:
         Store* store;
-        std::vector<State*> sVector;
         int iExit = 100;
     public:
         /**
@@ -33,14 +32,14 @@ class BuildSimulation : public Simulation
          */
         ~BuildSimulation();
 
-        virtual std::vector<State*> startSim() override;
+        virtual void startSim(std::vector<State*>* v) override;
 
-        void buildMode();
-        void buildTestMode();
+        void buildMode(std::vector<State*>* sVector);
+        void buildTestMode(std::vector<State*>* sVector);
         void exitProgram();
         void saveToFile(State* s);
 
-        void falconHeavy(int c);
+        void falconHeavy(int c, std::vector<State*>* sVector);
 };
 
 #endif  //BUILDSIMULATION_H
