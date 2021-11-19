@@ -6,7 +6,7 @@
 #ifndef ENGINE_H 
 #define ENGINE_H
 
-#include "MerlinCore.h"
+
 
 /****************************************************************************************************
  *  @class Engine
@@ -95,5 +95,6 @@ class Engine {
          */
         void checkEngine();
 
-};	
+};
+#include "MerlinCore.h"	
 #endif
