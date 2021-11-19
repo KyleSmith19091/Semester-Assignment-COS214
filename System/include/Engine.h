@@ -13,6 +13,8 @@
  *  @brief "Interface for Engine"
  ***************************************************************************************************/
 
+class MerlinCore;
+
 class Engine {
     private:
         MerlinCore* mediator;
