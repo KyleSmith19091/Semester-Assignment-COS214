@@ -5,5 +5,5 @@
  * @return Spacecraft
  */
 Spacecraft *SatelliteCreator::createSpacecraft() {
-    return new Satelite(1);
+    return new Satelite();
 }

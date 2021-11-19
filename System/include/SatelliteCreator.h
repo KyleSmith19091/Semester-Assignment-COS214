@@ -10,12 +10,12 @@
 #include "Satelite.h"
 
 class SatelliteCreator: public SpacecraftCreator {
-public:
-    /* @fn createSpacecraft()
-     * @brief creates a new CargoDragonCreator
-     * @return Spacecraft
-     */
-    Spacecraft* createSpacecraft() override;
+    public:
+        /* @fn createSpacecraft()
+         * @brief creates a new CargoDragonCreator
+         * @return Spacecraft
+         */
+        Spacecraft* createSpacecraft() override;
 };
 
 

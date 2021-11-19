@@ -1,11 +1,19 @@
 #include "../include/Satelite.h"
 
-Satelite::Satelite(int _id) : Spacecraft("Satelite") {
-    this->id = rand() % 1000 + 1;
+Satelite::Satelite() : Spacecraft("Satelite") {
+    coords = new KeplerianCoords();
+    missionControl = nullptr;
+}
+
+Satelite::~Satelite() {
+    if(missionControl) {
+        delete missionControl;
+    }
 }
 
 Satelite::Satelite(const Satelite& s) : Spacecraft("Satelite") {
-    this->id = rand() % 1000 + 1;
+    coords = new KeplerianCoords();
+    this->missionControl = s.missionControl;
 }
 
 Satelite* Satelite::clone() {
@@ -13,5 +21,31 @@ Satelite* Satelite::clone() {
 }
 
 void Satelite::positionSelf() {
-    std::cout << "Positioning 🛰.. DONE.{id=" + to_string(id) + "}\n";
+    std::cout << "Positioning 🛰. ... ";
+    coords->randomiseCoords();
+    usleep(100000);
+    std::cout << "DONE\n";
+
+    sendGroundSignal();
 }
+
+void Satelite::sendGroundSignal() {
+    missionControl->receiveRadioSignal(rand() % 1000,coords->toString());
+}
+
+void Satelite::sendSatelliteSignal(Satelite* s) {
+    if(this->coords < s->coords) { // Possible collision so reposition
+        std::cout << "! Possible Collision Detected ... Repositioning\n";
+        this->positionSelf();
+        s->positionSelf();
+    }
+}
+
+void Satelite::setMissionControl(MissionControl * missionControl) {
+    this->missionControl = missionControl;
+}
+
+KeplerianCoords* Satelite::getCoords() const {
+    return this->coords;
+}
+
