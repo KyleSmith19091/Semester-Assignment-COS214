@@ -5,7 +5,7 @@
 
 class SpacecraftCreator {
 protected:
-    virtual Spacecraft* createSpacecraft();
+    virtual Spacecraft* createSpacecraft() =0;
 };
 
 

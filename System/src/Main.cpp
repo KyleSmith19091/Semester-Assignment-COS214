@@ -8,6 +8,7 @@
 #include "../include/CargoDragon.h"
 #include "../include/Loader.h"
 #include "../include/Falcon.h"
+#include "../include/Satelite.h"
 #include <iostream>
 
 int main() {
@@ -55,6 +56,15 @@ int main() {
      falconWithState->change();
      std::cout << "Falcon current State: " << falconWithState->getCurrentState() << "\n";
 
+	////////////////////////////////////////////////////////////////  Satelite
+     Satelite* s = new Satelite();
+     s->spreadOut();
+    
+     for(int i = 0; i < 60; i++) {
+         s->clone()->spreadOut();
+     }
+
+     delete s;
 	//////////////////////////////////////////////////////////////// 
 
 	SelectSimulation* select = new SelectSimulation();

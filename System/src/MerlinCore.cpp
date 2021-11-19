@@ -1,4 +1,4 @@
-#include "MerlinCore.h"
+#include "../include/MerlinCore.h"
 
 /**
 *  @fn MerlinCore()

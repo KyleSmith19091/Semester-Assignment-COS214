@@ -6,16 +6,16 @@
 #ifndef FALCONCREATOR_H
 #define FALCONCREATOR_H
 
-#include "Spacecraft.h"
+#include "SpacecraftCreator.h"
 #include "Falcon.h"
 
-class FalconCreator: public Spacecraft{
+class FalconCreator: public SpacecraftCreator {
 public:
     /* @fn createSpacecraft()
      * @brief creates a new CargoDragonCreator
      * @return Spacecraft
      */
-    Spacecraft* createSpacecraft();
+    Spacecraft* createSpacecraft() override;
 
 };
 

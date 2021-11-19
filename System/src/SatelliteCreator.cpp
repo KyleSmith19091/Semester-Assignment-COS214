@@ -1,4 +1,4 @@
-#include "SatelliteCreator.h"
+#include "../include/SatelliteCreator.h"
 
 /* @fn createSpacecraft()
  * @brief creates a new CargoDragonCreator

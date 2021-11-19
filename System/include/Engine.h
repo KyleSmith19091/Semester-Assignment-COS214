@@ -6,8 +6,6 @@
 #ifndef ENGINE_H 
 #define ENGINE_H
 
-
-
 /****************************************************************************************************
  *  @class Engine
  *  @brief "Interface for Engine"
@@ -27,13 +25,6 @@ class Engine {
          *  @return void
          */
         virtual bool getOn() const;
-
-        /**
-         *  @fn setOn()
-         *  @brief Set on state.
-         *  @return void
-         */
-        virtual void setOn();
 
         /**
          *  @fn clone()
@@ -94,6 +85,13 @@ class Engine {
          *  @brief Template method to check the engine.
          */
         void checkEngine();
+
+        /**
+         *  @fn setOn()
+         *  @brief Set on state.
+         *  @return void
+         */
+        virtual void setOn(bool);
 
 };
 #include "MerlinCore.h"	

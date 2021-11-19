@@ -15,7 +15,7 @@ public:
      * @brief creates a new CargoDragonCreator
      * @return Spacecraft
      */
-    Spacecraft* createSpacecraft();
+    Spacecraft* createSpacecraft() override;
 
 };
 

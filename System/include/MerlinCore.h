@@ -6,9 +6,9 @@
 #ifndef MERLINCORE_H
 #define MERLINCORE_H
 
-#include "vector"
+class Engine;
 
-#include "Engine.h"
+#include <vector>
 
 using namespace std;
 
@@ -16,8 +16,8 @@ using namespace std;
  *  @class MerlinCore
  *  @brief "Insert brief description here."
  ***************************************************************************************************/
-class MerlinCore
-{
+class MerlinCore {
+
 private:
     vector<Engine*> engineList;// list of engines
 public:
@@ -46,5 +46,7 @@ public:
      */
     ~MerlinCore();
 };
+
+#include "Engine.h"
 
 #endif  //MERLINCORE_H
