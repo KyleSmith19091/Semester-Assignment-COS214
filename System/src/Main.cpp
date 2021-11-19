@@ -9,10 +9,12 @@
 #include "../include/Loader.h"
 #include "../include/Falcon.h"
 #include "../include/Satelite.h"
+#include "../include/Cluster.h"
 #include <iostream>
 
 int main() {
 	//////////////////////////////////////////////////////////////// Iterator
+    std::cout << "----------------------------------------- ITERATOR ---------------------------------------\n";
 	Cargo* c1 = new Cargo("one",0.3);
 	Cargo* c2 = new Cargo("two",2.1);
 	Cargo* c3 = new Cargo("three",5.7);
@@ -33,6 +35,7 @@ int main() {
 	}
 
 	////////////////////////////////////////////////////////////////  Strategy
+    std::cout << "----------------------------------------- STRATEGY ---------------------------------------\n";
      Falcon* falconHeavy = new Falcon();
 	 Dragon* dragon = new CrewDragon(falconHeavy);
      Loader* loader = new Loader(dragon); 
@@ -45,6 +48,7 @@ int main() {
      delete loader;
 
 	////////////////////////////////////////////////////////////////  State
+    std::cout << "----------------------------------------- STATE ---------------------------------------\n";
      Falcon* falconWithState = new Falcon();
      std::cout << "Falcon current State: " << falconWithState->getCurrentState() << "\n";
      falconWithState->change();
@@ -57,15 +61,15 @@ int main() {
      std::cout << "Falcon current State: " << falconWithState->getCurrentState() << "\n";
 
 	////////////////////////////////////////////////////////////////  Satelite
-     Satelite* s = new Satelite(1);
-     s->positionSelf();
-    
-     for(int i = 0; i < 60; i++) {
-         s->clone()->positionSelf();
-     }
+    std::cout << "----------------------------------------- SATELLITE ---------------------------------------\n";
+    // Ground
+     MissionControl* control = new MissionControl();
+     Cluster* cluster = new Cluster(falconWithState);
+     cluster->generateSatellites(control,4);
+     cluster->spreadOutSatellites();
 
-     delete s;
 	//////////////////////////////////////////////////////////////// 
+    std::cout << "----------------------------------------- SIM ---------------------------------------\n";
 
 	SelectSimulation* select = new SelectSimulation();
 
