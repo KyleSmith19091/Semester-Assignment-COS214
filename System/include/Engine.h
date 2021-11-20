@@ -6,7 +6,7 @@
 #ifndef ENGINE_H 
 #define ENGINE_H
 
-class MerlinCore;
+class MerlinCore;       
 
 class Engine {
     private:

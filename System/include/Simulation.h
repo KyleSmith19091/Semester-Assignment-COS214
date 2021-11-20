@@ -7,17 +7,19 @@
 #define SIMULATION_H
 
 #include <iostream>
+#include <vector>
 
 #include "State.h"
 #include "Memento.h"
 /****************************************************************************************************
  *  @class Simulation
- *  @brief "Insert brief description here."
+ *  @brief The interface for all Simulations.
  ***************************************************************************************************/
 class Simulation
 {
     private:
         State* state;
+        std::string filePath = "../Data/prefabs.txt";
     public:
         /**
          *  @fn Simulation()
@@ -46,10 +48,14 @@ class Simulation
         void setMemento(Memento* m);
 
         /**
-         *  @fn virtual void startSim() = 0;
+         *  @fn virtual std::vector<State*> startSim() = 0;
          *  @brief The pure virtual function to start the current sim.
+         *  
+         *  @return std::vector<State*>: States to run.
          */
-        virtual void startSim() = 0;
+        virtual void startSim(std::vector<State*>* sVector) = 0;
+
+        std::string getFilePath();
 };
 
 #endif  //SIMULATION_H

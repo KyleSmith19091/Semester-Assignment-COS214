@@ -5,6 +5,9 @@ run:
 	g++ -std=c++11 ./src/*.cpp -I ./include -o ./build/main
 	./build/main
 
+compile:
+	g++ -std=c++11 ./src/*.cpp -I ./include -o ./build/main
+
 clean:
 	rm -f ./build/main
 	rm -f ./build/test

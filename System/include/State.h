@@ -7,14 +7,17 @@
 #define STATE_H
 
 #include <string>
+
+#include "Spacecraft.h"
 /****************************************************************************************************
  *  @class State
- *  @brief "Insert brief description here."
+ *  @brief The abstraction of the State of the simulation.
  ***************************************************************************************************/
 class State
 {
     private:
         std::string name;
+        Spacecraft* vessel;
     public:
         /**
          *  @fn State()

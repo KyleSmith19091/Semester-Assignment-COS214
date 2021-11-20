@@ -6,16 +6,19 @@
 #ifndef BUILDSIMULATION_H
 #define BUILDSIMULATION_H
 
+#include <fstream>
+
 #include "Store.h"
-#include "Simulation.h"
+#include "Simulation.h" 
 /****************************************************************************************************
  *  @class BuildSimulation
- *  @brief "Insert brief description here."
+ *  @brief The implementation of the building process.
  ***************************************************************************************************/
 class BuildSimulation : public Simulation
 {
     private:
         Store* store;
+        int iExit = 100;
     public:
         /**
          *  @fn BuildSimulation()
@@ -29,7 +32,14 @@ class BuildSimulation : public Simulation
          */
         ~BuildSimulation();
 
-        virtual void startSim() override;
+        virtual void startSim(std::vector<State*>* v) override;
+
+        void buildMode(std::vector<State*>* sVector);
+        void buildTestMode(std::vector<State*>* sVector);
+        void exitProgram();
+        void saveToFile(State* s);
+
+        void falconHeavy(int c, std::vector<State*>* sVector);
 };
 
 #endif  //BUILDSIMULATION_H

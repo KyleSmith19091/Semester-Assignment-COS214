@@ -17,3 +17,7 @@ Memento* Simulation::createMemento() {
 void Simulation::setMemento(Memento* m) {
     state = m->getState();
 }
+
+std::string Simulation::getFilePath() {
+    return filePath;
+}
