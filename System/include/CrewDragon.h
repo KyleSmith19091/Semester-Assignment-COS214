@@ -34,8 +34,9 @@ class CrewDragon : public Dragon {
         /**
          *  @fn load()
          *  @brief Template Method for loading Dragon content.
+         *  @param[in] bool Indicate whether to print loading data
          *  @return void
          */
-        void load() override;
+        void load(bool) override;
 };	
 #endif

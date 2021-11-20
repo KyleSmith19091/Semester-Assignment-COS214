@@ -53,13 +53,16 @@ int main() {
 	////////////////////////////////////////////////////////////////  Strategy
     std::cout << "----------------------------------------- STRATEGY ---------------------------------------\n";
      Falcon* falconHeavy = new Falcon("falcon-heavy");
+
+     std::cout << "Crew Dragon\n";
 	 Dragon* dragon = new CrewDragon(falconHeavy);
      Loader* loader = new Loader(dragon); 
-     loader->load();
+     loader->load(false);
 
+     std::cout << "Cargo Dragon\n";
      Dragon* cargoDragon = new CargoDragon(falconHeavy);
      loader->setDragon(cargoDragon);
-     loader->load();
+     loader->load(false);
 
      delete loader;
 
