@@ -28,8 +28,19 @@ class Memento
          */
         ~Memento();
 
+        /**
+         *  @fn getState()
+         *  @brief Get state attribute.
+         *  @return State* state attribute
+         */
         State* getState();
 
+        /**
+         *  @fn setState()
+         *  @brief The destructor for the class.
+         *  @param[in] State* reference to state that will be set
+         *  @return void
+         */
         void setState(State* s);
 };
 

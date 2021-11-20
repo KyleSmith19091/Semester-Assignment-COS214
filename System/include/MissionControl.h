@@ -32,13 +32,19 @@ class MissionControl
 
         /**
          *  @fn receiveRadioSignal()
-         *  @brief The destructor for the class.
+         *  @brief Receive radio signal from a Satelite.
          *  @param[in] int satelliteID
          *  @param[in] std::string Satellite Keplerian Coordinates
          *  @return void
          */
         void receiveRadioSignal(int, std::string);
 
+        /**
+         *  @fn sendRepositionRequest(Satelite*)
+         *  @brief Send a reposition request to the referenced Satelite.
+         *  @param[in] Satellite* Reference to Satelite to be moved
+         *  @return void
+         */
         void sendRepositionRequest(Satelite*);
     
 };

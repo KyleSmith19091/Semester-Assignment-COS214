@@ -25,7 +25,7 @@ void Cluster::generateSatellites(MissionControl* control, int numSatellites) {
     s->setMissionControl(control);
     this->clusterSatellites.push_back(s);        
 
-    for(int i = 0; i < numSatellites; ++i) {
+    for(int i = 1; i < numSatellites; ++i) {
         Satelite* m = s->clone();
         this->clusterSatellites.push_back(m);
     }

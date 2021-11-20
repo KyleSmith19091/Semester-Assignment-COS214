@@ -34,3 +34,7 @@ cout<<"Both oil containers have been filled up"<<endl;
 void MerlinVacuumEngine::startEngine(){
 cout<<"The Vacuum Merlin Engine started up successfully"<<endl;
 }
+
+Engine* MerlinVacuumEngine::clone(){
+    return new MerlinVacuumEngine();
+}

@@ -57,7 +57,7 @@ int main() {
      std::cout << "Crew Dragon\n";
 	 Dragon* dragon = new CrewDragon(falconHeavy);
      Loader* loader = new Loader(dragon); 
-     loader->load(false);
+     loader->load(true);
 
      std::cout << "Cargo Dragon\n";
      Dragon* cargoDragon = new CargoDragon(falconHeavy);

@@ -38,6 +38,10 @@ class Command
          */
         virtual void execute(std::string s, std::vector<State*>* v);
 
+        /**
+         *  @fn void add(Command*)
+         *  @brief The virtual execute method.
+         */
         void add(Command* c);
 };
 
