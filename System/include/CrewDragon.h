@@ -25,6 +25,11 @@ class CrewDragon : public Dragon {
         VectorOfCargo* cargoList;
 
     public:
+        /**
+         *  @fn CrewDragon(Falcon*)
+         *  @brief The constructor for the class.
+         *  @param[in] Faloon* Reference to Falcon carrying this Dragon
+         */
         CrewDragon(Falcon*);
 
         /**

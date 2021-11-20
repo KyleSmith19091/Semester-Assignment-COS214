@@ -41,12 +41,14 @@ class LinkedListOfCrew :public Collections {
         /**
          *  @fn removeCrewMember(Crew* member)
          *  @brief Removes the specified crew item from the list/collection/vector
+         *  @param[in] Crew* Crew Member to be removed to the list
          *  @return void
          */
         void removeCrewMember(Crew* member);
          /**
          *  @fn addCrewMember(Crew* member)
          *  @brief Adds the specified crew item to the list/collection/vector
+         *  @param[in] Crew* Crew Member to be added to the list
          *  @return void
          */
         void addCrewMember(Crew* member);
@@ -61,7 +63,7 @@ class LinkedListOfCrew :public Collections {
          *  @brief Returns the head of the linked list
          *  @return Crew*
          */
-        Crew* getHead(); //HEHE if it was only so easy
+        Crew* getHead(); 
 
 };
 

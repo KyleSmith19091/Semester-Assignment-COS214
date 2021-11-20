@@ -43,7 +43,7 @@ public:
          *  @brief clone an engine.
          *  @return Engine*
          */
-        Engine* clone();
+        Engine* clone() override;
 
 };	
 #endif

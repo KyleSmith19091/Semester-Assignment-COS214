@@ -3,16 +3,10 @@
 #include <sstream>
 
 CrewDragon::CrewDragon(Falcon* falcon) : Dragon(falcon) {
+    crewMembers = new LinkedListOfCrew();
 }
 
 CrewDragon::~CrewDragon() {
-    // for(auto it = crewMembers.begin(); it != crewMembers.end(); ++it) {
-    //     delete (*it);
-    // }
-
-    // for(auto it = cargoList.begin(); it != cargoList.end(); ++it) {
-    //     delete (*it);
-    // }
     delete cargoList;
     delete crewMembers;
 }
