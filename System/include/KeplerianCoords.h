@@ -41,12 +41,14 @@ class KeplerianCoords {
         /**
          *  @fn toString()
          *  @brief Serialises the attributes of the class.
+         *  @return string
          */
         std::string toString() const;
 
         /**
          *  @fn randomiseCoords()
          *  @brief Randomises the values of attributes.
+         *  @return void
          */
         void randomiseCoords();
 

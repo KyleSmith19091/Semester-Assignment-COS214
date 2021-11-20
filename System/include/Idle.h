@@ -22,7 +22,7 @@ class Idle : public FalconState {
 
         /**
          *  @fn handleChange()
-         *  @brief Handles a change in seperation state.
+         *  @brief Handles a change in separation state.
          *  @param[in] Falcon* Context for the falcon changing state
          *  @return void
          */

@@ -11,9 +11,9 @@
 
 class FalconHeavyCreator: public SpacecraftCreator {
 public:
-    /* @fn createSpacecraft()
-     * @brief creates a new Falcon-Heavy
-     * @return Spacecraft
+    /** @fn createSpacecraft()
+     * @brief creates a new Falcon-Heavy.
+     * @return Spacecraft*
      */
     Spacecraft* createSpacecraft() override;
 
