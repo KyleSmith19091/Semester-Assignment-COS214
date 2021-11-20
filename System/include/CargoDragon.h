@@ -17,6 +17,7 @@
 #include "Engine.h"
 
 #include <vector>
+#include "VectorOfCargo.h"
 
 using namespace std;
 
@@ -44,6 +45,6 @@ class CargoDragon : public Dragon {
         void load(bool) override;
 
     private:
-        vector<Cargo*> cargoList;         
+        VectorOfCargo* cargoList;
 };	
 #endif
