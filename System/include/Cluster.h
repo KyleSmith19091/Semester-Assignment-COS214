@@ -46,8 +46,8 @@ class Cluster {
         void generateSatellites(MissionControl*,int);
 
         /**
-         * @fn addSatellite(Satellite*)
-         * @brief Add a satellite to a cluster
+         * @fn spreadOutSatellites(Satellite*)
+         * @brief Spread out the satellites
          * @return void
          */
         void spreadOutSatellites();

@@ -1,5 +1,5 @@
 /****************************************************************************************************
- *  @file CargoDragon.h
+ *  @file ./include/CargoDragon.h
  *  @brief The header file for the CargoDragon class.
  ***************************************************************************************************/
 
@@ -17,6 +17,7 @@
 #include "Engine.h"
 
 #include <vector>
+#include "VectorOfCargo.h"
 
 using namespace std;
 
@@ -44,6 +45,6 @@ class CargoDragon : public Dragon {
         void load(bool) override;
 
     private:
-        vector<Cargo*> cargoList;         
+        VectorOfCargo* cargoList;
 };	
 #endif

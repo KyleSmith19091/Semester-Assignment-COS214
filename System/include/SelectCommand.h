@@ -1,5 +1,5 @@
 /****************************************************************************************************
- *  @file include/SelectCommand.h
+ *  @file ./include/SelectCommand.h
  *  @brief The header file for the SelectCommand class.
  ***************************************************************************************************/
 
@@ -35,6 +35,7 @@ class SelectCommand : public Command
         /**
          *  @fn virtual void execute() override
          *  @brief The implementation of the pure virtual execute method.
+         *  @return void
          */
         virtual void execute(std::string s, std::vector<State*>* v);
 };

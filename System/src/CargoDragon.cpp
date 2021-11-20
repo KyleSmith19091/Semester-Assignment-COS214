@@ -7,9 +7,7 @@ CargoDragon::CargoDragon(Falcon* falcon) : Dragon(falcon) {
 }
 
 CargoDragon::~CargoDragon() {
-    for(auto it = cargoList.begin(); it != cargoList.end(); ++it) {
-        delete (*it);
-    }
+    delete cargoList;
 }
 
 void CargoDragon::load(bool doPrint) {
@@ -21,7 +19,7 @@ void CargoDragon::load(bool doPrint) {
             std::stringstream ss(cargoItem); 
             getline(ss,description,',');
             getline(ss,weight);
-            cargoList.push_back(new Cargo(description,stod(weight)));
+            cargoList->addCargo(new Cargo(description,stod(weight)));
             if(doPrint) {
                 std::cout << "Loaded [" << description << "]" << " {" << weight << "kg} into Dragon\n";
             }
