@@ -4,6 +4,7 @@
 
 CrewDragon::CrewDragon(Falcon* falcon) : Dragon(falcon) {
     crewMembers = new LinkedListOfCrew();
+    cargoList = new VectorOfCargo();
 }
 
 CrewDragon::~CrewDragon() {
