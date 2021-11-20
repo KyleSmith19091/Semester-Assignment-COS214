@@ -62,7 +62,7 @@ int main() {
      std::cout << "Cargo Dragon\n";
      Dragon* cargoDragon = new CargoDragon(falconHeavy);
      loader->setDragon(cargoDragon);
-     loader->load(false);
+     loader->load(true);
 
      delete loader;
 
