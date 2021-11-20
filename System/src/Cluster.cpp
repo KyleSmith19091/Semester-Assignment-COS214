@@ -15,7 +15,6 @@ void Cluster::addSatellite(Satelite* s) {
 }
 
 void Cluster::generateSatellites(MissionControl* control, int numSatellites) {
-
     if(numSatellites < 0 || numSatellites > 60) {
         std::cout << "Please enter a valid a number of satellites\n";
         return;
@@ -25,7 +24,7 @@ void Cluster::generateSatellites(MissionControl* control, int numSatellites) {
     s->setMissionControl(control);
     this->clusterSatellites.push_back(s);        
 
-    for(int i = 0; i < numSatellites; ++i) {
+    for(int i = 1; i < numSatellites; ++i) {
         Satelite* m = s->clone();
         this->clusterSatellites.push_back(m);
     }
@@ -39,4 +38,8 @@ void Cluster::spreadOutSatellites() {
 
 Falcon* Cluster::getCraft() {
     return falcon;
+}
+
+int Cluster::getSize() {
+    clusterSatellites.size();
 }

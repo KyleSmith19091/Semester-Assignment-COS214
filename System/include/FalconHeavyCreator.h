@@ -1,18 +1,18 @@
 /****************************************************************************************************
- *  @file ./include/FalconCreator.h
- *  @brief The header file for the FalconCreator class.
+ *  @file ./include/FalconHeavyCreator.h
+ *  @brief The header file for the FalconHeavyCreator class.
  ***************************************************************************************************/
 
-#ifndef FALCONCREATOR_H
-#define FALCONCREATOR_H
+#ifndef FALCONHEAVYCREATOR_H
+#define FALCONHEAVYCREATOR_H
 
 #include "SpacecraftCreator.h"
 #include "Falcon.h"
 
-class FalconCreator: public SpacecraftCreator {
+class FalconHeavyCreator: public SpacecraftCreator {
 public:
     /* @fn createSpacecraft()
-     * @brief creates a new CargoDragonCreator
+     * @brief creates a new Falcon-Heavy
      * @return Spacecraft
      */
     Spacecraft* createSpacecraft() override;

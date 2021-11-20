@@ -41,6 +41,7 @@ class State
         ~State();
 
         std::string getName();
+        void setName(std::string s);
 
         Spacecraft* getVessel();
 

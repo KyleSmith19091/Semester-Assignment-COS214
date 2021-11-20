@@ -35,7 +35,7 @@ class Dragon : public Spacecraft {
          *  @brief Template method to load the content of the dragon spacecraft.
          *  @return void
          */
-        virtual void load() =0;
+        virtual void load(bool) =0;
 
     private:
         Falcon* falconHeavy;

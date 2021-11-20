@@ -1,6 +1,6 @@
 #include "../include/Dragon.h"
 
-Dragon::Dragon(Falcon* falcon) : Spacecraft("Dragon") {
+Dragon::Dragon(Falcon* falcon) : Spacecraft(falcon->getType()) {
     this->falconHeavy = falcon;
 }
 

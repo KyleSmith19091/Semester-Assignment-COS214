@@ -10,6 +10,10 @@ std::string State::getName() {
     return name;
 }
 
+void State::setName(std::string s) {
+    name = s;
+}
+
 Spacecraft* State::getVessel() {
     return vessel;
 }

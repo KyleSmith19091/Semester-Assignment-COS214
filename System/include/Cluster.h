@@ -59,6 +59,13 @@ class Cluster {
          */
         Falcon* getCraft();
 
+        /**
+         * @fn getSize()
+         * @brief Return the size of cluster
+         * @return int
+         */
+        int getSize();
+
     private:
         Falcon* falcon;
         std::vector<Satelite*> clusterSatellites;

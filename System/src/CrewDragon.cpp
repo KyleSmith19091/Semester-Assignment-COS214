@@ -15,7 +15,7 @@ CrewDragon::~CrewDragon() {
     }
 }
 
-void CrewDragon::load() {
+void CrewDragon::load(bool doPrint) {
     std::ifstream crewData("../Data/CrewManifest.txt");
 
     if(crewData.is_open()) {
@@ -25,7 +25,10 @@ void CrewDragon::load() {
             getline(ss,name,',');
             getline(ss,title,',');
             crewMembers.push_back(new Crew(name,title));
-            //std::cout << "[" << name << "]" <<  " boarded Dragon\n";
+
+            if(doPrint) {
+                std::cout << "[" << name << "]" <<  " boarded Dragon\n";
+            }
         }
 
     } else {
@@ -41,7 +44,9 @@ void CrewDragon::load() {
             getline(ss,description,',');
             getline(ss,weight);
             cargoList.push_back(new Cargo(description,stod(weight)));
-            //std::cout << "Loaded [" << description << "]" << " {" << weight << "kg} into Dragon\n";
+            if(doPrint) {
+                std::cout << "Loaded [" << description << "]" << " {" << weight << "kg} into Dragon\n";
+            }
         }
     } else {
         std::cerr << __FILE__ << " " << __LINE__ << " Could not open CargoList";

@@ -1,5 +1,10 @@
 #include "../include/BuildSimulation.h"
 
+const std::string BuildSimulation::DELIMITER = "#";
+const std::string BuildSimulation::TYPE_SATELLITE = "0";
+const std::string BuildSimulation::TYPE_CREW = "1";
+const std::string BuildSimulation::TYPE_CARGO = "2";
+
 BuildSimulation::BuildSimulation() {}
 
 BuildSimulation::~BuildSimulation() {}
@@ -33,12 +38,12 @@ void BuildSimulation::startSim(std::vector<State*>* sVector) {
 void BuildSimulation::buildMode(std::vector<State*>* sVector) {
     int selection = 0;
 
-    std::cout << "What kind of payload do you want to send?" << std::endl;
-    std::cout << "\t0: Satellites\n\t1: Crew\n\t2: Cargo and/or Crew" << std::endl;
+    std::cout << "\nWhat kind of rocket would you like to use?" << std::endl;
+    std::cout << "\t0: Falcon 9\n\t1: Falcon Heavy" << std::endl;
     std::cout << "Please choose the apropriate option: ";
     std::cin >> selection;
 
-    if (selection < 0 || selection > 2) {
+    if (selection < 0 || selection > 1) {
         std::cout << "Choice is not a valid option." << std::endl;
         buildMode(sVector);
     }
@@ -47,21 +52,41 @@ void BuildSimulation::buildMode(std::vector<State*>* sVector) {
     {
     case 0:
         selection = 0;
-        std::cout << "What kind of rocket would you like to use?" << std::endl;
-        std::cout << "\t0: Falcon Heavy\n" << std::endl;
+        std::cout << "\nWhat kind of payload would you like to send?" << std::endl;
+        std::cout << "\t0: Crew\n\t1: Sattelites" << std::endl;
         std::cout << "Please choose the apropriate option: ";
         std::cin >> selection;
 
         switch (selection)
         {
         case 0:
-            this->falconHeavy(0, sVector);
+            this->buildCrew(sVector);
             break;
+
+        case 1:
+            this->buildSattelites(sVector);
         
         default:
             break;
         }
         break;
+
+    case 1:
+        selection = 0;
+        std::cout << "\nWhat kind of payload would you like to send?" << std::endl;
+        std::cout << "\t0: Cargo and Crew" << std::endl;
+        std::cout << "Please choose the apropriate option: ";
+        std::cin >> selection;
+
+        switch (selection)
+        {
+        case 0:
+            this->buildCargo(sVector);
+            break;
+        
+        default:
+            break;
+        }
     
     default:
         break;
@@ -85,37 +110,116 @@ void BuildSimulation::exitProgram() {
         exit(0);
 }
 
-void BuildSimulation::saveToFile(State* s) {
+void BuildSimulation::saveToFile(State* s, int t) {
+    std::string selection = "";
+    std::string outString = "";
+
+    std::cout << "\nWhat would you like to name this simulation?" << std::endl;
+    std::cout << "Please input a name for the simulation (Only letters, numbers and underscores ('_')): ";
+    std::cin >> selection;
+
+    // if (!std::regex_match(selection, std::regex("^[[:w:]]$"))) {
+    //     std::cout << "Name does not contain only letters, numbers and underscores ('_')." << std::endl;
+    //     this->saveToFile(s);
+    // }
+    
     std::ofstream outFile;
     outFile.open(getFilePath(), std::ios_base::app);
+    s->setName(selection);
 
-    outFile << "\n" << s->getName();
+    outString += s->getName();
+    outString += DELIMITER;
+    outString += (t == 0) ? TYPE_SATELLITE : (t == 1) ? TYPE_CREW : TYPE_CARGO;
+    outString += DELIMITER;
+    outString += to_string(s->getCluster()->getSize());
+
+    outFile << "\n" << outString;
+
+
 }
 
-void BuildSimulation::falconHeavy(int c, std::vector<State*>* sVector) {
-    int selection = 0;
-    State* tmp;
+void BuildSimulation::buildSattelites(std::vector<State*>* sVector) {
+    int satCount, selection = 0;
 
-    switch (c)
+    std::cout << "\nHow many sattelites would you like to send?" << std::endl;
+    std::cout << "Please input a number between 1 and 60 (inclusive): ";
+    std::cin >> satCount;
+
+    Falcon* tmpFalcon = new Falcon("Falcon 9");
+    Cluster* tmpCluster = new Cluster(tmpFalcon);
+    MissionControl* tmpControl = new MissionControl();
+
+    tmpCluster->generateSatellites(tmpControl, satCount);
+
+    State* tmpState = new State("Base Name", tmpCluster);
+
+    sVector->push_back(tmpState);
+
+    std::cout << "\nWould you like to save the current sim?" << std::endl;
+    std::cout << "\t0: Yes\n\t1: No" << std::endl;
+    std::cout << "Please choose the apropriate option: ";
+    std::cin >> selection;
+
+    switch (selection)
     {
     case 0:
-        tmp = new State("Satellites on Falcon Heavy", new CrewDragon(new Falcon()));
-        sVector->push_back(tmp);
+        this->saveToFile(tmpState, 0);
+        break;
+    
+    default:
+        break;
+    }
+}
 
-        std::cout << "Would you like to save the current sim?" << std::endl;
-        std::cout << "\t0: Yes\n\t1: No\n" << std::endl;
-        std::cout << "Please choose the apropriate option: ";
-        std::cin >> selection;
+void BuildSimulation::buildCrew(std::vector<State*>* sVector) {
+    int selection = 0;
 
-        switch (selection)
-        {
-        case 0:
-            this->saveToFile(tmp);
-            break;
-        
-        default:
-            break;
-        }
+    Falcon* tmpFalcon = new Falcon("Falcon 9");
+    Dragon* tmpCrew = new CrewDragon(tmpFalcon);
+    Loader* tmpLoader = new Loader(tmpCrew);
+    tmpLoader->load(false);
+
+    State* tmpState = new State("Base Name", tmpCrew);
+
+    sVector->push_back(tmpState);
+
+    std::cout << "\nWould you like to save the current sim?" << std::endl;
+    std::cout << "\t0: Yes\n\t1: No" << std::endl;
+    std::cout << "Please choose the apropriate option: ";
+    std::cin >> selection;
+
+    switch (selection)
+    {
+    case 0:
+        this->saveToFile(tmpState, 1);
+        break;
+    
+    default:
+        break;
+    }
+}
+
+void BuildSimulation::buildCargo(std::vector<State*>* sVector) {
+    int selection = 0;
+
+    Falcon* tmpFalcon = new Falcon("Falcon 9");
+    Dragon* tmpCargo = new CargoDragon(tmpFalcon);
+    Loader* tmpLoader = new Loader(tmpCargo);
+    tmpLoader->load(false);
+
+    State* tmpState = new State("Base Name", tmpCargo);
+
+    sVector->push_back(tmpState);
+
+    std::cout << "\nWould you like to save the current sim?" << std::endl;
+    std::cout << "\t0: Yes\n\t1: No" << std::endl;
+    std::cout << "Please choose the apropriate option: ";
+    std::cin >> selection;
+
+    switch (selection)
+    {
+    case 0:
+        this->saveToFile(tmpState, 1);
         break;
     
     default:

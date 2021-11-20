@@ -80,7 +80,7 @@ void SelectSimulation::loadPrefabs() {
         switch (type)
         {
         case 0:
-            falcon = new Falcon();
+            falcon = new Falcon("Falcon 9");
             cluster = new Cluster(falcon);
             control = new MissionControl();
 
@@ -93,10 +93,10 @@ void SelectSimulation::loadPrefabs() {
             break;
 
         case 1:
-            falcon = new Falcon();
+            falcon = new Falcon("Falcon 9");
             dragon = new CrewDragon(falcon);
             loader = new Loader(dragon); 
-            loader->load();
+            loader->load(false);
 
             tmpState = new State(name, dragon);
             tmp->setState(tmpState);
@@ -105,10 +105,10 @@ void SelectSimulation::loadPrefabs() {
             break;
 
         case 2:
-            falcon = new Falcon();
+            falcon = new Falcon("Falcon Heavy");
             dragon = new CargoDragon(falcon);
             loader = new Loader(dragon); 
-            loader->load();
+            loader->load(false);
 
             tmpState = new State(name, dragon);
             tmp->setState(tmpState);

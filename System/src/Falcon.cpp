@@ -1,7 +1,7 @@
 #include "../include/Falcon.h"
 #include "../include/Idle.h"
 
-Falcon::Falcon() : Spacecraft("Falcon") {
+Falcon::Falcon(std::string type) : Spacecraft(type) {
     launchState = new Idle();
 }
 

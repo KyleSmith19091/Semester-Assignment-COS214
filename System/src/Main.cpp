@@ -15,6 +15,10 @@
 #include "../include/Falcon.h"
 #include "../include/Satelite.h"
 #include "../include/Cluster.h"
+#include "../include/SatelliteCreator.h"
+#include "../include/Falcon9Creator.h"
+#include "../include/FalconHeavyCreator.h"
+#include "../include/SpacecraftCreator.h"
 #include <iostream>
 
 const int iExit = 100;
@@ -44,7 +48,6 @@ int main() {
 	// while (!CI->isDone())
 	// {
 	// 	cout<<CI->next()->toString()<<endl;
-		
 	// }
 
 	// ////////////////////////////////////////////////////////////////  Strategy
@@ -83,6 +86,10 @@ int main() {
     //  cluster->generateSatellites(control,10);
     //  cluster->spreadOutSatellites();
 
+     SpacecraftCreator* creator = new FalconHeavyCreator();
+     Falcon* falcon9 = (Falcon*)creator->createSpacecraft(); 
+     std::cout << falcon9->getCurrentState() << '\n';
+
 	//////////////////////////////////////////////////////////////// 
     std::cout << "----------------------------------------- SIM ---------------------------------------\n";
 
@@ -111,7 +118,7 @@ void simStart() {
         int optionSelector = -1;
         cin >> optionSelector;
         while (optionSelector != 0 && optionSelector != 1 && optionSelector != iExit){
-            cout << "Please enter a 0 or a 1\n";
+            cout << "Please enter a 0 or a 1: \n";
             cin >> optionSelector;
         }
         if (optionSelector==1)

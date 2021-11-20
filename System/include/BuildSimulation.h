@@ -7,6 +7,7 @@
 #define BUILDSIMULATION_H
 
 #include <fstream>
+#include <regex>
 
 #include "Store.h"
 #include "Simulation.h" 
@@ -17,6 +18,11 @@
 class BuildSimulation : public Simulation
 {
     private:
+        static const std::string DELIMITER;
+        static const std::string TYPE_SATELLITE;
+        static const std::string TYPE_CREW;
+        static const std::string TYPE_CARGO;
+
         Store* store;
         int iExit = 100;
     public:
@@ -37,9 +43,11 @@ class BuildSimulation : public Simulation
         void buildMode(std::vector<State*>* sVector);
         void buildTestMode(std::vector<State*>* sVector);
         void exitProgram();
-        void saveToFile(State* s);
+        void saveToFile(State* s, int t);
 
-        void falconHeavy(int c, std::vector<State*>* sVector);
+        void buildSattelites(std::vector<State*>* sVector);
+        void buildCrew(std::vector<State*>* sVector);
+        void buildCargo(std::vector<State*>* sVector);
 };
 
 #endif  //BUILDSIMULATION_H
