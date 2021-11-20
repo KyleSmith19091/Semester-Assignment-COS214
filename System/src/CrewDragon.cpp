@@ -26,7 +26,7 @@ void CrewDragon::load() {
             std::stringstream ss(crewMember); 
             getline(ss,name,',');
             getline(ss,title,',');
-            crewMembers.addCrewMember(new Crew(name,title));
+            crewMembers->addCrewMember(new Crew(name,title));
             std::cout << "[" << name << "]" <<  " boarded Dragon\n";
         }
 
@@ -42,7 +42,7 @@ void CrewDragon::load() {
             std::stringstream ss(cargoItem); 
             getline(ss,description,',');
             getline(ss,weight);
-            cargoList.addCargo(new Cargo(description,stod(weight)));
+            cargoList->addCargo(new Cargo(description,stod(weight)));
             std::cout << "Loaded [" << description << "]" << " {" << weight << "kg} into Dragon\n";
         }
     } else {

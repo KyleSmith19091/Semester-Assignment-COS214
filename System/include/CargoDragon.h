@@ -44,6 +44,6 @@ class CargoDragon : public Dragon {
         void load() override;
 
     private:
-        VectorOfCargo cargoList;
+        VectorOfCargo* cargoList;
 };	
 #endif

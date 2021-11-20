@@ -21,8 +21,8 @@
 
 class CrewDragon : public Dragon {
     private: 
-        LinkedListOfCrew crewMembers;
-        VectorOfCargo cargoList;
+        LinkedListOfCrew* crewMembers;
+        VectorOfCargo* cargoList;
 
     public:
         CrewDragon(Falcon*);

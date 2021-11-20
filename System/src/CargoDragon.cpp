@@ -22,7 +22,7 @@ void CargoDragon::load() {
             std::stringstream ss(cargoItem); 
             getline(ss,description,',');
             getline(ss,weight);
-            cargoList.addCargo(new Cargo(description,stod(weight)));
+            cargoList->addCargo(new Cargo(description,stod(weight)));
         }
     } else {
         std::cerr << __FILE__ << " " << __LINE__ << " Could not open CargoList";
