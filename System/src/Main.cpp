@@ -77,8 +77,10 @@ int main() {
     std::cout << "----------------------------------------- SATELLITE ---------------------------------------\n";
     // Ground
      MissionControl* control = new MissionControl();
+
      Cluster* cluster = new Cluster(falconWithState);
-     cluster->generateSatellites(control,4);
+
+     cluster->generateSatellites(control,10);
      cluster->spreadOutSatellites();
 
 	//////////////////////////////////////////////////////////////// 
