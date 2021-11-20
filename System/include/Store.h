@@ -6,12 +6,15 @@
 #ifndef STORE_H
 #define STORE_H
 
+#include "Memento.h"
 /****************************************************************************************************
  *  @class Store
  *  @brief "Insert brief description here."
  ***************************************************************************************************/
 class Store
 {
+    private:
+        Memento* mem;
     public:
         /**
          *  @fn Store()
@@ -24,6 +27,10 @@ class Store
          *  @brief The destructor for the class.
          */
         ~Store();
+
+        void storeMemento(Memento* m);
+
+        Memento* returnMemento();
 };
 
 #endif  //STORE_H

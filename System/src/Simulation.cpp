@@ -1,7 +1,7 @@
 #include "../include/Simulation.h"
 
-Simulation::Simulation() : state(0) {
-    //state = new State("Cargo", 0);
+Simulation::Simulation() {
+    state = new State();
 }
 
 Simulation::~Simulation() {

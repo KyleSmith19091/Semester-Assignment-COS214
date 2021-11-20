@@ -1,5 +1,7 @@
 #include "../include/State.h"
 
+State::State() : name("Base Name"), vessel(0), satellites(0) {}
+
 State::State(std::string n, Spacecraft* s) : name(n), vessel(s), satellites(0) {}
 
 State::State(std::string n, Cluster* c) : name(n), satellites(c), vessel(c->getCraft()) {}

@@ -22,6 +22,12 @@ class State
         Cluster* satellites;
 
     public:
+         /**
+         *  @fn State()
+         *  @brief The constructor for the class.
+         */
+        State();
+
         /**
          *  @fn State()
          *  @brief The constructor for the class.

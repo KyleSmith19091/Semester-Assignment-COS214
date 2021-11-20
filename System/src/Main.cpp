@@ -87,8 +87,8 @@ int main() {
     //  cluster->spreadOutSatellites();
 
      SpacecraftCreator* creator = new FalconHeavyCreator();
-     Falcon* falcon9 = (Falcon*)creator->createSpacecraft(); 
-     std::cout << falcon9->getCurrentState() << '\n';
+     Falcon* falconHeavy = (Falcon*)creator->createSpacecraft(); 
+     std::cout << falconHeavy->getType() << '\n';
 
 	//////////////////////////////////////////////////////////////// 
     std::cout << "----------------------------------------- SIM ---------------------------------------\n";

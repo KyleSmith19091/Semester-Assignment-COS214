@@ -94,7 +94,73 @@ void BuildSimulation::buildMode(std::vector<State*>* sVector) {
 }
 
 void BuildSimulation::buildTestMode(std::vector<State*>* sVector) {
+    SpacecraftCreator* heavyCreator = new FalconHeavyCreator();
+    SpacecraftCreator* nineCreator = new FalconHeavyCreator();
 
+    int selection = 0;
+    Falcon* falcon;
+
+    Store* rollBack = new Store();
+    State* tmpState;
+
+    Memento* tmpMem = createMemento();
+    rollBack->storeMemento(tmpMem);
+
+    std::cout << "\nWhat kind of rocket would you like to use?" << std::endl;
+    std::cout << "\t0: Falcon 9\n\t1: Falcon Heavy" << std::endl;
+    std::cout << "Please choose the apropriate option: ";
+    std::cin >> selection;
+
+    if (selection < 0 || selection > 1) {
+        std::cout << "Choice is not a valid option." << std::endl;
+        buildTestMode(sVector);
+    }
+
+    switch (selection)
+    {
+    case 0:
+        falcon = (Falcon*)nineCreator->createSpacecraft();
+
+        selection = 0;
+        std::cout << "\nWhat kind of payload would you like to send?" << std::endl;
+        std::cout << "\t0: Crew\n\t1: Sattelites" << std::endl;
+        std::cout << "Please choose the apropriate option: ";
+        std::cin >> selection;
+
+        switch (selection)
+        {
+        case 0:
+            this->buildCrew(sVector);
+            break;
+
+        case 1:
+            this->buildSattelites(sVector);
+        
+        default:
+            break;
+        }
+        break;
+
+    case 1:
+        selection = 0;
+        std::cout << "\nWhat kind of payload would you like to send?" << std::endl;
+        std::cout << "\t0: Cargo and Crew" << std::endl;
+        std::cout << "Please choose the apropriate option: ";
+        std::cin >> selection;
+
+        switch (selection)
+        {
+        case 0:
+            this->buildCargo(sVector);
+            break;
+        
+        default:
+            break;
+        }
+    
+    default:
+        break;
+    }
 }
 
 void BuildSimulation::exitProgram() {
@@ -131,11 +197,9 @@ void BuildSimulation::saveToFile(State* s, int t) {
     outString += DELIMITER;
     outString += (t == 0) ? TYPE_SATELLITE : (t == 1) ? TYPE_CREW : TYPE_CARGO;
     outString += DELIMITER;
-    outString += to_string(s->getCluster()->getSize());
+    outString += (s->getCluster() == 0) ? "0" : to_string(s->getCluster()->getSize());
 
     outFile << "\n" << outString;
-
-
 }
 
 void BuildSimulation::buildSattelites(std::vector<State*>* sVector) {
