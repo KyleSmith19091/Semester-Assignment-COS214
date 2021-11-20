@@ -52,7 +52,8 @@ int main() {
 
 	////////////////////////////////////////////////////////////////  Strategy
     std::cout << "----------------------------------------- STRATEGY ---------------------------------------\n";
-     Falcon* falconHeavy = new Falcon("falcon-heavy");
+     Falcon* falconHeavy = new Falcon("falcon-9");
+     std::cout << "SIZE: " << falconHeavy->getCoreList().size() << '\n';
 
      std::cout << "Crew Dragon\n";
 	 Dragon* dragon = new CrewDragon(falconHeavy);

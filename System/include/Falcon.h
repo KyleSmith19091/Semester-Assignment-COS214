@@ -13,6 +13,7 @@
 
 #include "Spacecraft.h"
 #include "MerlinCore.h"
+#include "MerlinVacuumEngine.h"
 
 #include <vector>
 
@@ -24,6 +25,7 @@ class Falcon : public Spacecraft {
     private:
         vector<MerlinCore*> coreList;
         FalconState* launchState;
+        MerlinVacuumEngine* merlinVacuumEngine;
 
     public:
         /**
@@ -60,6 +62,20 @@ class Falcon : public Spacecraft {
          *  @return void
          */
         void setState(FalconState*);
+
+        /**
+         *  @fn getCoreList()
+         *  @brief Set launch state.
+         *  @return vector<MerlinCore*> list merlin cores associated with rocket
+         */
+        vector<MerlinCore*> getCoreList() const;
+
+        /**
+         *  @fn getVacuumEngine()
+         *  @brief Ger Merlin Vacuum Engine.
+         *  @return MerlinVacuumEngine* reference to merlin vacuum engine
+         */
+        MerlinVacuumEngine* getVacuumEngine() const;
 };	
 
 #include "FalconState.h"
