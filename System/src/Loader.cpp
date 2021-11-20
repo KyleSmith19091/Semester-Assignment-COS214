@@ -7,8 +7,8 @@ Loader::Loader(Dragon* dragon) {
 Loader::~Loader() {
 }
 
-void Loader::load() {
-    this->dragon->load();
+void Loader::load(bool doPrint) {
+    this->dragon->load(doPrint);
 }
 
 void Loader::setDragon(Dragon* newDragon) {
