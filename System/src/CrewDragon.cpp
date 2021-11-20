@@ -26,7 +26,7 @@ void CrewDragon::load(bool doPrint) {
             std::stringstream ss(crewMember); 
             getline(ss,name,',');
             getline(ss,title,',');
-            crewMembers.push_back(new Crew(name,title));
+            crewMembers->addCrewMember(new Crew(name,title));
             if(doPrint) {
                 std::cout << "[" << name << "]" <<  " boarded Dragon\n";
             }
