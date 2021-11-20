@@ -14,13 +14,15 @@
 #include "Dragon.h"
 #include "Crew.h"
 #include "Cargo.h"
+#include "LinkedListOfCrew.h"
+#include "VectorOfCargo.h"
 
 #include <vector>
 
 class CrewDragon : public Dragon {
     private: 
-        std::vector<Crew*> crewMembers;
-        std::vector<Cargo*> cargoList;
+        LinkedListOfCrew crewMembers;
+        VectorOfCargo cargoList;
 
     public:
         CrewDragon(Falcon*);

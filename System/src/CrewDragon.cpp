@@ -6,13 +6,15 @@ CrewDragon::CrewDragon(Falcon* falcon) : Dragon(falcon) {
 }
 
 CrewDragon::~CrewDragon() {
-    for(auto it = crewMembers.begin(); it != crewMembers.end(); ++it) {
-        delete (*it);
-    }
+    // for(auto it = crewMembers.begin(); it != crewMembers.end(); ++it) {
+    //     delete (*it);
+    // }
 
-    for(auto it = cargoList.begin(); it != cargoList.end(); ++it) {
-        delete (*it);
-    }
+    // for(auto it = cargoList.begin(); it != cargoList.end(); ++it) {
+    //     delete (*it);
+    // }
+    delete cargoList;
+    delete crewMembers;
 }
 
 void CrewDragon::load() {
@@ -24,7 +26,7 @@ void CrewDragon::load() {
             std::stringstream ss(crewMember); 
             getline(ss,name,',');
             getline(ss,title,',');
-            crewMembers.push_back(new Crew(name,title));
+            crewMembers.addCrewMember(new Crew(name,title));
             std::cout << "[" << name << "]" <<  " boarded Dragon\n";
         }
 
@@ -40,7 +42,7 @@ void CrewDragon::load() {
             std::stringstream ss(cargoItem); 
             getline(ss,description,',');
             getline(ss,weight);
-            cargoList.push_back(new Cargo(description,stod(weight)));
+            cargoList.addCargo(new Cargo(description,stod(weight)));
             std::cout << "Loaded [" << description << "]" << " {" << weight << "kg} into Dragon\n";
         }
     } else {
