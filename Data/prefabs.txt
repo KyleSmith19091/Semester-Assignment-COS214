@@ -1,6 +1,4 @@
-Passenger and Cargo
-Supplies
-Men
-Women
-Children
-Satellites on Falcon Heavy
+Name#TypeOfPayload#NumSattelites
+60_Sat#0#60
+Crew_and_Cargo#1#0
+Cargo#2#0
