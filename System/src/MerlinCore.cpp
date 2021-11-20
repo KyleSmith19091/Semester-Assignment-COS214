@@ -1,11 +1,18 @@
 #include "../include/MerlinCore.h"
+#include "../include/MerlinEngine.h"
 
 /**
 *  @fn MerlinCore()
 *  @brief The constructor for the class.
 */
-MerlinCore::MerlinCore(vector<Engine*> list) {
-    engineList=list;
+MerlinCore::MerlinCore() {
+    Engine* myMerlinEngine = new MerlinEngine();
+    this->engineList.push_back(myMerlinEngine);
+    for (int i = 0; i < 8; i++)
+    {
+        Engine* myMerlinEngine2 = myMerlinEngine->clone();
+        this->engineList.push_back(myMerlinEngine);
+    }
 }
 
 /* Destructor*/

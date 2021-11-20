@@ -38,5 +38,12 @@ public:
          */
         void checkOil() override;
 
+        /**
+         *  @fn clone()
+         *  @brief clone an engine.
+         *  @return Engine*
+         */
+        Engine* clone();
+
 };	
 #endif

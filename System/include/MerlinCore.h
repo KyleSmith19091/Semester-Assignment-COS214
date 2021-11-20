@@ -25,7 +25,7 @@ public:
      *  @fn MerlinCore()
      *  @brief The constructor for the class.
      */
-    MerlinCore(vector<Engine*> list);
+    MerlinCore();
 
     /*
      * @fn on(Engine* colleague)

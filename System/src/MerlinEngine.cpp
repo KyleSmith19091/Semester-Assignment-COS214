@@ -31,3 +31,7 @@ cout<<"Oil is still full and cap is securely tightened"<<endl;
 void MerlinEngine::startEngine(){
 cout<<"The Merlin Engine started up successfully"<<endl;
 }
+
+Engine* MerlinEngine::clone(){
+    return new MerlinEngine();
+}
