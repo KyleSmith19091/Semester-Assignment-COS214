@@ -1,5 +1,5 @@
 /****************************************************************************************************
- *  @file Crew
+ *  @file ./include/Crew
  *  @brief The header file for the Crew class.
  ***************************************************************************************************/
 
@@ -29,7 +29,7 @@ public:
 	Crew(string name, string jobTitle);
 
 	/**
-        *  @fn Crew()
+        *  @fn ~Crew()
         *  @brief The destructor of the class.
         */
     ~Crew(); 

@@ -1,5 +1,5 @@
 /****************************************************************************************************
- *  @file Spacecraft.h
+ *  @file ./include/Spacecraft.h
  *  @brief The header file for the Spacecraft class.
  ***************************************************************************************************/
 
@@ -27,7 +27,7 @@ class Spacecraft {
         Spacecraft(string);
 
         /**
-         *  @fn Spacecraft()
+         *  @fn getType()
          *  @brief The constructor for the class.
          *  @return string Spacecraft type
          */

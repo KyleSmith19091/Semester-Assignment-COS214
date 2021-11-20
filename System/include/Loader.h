@@ -32,14 +32,14 @@ class Loader
         ~Loader();
 
         /**
-         *  @fn ~Loader()
+         *  @fn load()
          *  @brief Performs load action on member dragon.
          *  @return void
          */
         void load();
 
         /**
-         *  @fn ~Loader()
+         *  @fn ~setDragon()
          *  @brief Changes the reference to the dragon that is going to be loaded.
          *  @return void
          */

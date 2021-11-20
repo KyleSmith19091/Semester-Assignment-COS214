@@ -1,5 +1,5 @@
 /****************************************************************************************************
- *  @file MerlinVacuumEngine
+ *  @file ./include/MerlinVacuumEngine
  *  @brief The header file for the MerlinVacuumEngine class.
  ***************************************************************************************************/
 
@@ -18,7 +18,7 @@ class MerlinVacuumEngine : public Engine {
 
 public:
 /**
-         *  @fn checkTemp()
+         *  @fn checkTemperature()
          *  @brief Check Temperature of Engine.
          *  @return void
          */

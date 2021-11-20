@@ -1,5 +1,5 @@
 /****************************************************************************************************
- *  @file CrewDragonCreator.h
+ *  @file ./include/CrewDragonCreator.h
  *  @brief The header file for the CrewDragonCreator class.
  ***************************************************************************************************/
 
@@ -11,9 +11,9 @@
 
 class CrewDragonCreator: public SpacecraftCreator{
 public:
-    /* @fn createSpacecraft()
+    /** @fn createSpacecraft()
      * @brief creates a new CargoDragonCreator
-     * @return Spacecraft
+     * @return Spacecraft*
      */
     Spacecraft* createSpacecraft() override;
 

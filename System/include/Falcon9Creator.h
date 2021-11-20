@@ -12,9 +12,9 @@
 class Falcon9Creator: public SpacecraftCreator {
 public:
 
-    /* @fn createSpacecraft()
-     * @brief creates a new create Falcon-9
-     * @return Spacecraft
+    /** @fn createSpacecraft()
+     * @brief creates a new create Falcon-9.
+     * @return Spacecraft*
      */
     Spacecraft* createSpacecraft() override;
 

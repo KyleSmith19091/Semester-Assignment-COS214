@@ -1,5 +1,5 @@
 /****************************************************************************************************
- *  @file Falcon.h
+ *  @file ./include/Falcon.h
  *  @brief The header file for the Falcon class.
  ***************************************************************************************************/
 
@@ -42,7 +42,7 @@ class Falcon : public Spacecraft {
         /**
          *  @fn getCurrentState()
          *  @brief Get current launch state.
-         *  @return void
+         *  @return string
          */
         string getCurrentState() const;
 
