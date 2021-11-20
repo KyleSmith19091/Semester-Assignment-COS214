@@ -29,8 +29,9 @@ class Falcon : public Spacecraft {
         /**
          *  @fn Falcon()
          *  @brief The constructor for the class.
+         *  @param[in] std::string Type of falcon
          */
-        Falcon();
+        Falcon(std::string);
 
         /**
          *  @fn ~Falcon()

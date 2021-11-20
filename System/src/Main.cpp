@@ -15,6 +15,9 @@
 #include "../include/Falcon.h"
 #include "../include/Satelite.h"
 #include "../include/Cluster.h"
+#include "../include/SatelliteCreator.h"
+#include "../include/Falcon9Creator.h"
+#include "../include/FalconHeavyCreator.h"
 #include <iostream>
 
 const int iExit = 100;
@@ -49,7 +52,7 @@ int main() {
 
 	////////////////////////////////////////////////////////////////  Strategy
     std::cout << "----------------------------------------- STRATEGY ---------------------------------------\n";
-     Falcon* falconHeavy = new Falcon();
+     Falcon* falconHeavy = new Falcon("falcon-heavy");
 	 Dragon* dragon = new CrewDragon(falconHeavy);
      Loader* loader = new Loader(dragon); 
      loader->load();
@@ -62,7 +65,7 @@ int main() {
 
 	////////////////////////////////////////////////////////////////  State
     std::cout << "----------------------------------------- STATE ---------------------------------------\n";
-     Falcon* falconWithState = new Falcon();
+     Falcon* falconWithState = new Falcon("falcon-heavy");
      std::cout << "Falcon current State: " << falconWithState->getCurrentState() << "\n";
      falconWithState->change();
      std::cout << "Falcon current State: " << falconWithState->getCurrentState() << "\n";
@@ -82,6 +85,10 @@ int main() {
 
      cluster->generateSatellites(control,10);
      cluster->spreadOutSatellites();
+
+     SpacecraftCreator* creator = new FalconHeavyCreator();
+     Falcon* falcon9 = (Falcon*)creator->createSpacecraft(); 
+     std::cout << falcon9->getCurrentState() << '\n';
 
 	//////////////////////////////////////////////////////////////// 
     std::cout << "----------------------------------------- SIM ---------------------------------------\n";

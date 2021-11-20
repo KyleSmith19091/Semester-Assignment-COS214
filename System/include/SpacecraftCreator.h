@@ -4,7 +4,11 @@
 #include "Spacecraft.h"
 
 class SpacecraftCreator {
-protected:
+public:
+    /* @fn createSpacecraft()
+     * @brief interface method for creating a spacecraft
+     * @return newly created Spacecraft
+     */
     virtual Spacecraft* createSpacecraft() =0;
 };
 
