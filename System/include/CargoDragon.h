@@ -17,6 +17,7 @@
 #include "Engine.h"
 
 #include <vector>
+#include "VectorOfCargo.h"
 
 using namespace std;
 
@@ -38,11 +39,12 @@ class CargoDragon : public Dragon {
         /**
          *  @fn load()
          *  @brief Template method for loading Dragon content.
+         *  @param[in] bool Indicate whether to print loading data
          *  @return void
          */
-        void load() override;
+        void load(bool) override;
 
     private:
-        vector<Cargo*> cargoList;         
+        VectorOfCargo* cargoList;
 };	
 #endif

@@ -34,9 +34,10 @@ class Loader
         /**
          *  @fn load()
          *  @brief Performs load action on member dragon.
+         *  @param[in] bool Indicate whether to print loading data
          *  @return void
          */
-        void load();
+        void load(bool);
 
         /**
          *  @fn ~setDragon()

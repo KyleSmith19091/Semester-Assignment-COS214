@@ -14,13 +14,15 @@
 #include "Dragon.h"
 #include "Crew.h"
 #include "Cargo.h"
+#include "LinkedListOfCrew.h"
+#include "VectorOfCargo.h"
 
 #include <vector>
 
 class CrewDragon : public Dragon {
     private: 
-        std::vector<Crew*> crewMembers;
-        std::vector<Cargo*> cargoList;
+        LinkedListOfCrew* crewMembers;
+        VectorOfCargo* cargoList;
 
     public:
         CrewDragon(Falcon*);
@@ -34,8 +36,9 @@ class CrewDragon : public Dragon {
         /**
          *  @fn load()
          *  @brief Template Method for loading Dragon content.
+         *  @param[in] bool Indicate whether to print loading data
          *  @return void
          */
-        void load() override;
+        void load(bool) override;
 };	
 #endif
