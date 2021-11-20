@@ -27,12 +27,16 @@ CarryType* CrewIterator::current(){
 
 bool CrewIterator::isDone(){
     Crew* temp = list->getHead();
-	for(int i=0;i<index-1;i++)
-    temp= temp->next;
-	if(temp->next == NULL)
-	return true;
 
-	return false;
+    for(int i=0;i<index;i++) {
+        temp= temp->next;
+    }
+
+    if(temp == NULL) {
+        return true;
+    }
+
+    return false;
 }
 
 CrewIterator::~CrewIterator() {
