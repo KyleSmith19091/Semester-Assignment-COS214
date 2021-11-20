@@ -10,8 +10,8 @@ void MerlinEngine::checkTemperature(){
 int temp = rand()%(80)+20;
 if(temp>=80) 
 {
-    cout<<"MERLIN ENGINE IS TOO HOT PLEASE ALLOW COOL DOWN"<<endl;
-    usleep(10000000);
+cout<<"MERLIN ENGINE IS TOO HOT PLEASE ALLOW COOL DOWN"<<endl;
+usleep(10000000);
 }
 else
 cout<<"The Merlin Engine has a temperature of: "<<temp<<" degrees Celcius, which is still below the dangerous temperature of 80 degrees Celcius"<<endl;
@@ -29,5 +29,5 @@ cout<<"Oil is still full and cap is securely tightened"<<endl;
 }
 
 void MerlinEngine::startEngine(){
-cout<<"The engine started up successfully"<<endl;
+cout<<"The Merlin Engine started up successfully"<<endl;
 }

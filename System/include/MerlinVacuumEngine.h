@@ -1,20 +1,20 @@
 /****************************************************************************************************
- *  @file MerlinEngine
- *  @brief The header file for the MerlinEngine class.
+ *  @file MerlinVacuumEngine
+ *  @brief The header file for the MerlinVacuumEngine class.
  ***************************************************************************************************/
 
-#ifndef MERLINENGINE_H
-#define MERLINENGINE_H
+#ifndef MERLINVACUUMENGINE_H
+#define MERLINVACUUMENGINE_H
 
 /****************************************************************************************************
- *  @class MerlinEngine
+ *  @class MerlinVacuumEngine
  *  @brief ""
  ***************************************************************************************************/
 #include <string>
 #include "Engine.h"
 
 using namespace std;
-class MerlinEngine : public Engine {
+class MerlinVacuumEngine : public Engine {
 
 public:
 /**
