@@ -4,6 +4,7 @@
 #include <sstream>
 
 CargoDragon::CargoDragon(Falcon* falcon) : Dragon(falcon) {
+    cargoList = new VectorOfCargo();
 }
 
 CargoDragon::~CargoDragon() {

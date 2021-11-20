@@ -41,5 +41,5 @@ Falcon* Cluster::getCraft() {
 }
 
 int Cluster::getSize() {
-    clusterSatellites.size();
+    return clusterSatellites.size();
 }

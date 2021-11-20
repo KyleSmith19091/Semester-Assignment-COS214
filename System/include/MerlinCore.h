@@ -25,11 +25,12 @@ public:
      *  @fn MerlinCore()
      *  @brief The constructor for the class.
      */
-    MerlinCore(vector<Engine*> list);
+    MerlinCore();
 
     /*
      * @fn on(Engine* colleague)
      * @brief Sets the on to true for the engine parameter
+     * @param[in] Engine* that will be turned on
      * @return void
      */
     void on(Engine* colleague);
@@ -37,6 +38,7 @@ public:
     /*
      * @fn off(Engine* colleague)
      * @brief Sets the on to false for the engine parameter
+     * @param[in] Engine* that will be turned off
      * @return void
      */
     void off(Engine* colleague);

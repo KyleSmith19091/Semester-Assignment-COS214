@@ -36,28 +36,30 @@ class Simulate
         /**
          *  @fn std::vector<State*> select()
          *  @brief The method to call selectCommand execute().
+         *  @return std::vector<State*> vector of states
          */
         std::vector<State*> select();
 
         /**
          *  @fn std::vector<State*> build()
          *  @brief The method to call buildCommand execute().
+         *  @return std::vector<State*> vector of states
          */
         std::vector<State*> build();
 
         /**
          *  @fn void setSelect(Command* c)
          *  @brief The method to set the selectCommand.
-         *  
          *  @param[in]  c   The command to work with.
+         *  @return void
          */
         void setSelect(Command* c);
 
         /**
          *  @fn void setBuild(Command* c)
          *  @brief The method to set the buildCommand.
-         *  
          *  @param[in]  c   The command to work with.
+         *  @return void
          */
         void setBuild(Command* c);
 };

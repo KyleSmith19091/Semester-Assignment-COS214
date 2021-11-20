@@ -55,6 +55,7 @@ class KeplerianCoords {
         /**
          *  @fn randomiseCoords()
          *  @brief Used in determining intersection of coords.
+         *  @param[in] KeplerianCoords& Reference to KeplerianCoords object for comparison 
          */
         bool operator<(const KeplerianCoords&);
 

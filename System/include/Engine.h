@@ -83,6 +83,14 @@ class Engine {
          */
         void setOn(bool);
 
+        /**
+         *  @fn clone()
+         *  @brief clone an engine.
+         *  @return Engine*
+         */
+        virtual Engine* clone()=0;
+
+
 };
 #include "MerlinCore.h"	
 #endif
