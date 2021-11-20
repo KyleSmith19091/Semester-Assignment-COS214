@@ -1,5 +1,5 @@
 /****************************************************************************************************
- *  @file LinkedListOfCrew.h
+ *  @file ./include/LinkedListOfCrew.h
  *  @brief The header file for the LinkedListOfCrew class.
  ***************************************************************************************************/
 
@@ -24,6 +24,7 @@ class LinkedListOfCrew :public Collections {
     public:
 
         /**
+         *  @fn createIterator()
          *  @brief creates a CrewIterator element
          *  @return Iterator* a new instance of CrewIterator to iterate through CrewList
          */

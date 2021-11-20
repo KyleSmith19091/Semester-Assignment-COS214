@@ -32,7 +32,7 @@ class Loader
         ~Loader();
 
         /**
-         *  @fn ~Loader()
+         *  @fn load()
          *  @brief Performs load action on member dragon.
          *  @param[in] bool Indicate whether to print loading data
          *  @return void
@@ -40,7 +40,7 @@ class Loader
         void load(bool);
 
         /**
-         *  @fn ~Loader()
+         *  @fn ~setDragon()
          *  @brief Changes the reference to the dragon that is going to be loaded.
          *  @return void
          */

@@ -1,5 +1,5 @@
 /****************************************************************************************************
- *  @file Engine.h
+ *  @file ./include/Engine.h
  *  @brief The header file for the Engine class.
  ***************************************************************************************************/
 
@@ -65,12 +65,14 @@ class Engine {
         /**
          *  @fn turnOn()
          *  @brief Turn engine on.
+         *  @return void
          */
         void turnOn();
 
         /**
          *  @fn checkEngine()
          *  @brief Template method to check the engine.
+         *  @return void
          */
         void checkEngine();
 
