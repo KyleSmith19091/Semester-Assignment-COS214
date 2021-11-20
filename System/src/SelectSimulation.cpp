@@ -52,21 +52,73 @@ void SelectSimulation::loadPrefabs() {
     std::string inString;
     std::fstream inFile(getFilePath());
 
-    std::string type;
+    Falcon* falcon;
+    Cluster* cluster;
+    MissionControl* control;
+    Dragon* dragon;
+    Loader* loader;
+
     std::string name;
+    int type;
+    int satCount = 0;
     prefabs.clear();
 
     while (std::getline(inFile, inString)) {
+        if (inString.substr(0, inString.find('#')) == "Name")
+            continue;
+        
         tmp = new Memento();
 
-        type = inString.substr(0, inString.find('#'));
+        name = inString.substr(0, inString.find('#'));
         inString.erase(0, inString.find('#') + 1);
-        name = inString;
 
-        tmpState = new State(name);
-        tmp->setState(tmpState);
+        type = stoi(inString.substr(0, inString.find('#')));
+        inString.erase(0, inString.find('#') + 1);
 
-        prefabs.push_back(tmp);
+        satCount = stoi(inString);
+
+        switch (type)
+        {
+        case 0:
+            falcon = new Falcon();
+            cluster = new Cluster(falcon);
+            control = new MissionControl();
+
+            cluster->generateSatellites(control, satCount);
+
+            tmpState = new State(name, cluster);
+            tmp->setState(tmpState);
+
+            prefabs.push_back(tmp);
+            break;
+
+        case 1:
+            falcon = new Falcon();
+            dragon = new CrewDragon(falcon);
+            loader = new Loader(dragon); 
+            loader->load();
+
+            tmpState = new State(name, dragon);
+            tmp->setState(tmpState);
+
+            prefabs.push_back(tmp);
+            break;
+
+        case 2:
+            falcon = new Falcon();
+            dragon = new CargoDragon(falcon);
+            loader = new Loader(dragon); 
+            loader->load();
+
+            tmpState = new State(name, dragon);
+            tmp->setState(tmpState);
+
+            prefabs.push_back(tmp);
+            break;
+        
+        default:
+            break;
+        }
     }
 }
 

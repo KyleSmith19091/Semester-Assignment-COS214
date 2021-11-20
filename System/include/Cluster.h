@@ -52,6 +52,13 @@ class Cluster {
          */
         void spreadOutSatellites();
 
+        /**
+         * @fn getCraft()
+         * @brief Return the registered spacecraft
+         * @return Falcon*
+         */
+        Falcon* getCraft();
+
     private:
         Falcon* falcon;
         std::vector<Satelite*> clusterSatellites;

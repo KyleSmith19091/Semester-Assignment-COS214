@@ -9,6 +9,7 @@
 #include <string>
 
 #include "Spacecraft.h"
+#include "Cluster.h"
 /****************************************************************************************************
  *  @class State
  *  @brief The abstraction of the State of the simulation.
@@ -18,12 +19,20 @@ class State
     private:
         std::string name;
         Spacecraft* vessel;
+        Cluster* satellites;
+
     public:
         /**
          *  @fn State()
          *  @brief The constructor for the class.
          */
-        State(std::string n);
+        State(std::string n, Spacecraft* s);
+
+        /**
+         *  @fn State()
+         *  @brief The constructor for the class.
+         */
+        State(std::string n, Cluster* c);
 
         /**
          *  @fn ~State()
@@ -32,6 +41,10 @@ class State
         ~State();
 
         std::string getName();
+
+        Spacecraft* getVessel();
+
+        Cluster* getCluster();
 };
 
 #endif  //STATE_H

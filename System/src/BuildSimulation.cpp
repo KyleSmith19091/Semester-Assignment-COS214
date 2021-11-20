@@ -99,7 +99,7 @@ void BuildSimulation::falconHeavy(int c, std::vector<State*>* sVector) {
     switch (c)
     {
     case 0:
-        tmp = new State("Satellites on Falcon Heavy");
+        tmp = new State("Satellites on Falcon Heavy", new CrewDragon(new Falcon()));
         sVector->push_back(tmp);
 
         std::cout << "Would you like to save the current sim?" << std::endl;

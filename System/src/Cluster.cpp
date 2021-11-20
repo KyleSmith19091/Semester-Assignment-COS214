@@ -36,3 +36,7 @@ void Cluster::spreadOutSatellites() {
         it->positionSelf();
     }
 }
+
+Falcon* Cluster::getCraft() {
+    return falcon;
+}

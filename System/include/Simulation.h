@@ -11,6 +11,17 @@
 
 #include "State.h"
 #include "Memento.h"
+#include "Cargo.h"
+#include "VectorOfCargo.h"
+#include "CargoIterator.h"
+#include "CarryType.h"
+#include "Dragon.h"
+#include "CrewDragon.h"
+#include "CargoDragon.h"
+#include "Loader.h"
+#include "Falcon.h"
+#include "Satelite.h"
+#include "Cluster.h"
 /****************************************************************************************************
  *  @class Simulation
  *  @brief The interface for all Simulations.

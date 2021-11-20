@@ -22,76 +22,76 @@ bool bRunning = true;
 
 void exitProgram();
 void saveSimulation();
-void simTest();
+void simStart();
 void runSims(std::vector<State*> s);
 
 int main() {
-    //////////////////////////////////////////////////////////////// Iterator
-    std::cout << "----------------------------------------- ITERATOR ---------------------------------------\n";
-	Cargo* c1 = new Cargo("one",0.3);
-	Cargo* c2 = new Cargo("two",2.1);
-	Cargo* c3 = new Cargo("three",5.7);
+    // //////////////////////////////////////////////////////////////// Iterator
+    // std::cout << "----------------------------------------- ITERATOR ---------------------------------------\n";
+	// Cargo* c1 = new Cargo("one",0.3);
+	// Cargo* c2 = new Cargo("two",2.1);
+	// Cargo* c3 = new Cargo("three",5.7);
 
-	VectorOfCargo cargoList;
-	cargoList.addCargo(c1);
-	cargoList.addCargo(c2);
-	cargoList.addCargo(c3);
+	// VectorOfCargo cargoList;
+	// cargoList.addCargo(c1);
+	// cargoList.addCargo(c2);
+	// cargoList.addCargo(c3);
 
-	Iterator* CI = cargoList.createIterator();
+	// Iterator* CI = cargoList.createIterator();
 
-	cargoList.removeCargo(c2);
+	// cargoList.removeCargo(c2);
 
-	while (!CI->isDone())
-	{
-		cout<<CI->next()->toString()<<endl;
+	// while (!CI->isDone())
+	// {
+	// 	cout<<CI->next()->toString()<<endl;
 		
-	}
+	// }
 
-	////////////////////////////////////////////////////////////////  Strategy
-    std::cout << "----------------------------------------- STRATEGY ---------------------------------------\n";
-     Falcon* falconHeavy = new Falcon();
-	 Dragon* dragon = new CrewDragon(falconHeavy);
-     Loader* loader = new Loader(dragon); 
-     loader->load();
+	// ////////////////////////////////////////////////////////////////  Strategy
+    // std::cout << "----------------------------------------- STRATEGY ---------------------------------------\n";
+    //  Falcon* falconHeavy = new Falcon();
+	//  Dragon* dragon = new CrewDragon(falconHeavy);
+    //  Loader* loader = new Loader(dragon); 
+    //  loader->load();
 
-     Dragon* cargoDragon = new CargoDragon(falconHeavy);
-     loader->setDragon(cargoDragon);
-     loader->load();
+    //  Dragon* cargoDragon = new CargoDragon(falconHeavy);
+    //  loader->setDragon(cargoDragon);
+    //  loader->load();
 
-     delete loader;
+    //  delete loader;
 
-	////////////////////////////////////////////////////////////////  State
-    std::cout << "----------------------------------------- STATE ---------------------------------------\n";
-     Falcon* falconWithState = new Falcon();
-     std::cout << "Falcon current State: " << falconWithState->getCurrentState() << "\n";
-     falconWithState->change();
-     std::cout << "Falcon current State: " << falconWithState->getCurrentState() << "\n";
-     falconWithState->change();
-     std::cout << "Falcon current State: " << falconWithState->getCurrentState() << "\n";
-     falconWithState->change();
-     std::cout << "Falcon current State: " << falconWithState->getCurrentState() << "\n";
-     falconWithState->change();
-     std::cout << "Falcon current State: " << falconWithState->getCurrentState() << "\n";
+	// ////////////////////////////////////////////////////////////////  State
+    // std::cout << "----------------------------------------- STATE ---------------------------------------\n";
+    //  Falcon* falconWithState = new Falcon();
+    //  std::cout << "Falcon current State: " << falconWithState->getCurrentState() << "\n";
+    //  falconWithState->change();
+    //  std::cout << "Falcon current State: " << falconWithState->getCurrentState() << "\n";
+    //  falconWithState->change();
+    //  std::cout << "Falcon current State: " << falconWithState->getCurrentState() << "\n";
+    //  falconWithState->change();
+    //  std::cout << "Falcon current State: " << falconWithState->getCurrentState() << "\n";
+    //  falconWithState->change();
+    //  std::cout << "Falcon current State: " << falconWithState->getCurrentState() << "\n";
 
-	////////////////////////////////////////////////////////////////  Satelite
-    std::cout << "----------------------------------------- SATELLITE ---------------------------------------\n";
-    // Ground
-     MissionControl* control = new MissionControl();
+	// ////////////////////////////////////////////////////////////////  Satelite
+    // std::cout << "----------------------------------------- SATELLITE ---------------------------------------\n";
+    // // Ground
+    //  MissionControl* control = new MissionControl();
 
-     Cluster* cluster = new Cluster(falconWithState);
+    //  Cluster* cluster = new Cluster(falconWithState);
 
-     cluster->generateSatellites(control,10);
-     cluster->spreadOutSatellites();
+    //  cluster->generateSatellites(control,10);
+    //  cluster->spreadOutSatellites();
 
 	//////////////////////////////////////////////////////////////// 
     std::cout << "----------------------------------------- SIM ---------------------------------------\n";
 
-	simTest();
+	simStart();
 
 	return 0;
 }
 
-void simTest() {
+void simStart() {
     Command* sim = new Command();
     vector<State*> retVector;
     retVector.clear();
@@ -166,6 +166,11 @@ void exitProgram(){
 
 void runSims(vector<State*> s) {
 	for (auto it = s.begin(); it != s.end(); it++) {
-		cout << (*it)->getName() << endl;
+        cout << "Sattelites : ";
+        if ((*it)->getCluster() != 0)
+            cout << "Yes --> ";
+        else
+            cout << "No --> ";
+		cout << (*it)->getName() << " :: " << (*it)->getVessel()->getType() << endl << endl;
 	}
 }

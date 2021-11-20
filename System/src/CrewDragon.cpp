@@ -25,7 +25,7 @@ void CrewDragon::load() {
             getline(ss,name,',');
             getline(ss,title,',');
             crewMembers.push_back(new Crew(name,title));
-            std::cout << "[" << name << "]" <<  " boarded Dragon\n";
+            //std::cout << "[" << name << "]" <<  " boarded Dragon\n";
         }
 
     } else {
@@ -41,7 +41,7 @@ void CrewDragon::load() {
             getline(ss,description,',');
             getline(ss,weight);
             cargoList.push_back(new Cargo(description,stod(weight)));
-            std::cout << "Loaded [" << description << "]" << " {" << weight << "kg} into Dragon\n";
+            //std::cout << "Loaded [" << description << "]" << " {" << weight << "kg} into Dragon\n";
         }
     } else {
         std::cerr << __FILE__ << " " << __LINE__ << " Could not open CargoList";
