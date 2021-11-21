@@ -1,5 +1,15 @@
 #include "../include/BuildSimulation.h"
 
+int getOption() {
+    std::string sOptionSelector;
+    cin >> sOptionSelector;
+    while (sOptionSelector != "0" && sOptionSelector != "1" && sOptionSelector != to_string(100)) {
+        cout << "Please enter a 0 or a 1: \n";
+        cin >> sOptionSelector;
+    }
+    return stoi(sOptionSelector);
+}
+
 const std::string BuildSimulation::DELIMITER = "#";
 const std::string BuildSimulation::TYPE_SATELLITE = "0";
 const std::string BuildSimulation::TYPE_CARGO = "1";
@@ -21,12 +31,9 @@ void BuildSimulation::startSim(std::vector<State*>* v) {
     std::cout << "\n==========You Have now entered the building phase.==========\n";
     std::cout << "Would you like to build in test mode?\n\t0: No\n\t1: Yes\n";
     std::cout << "Please choose the apropriate option: ";
-    int optionSelector = -1;
-    cin >> optionSelector;
-    while (optionSelector != 0 && optionSelector != 1 && optionSelector != iExit){
-        std::cout << "Please enter a 0 or a 1: \n";
-        std::cin >> optionSelector;
-    }
+    int optionSelector = 0;
+    optionSelector = getOption();
+
     switch (optionSelector)
     {
         case 0:
@@ -50,12 +57,8 @@ void BuildSimulation::buildMode() {
     std::cout << "\nWhat kind of rocket would you like to use?" << std::endl;
     std::cout << "\t0: Falcon 9\n\t1: Falcon Heavy" << std::endl;
     std::cout << "Please choose the apropriate option: ";
-    std::cin >> selection;
 
-    if (selection < 0 || selection > 1) {
-        std::cout << "Choice is not a valid option." << std::endl;
-        buildMode();
-    }
+    selection = getOption();
 
     switch (selection)
     {
@@ -64,7 +67,7 @@ void BuildSimulation::buildMode() {
         std::cout << "\nWhat kind of payload would you like to send?" << std::endl;
         std::cout << "\t0: Crew and Cargo\n\t1: Sattelites" << std::endl;
         std::cout << "Please choose the apropriate option: ";
-        std::cin >> selection;
+        selection = getOption();
 
         switch (selection)
         {
@@ -86,7 +89,7 @@ void BuildSimulation::buildMode() {
         std::cout << "\nWhat kind of payload would you like to send?" << std::endl;
         std::cout << "\t0: Cargo" << std::endl;
         std::cout << "Please choose the apropriate option: ";
-        std::cin >> selection;
+        selection = getOption();
 
         switch (selection)
         {
@@ -112,11 +115,12 @@ void BuildSimulation::saveToFile(State* s, int t) {
     std::cout << "Please input a name for the simulation (Only letters, numbers and underscores ('_')): ";
     std::cin >> selection;
 
-    // if (!std::regex_match(selection, std::regex("^[[:w:]]$"))) {
-    //     std::cout << "Name does not contain only letters, numbers and underscores ('_')." << std::endl;
-    //     this->saveToFile(s);
-    // }
-    
+    while (selection.find(DELIMITER) != string::npos) {
+         std::cout << "Name does not contain only letters, numbers and underscores ('_')." << std::endl;
+         std::cout << "Please input a name for the simulation (Only letters, numbers and underscores ('_')): ";
+         std::cin >> selection;
+    }
+
     std::ofstream outFile;
     outFile.open(getFilePath(), std::ios_base::app);
     s->setName(selection);
@@ -126,8 +130,11 @@ void BuildSimulation::saveToFile(State* s, int t) {
     outString += (t == 0) ? TYPE_SATELLITE : (t == 1) ? TYPE_CARGO : TYPE_CREW;
     outString += DELIMITER;
     outString += (s->getCluster() == 0) ? "0" : to_string(s->getCluster()->getSize());
+    outString += "\n";
 
-    outFile << "\n" << outString;
+    outFile << outString;
+
+    std::cout << "=== DONE WRITING TO: " << getFilePath() << "\n";
 }
 
 void BuildSimulation::buildSattelites() {
@@ -135,11 +142,16 @@ void BuildSimulation::buildSattelites() {
     CheckEngineCommand* engCom;
     spreadCommand* spCom;
     StateChangeCommand* scCom;
-    
 
     std::cout << "\nHow many sattelites would you like to send?" << std::endl;
     std::cout << "Please input a number between 1 and 60 (inclusive): ";
     std::cin >> satCount;
+
+    while(satCount < 0 || satCount > 60) {
+        std::cout << "Please enter a valid amount of satellites\n";
+        std::cout << "Please input a number between 1 and 60 (inclusive): ";
+        std::cin >> satCount;
+    }
 
     Falcon* tmpFalcon = new Falcon("falcon-9");
     Cluster* tmpCluster = new Cluster(tmpFalcon);
@@ -163,7 +175,7 @@ void BuildSimulation::buildSattelites() {
     std::cout << "\nWould you like to save the current sim?" << std::endl;
     std::cout << "\t0: Yes\n\t1: No" << std::endl;
     std::cout << "Please choose the apropriate option: ";
-    std::cin >> selection;
+    selection = getOption();
 
     switch (selection)
     {
@@ -203,7 +215,7 @@ void BuildSimulation::buildCrew() {
     std::cout << "\nWould you like to save the current sim?" << std::endl;
     std::cout << "\t0: Yes\n\t1: No" << std::endl;
     std::cout << "Please choose the apropriate option: ";
-    std::cin >> selection;
+    selection = getOption();
 
     switch (selection)
     {
@@ -243,7 +255,8 @@ void BuildSimulation::buildCargo() {
     std::cout << "\nWould you like to save the current sim?" << std::endl;
     std::cout << "\t0: Yes\n\t1: No" << std::endl;
     std::cout << "Please choose the apropriate option: ";
-    std::cin >> selection;
+    std::string sOptionSelector;
+    selection = getOption();
 
     switch (selection)
     {
@@ -262,12 +275,7 @@ void BuildSimulation::buildTestMode() {
     std::cout << "\nWhat kind of rocket would you like to use?" << std::endl;
     std::cout << "\t0: Falcon 9\n\t1: Falcon Heavy" << std::endl;
     std::cout << "Please choose the apropriate option: ";
-    std::cin >> selection;
-
-    if (selection < 0 || selection > 1) {
-        std::cout << "Choice is not a valid option." << std::endl;
-        buildTestMode();
-    }
+    selection = getOption();
 
     switch (selection)
     {
@@ -301,7 +309,7 @@ void BuildSimulation::test9() {
     std::cout << "Would you like to change the previous step?" << std::endl;
     std::cout << "\t0: Yes, I would like to change it.\n\t1: No, I would like to continue with the building process." << std::endl;
     std::cout << "Please choose the apropriate option: ";
-    std::cin >> selection;
+    selection = getOption();
 
     switch (selection)
     {
@@ -338,7 +346,7 @@ void BuildSimulation::testHeavy() {
     std::cout << "Would you like to change the previous step?" << std::endl;
     std::cout << "\t0: Yes, I would like to change it.\n\t1: No, I would like to continue with the building process." << std::endl;
     std::cout << "Please choose the apropriate option: ";
-    std::cin >> selection;
+    selection = getOption();
 
     switch (selection)
     {
@@ -369,12 +377,7 @@ void BuildSimulation::testCargo() {
     std::cout << "\nWhat kind of payload would you like to send?" << std::endl;
     std::cout << "\t0: Cargo" << std::endl;
     std::cout << "Please choose the apropriate option: ";
-    std::cin >> selection;
-
-    if (selection != 0) {
-        std::cout << "Choice is not a valid option." << std::endl;
-        testCargo();
-    }
+    selection = getOption();
 
     switch (selection)
     {
@@ -389,8 +392,7 @@ void BuildSimulation::testCargo() {
         std::cout << "\nWould you like to change the previous step?" << std::endl;
         std::cout << "\t0: Yes, I would like to change it.\n\t1: No, I would like to continue with the building process." << std::endl;
         std::cout << "Please choose the apropriate option: ";
-        std::cin >> selection;
-
+        selection = getOption();
 
         switch (selection)
         {
@@ -412,7 +414,7 @@ void BuildSimulation::testCargo() {
             std::cout << "\nWould you like to save the current sim?" << std::endl;
             std::cout << "\t0: Yes\n\t1: No" << std::endl;
             std::cout << "Please choose the apropriate option: ";
-            std::cin >> selection;
+            selection = getOption();
 
             switch (selection)
             {
@@ -506,7 +508,7 @@ void BuildSimulation::testCrew() {
         std::cout << "\nWould you like to save the current sim?" << std::endl;
         std::cout << "\t0: Yes\n\t1: No" << std::endl;
         std::cout << "Please choose the apropriate option: ";
-        std::cin >> selection;
+        selection = getOption();
 
         switch (selection)
         {
@@ -558,7 +560,7 @@ void BuildSimulation::testSatellites() {
     std::cout << "\nWould you like to change the previous step?" << std::endl;
     std::cout << "\t0: Yes, I would like to change it.\n\t1: No, I would like to continue with the building process." << std::endl;
     std::cout << "Please choose the apropriate option: ";
-    std::cin >> selection;
+    selection = getOption();
         
     switch (selection)
     {
@@ -575,7 +577,7 @@ void BuildSimulation::testSatellites() {
         std::cout << "\nWould you like to save the current sim?" << std::endl;
         std::cout << "\t0: Yes\n\t1: No" << std::endl;
         std::cout << "Please choose the apropriate option: ";
-        std::cin >> selection;
+        selection = getOption();
 
         switch (selection)
         {

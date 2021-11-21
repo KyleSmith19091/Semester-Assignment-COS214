@@ -13,7 +13,6 @@
 #include "CrewDragon.h"
 #include "CargoDragon.h"
 #include "Loader.h"
-#include "Command.h"
 
 class Command;
 /****************************************************************************************************
@@ -73,5 +72,7 @@ class State
         void runCommands();
         std::vector<Command*> getCommands();
 };
+
+#include "Command.h"
 
 #endif  //STATE_H

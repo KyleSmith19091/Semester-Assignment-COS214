@@ -14,6 +14,7 @@ Memento* Simulation::createMemento() {
         tmp->setState(state);
         return tmp;
     }
+    return nullptr;
 }
 
 void Simulation::setMemento(Memento* m) {

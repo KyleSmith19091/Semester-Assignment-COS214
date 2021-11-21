@@ -22,12 +22,16 @@ void SelectSimulation::startSim(std::vector<State*>* sVector) {
     cout << "Would you like to run a single simulation or a batch of simulations?\n";
     cout << "\t0: Single simulation\n\t1: Batch simulation\n";
 	cout << "Please select the appropriate option: "; 
+
+    std::string sOptionSelector;
     int optionSelector = -1;
-    cin >> optionSelector;
-    while (optionSelector != 0 && optionSelector != 1 && optionSelector != iExit){
+    cin >> sOptionSelector;
+    while (sOptionSelector != "0" && sOptionSelector != "1" && sOptionSelector != to_string(iExit)){
         cout << "Please enter a 0 or a 1: \n";
-        cin >> optionSelector;
+        cin >> sOptionSelector;
     }
+    optionSelector = stoi(sOptionSelector);
+
     std::cout << "\n";
     switch (optionSelector)
     {

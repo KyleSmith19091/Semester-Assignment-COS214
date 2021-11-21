@@ -31,39 +31,8 @@ void simStart();
 void runSims(std::vector<State*> s);
 
 int main() {
-	// ////////////////////////////////////////////////////////////////  State
-    // std::cout << "----------------------------------------- STATE ---------------------------------------\n";
-    // Falcon* falconWithState = new Falcon("Test");
-    // std::cout << "Falcon current State: " << falconWithState->getCurrentState() << "\n";
-    // falconWithState->change();
-    // std::cout << "Falcon current State: " << falconWithState->getCurrentState() << "\n";
-    // falconWithState->change();
-    // std::cout << "Falcon current State: " << falconWithState->getCurrentState() << "\n";
-    // falconWithState->change();
-    // std::cout << "Falcon current State: " << falconWithState->getCurrentState() << "\n";
-    // falconWithState->change();
-    // std::cout << "Falcon current State: " << falconWithState->getCurrentState() << "\n";
-
-	// ////////////////////////////////////////////////////////////////  Satelite
-    // std::cout << "----------------------------------------- SATELLITE ---------------------------------------\n";
-    // // Ground
-    // MissionControl* control = new MissionControl();
-
-    // Cluster* cluster = new Cluster(falconWithState);
-
-    // cluster->generateSatellites(control,60);
-    // cluster->spreadOutSatellites();
-
-    // std::cout << "\n======Collision Testing======" << std::endl << std::endl << std::endl;
-
-    // cluster->checkCollisions();
-
-
-	//////////////////////////////////////////////////////////////// 
     std::cout << "----------------------------------------- SIM ---------------------------------------\n";
-
 	simStart();
-
 	return 0;
 }
 
@@ -83,13 +52,17 @@ void simStart() {
         cout << "Welcome to Starlink. Here you can create and simulate various rockets.\n"
             	"Would you like to begin or exit?\n\t0: Begin\n\t1: Exit\n"
 				"Please select the appropriate option: ";
-        cin.clear();
+        std::string input;
         int optionSelector = -1;
-        cin >> optionSelector;
-        while (optionSelector != 0 && optionSelector != 1 && optionSelector != iExit){
+        cin >> input;
+
+        while (input != "0" && input != "1" && input != to_string(iExit)) {
             cout << "Please enter a 0 or a 1: \n";
-            cin >> optionSelector;
+            cin >> input;
         }
+
+        optionSelector = stoi(input);
+
         if (optionSelector == 1)
             exitProgram();
 
@@ -98,11 +71,13 @@ void simStart() {
                 "\t0: Build\n\t1: Load\n"
 				"Please select the appropriate option: ";
         cin.clear();
-        cin >> optionSelector;
-        while (optionSelector != 0 && optionSelector != 1 && optionSelector !=iExit){
+        cin >> input;
+        while (input != "0" && input != "1" && input != to_string(iExit)) {
             cout << "Please enter a 0 or a 1: \n";
-            cin >> optionSelector;
+            cin >> input;
         }
+        optionSelector = stoi(input);
+
         switch (optionSelector)
         {
             case 0:
@@ -156,6 +131,7 @@ void runSims(vector<State*> s) {
     std::cout << "Would you like to run the returned simulation(s)?" << std::endl;
     std::cout << "\t0: Yes\n\t1: No and Exit\n";
     std::cout << "Please select the appropriate option: ";
+
     std::cin >> i;
 
     if (i < 0 || i > 1) {
