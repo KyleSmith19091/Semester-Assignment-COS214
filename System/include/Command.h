@@ -11,6 +11,8 @@
 #include <string>
 
 #include "State.h"
+
+class State;
 /****************************************************************************************************
  *  @class Command
  *  @brief The Command for the Command Design Pattern.
@@ -31,6 +33,12 @@ class Command
          *  @brief The destructor for the class.
          */
         virtual ~Command();
+
+        /**
+         *  @fn virtual void execute()
+         *  @brief The virtual execute method.
+         */
+        virtual void execute();
 
         /**
          *  @fn virtual void execute()

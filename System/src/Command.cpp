@@ -4,6 +4,10 @@ Command::Command() : next(0) {}
 
 Command::~Command() {}
 
+void Command::execute() {
+    std::cout << "Please implement in child classes." << std::endl;
+}
+
 void Command::execute(std::string s, std::vector<State*>* v) {
     if (next) {
         next->execute(s, v);

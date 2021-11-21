@@ -23,3 +23,7 @@ void Simulation::setMemento(Memento* m) {
 std::string Simulation::getFilePath() {
     return filePath;
 }
+
+State* Simulation::getState() {
+    return state;
+}

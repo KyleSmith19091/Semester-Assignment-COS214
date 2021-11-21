@@ -43,3 +43,9 @@ Falcon* Cluster::getCraft() {
 int Cluster::getSize() {
     return clusterSatellites.size();
 }
+
+void Cluster::checkCollisions() {
+    for (int i = 0; i < clusterSatellites.size() - 1; i++) {
+        clusterSatellites[i]->sendSatelliteSignal(clusterSatellites[i + 1]);
+    }
+}

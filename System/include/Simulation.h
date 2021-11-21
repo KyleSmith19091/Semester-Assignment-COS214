@@ -22,6 +22,7 @@
 #include "Cluster.h"
 #include "Falcon9Creator.h"
 #include "FalconHeavyCreator.h"
+#include "CheckEngineCommand.h"
 /****************************************************************************************************
  *  @class Simulation
  *  @brief The interface for all Simulations.
@@ -67,6 +68,8 @@ class Simulation
         virtual void startSim(std::vector<State*>* sVector) = 0;
 
         std::string getFilePath();
+
+        State* getState();
 };
 
 #endif  //SIMULATION_H

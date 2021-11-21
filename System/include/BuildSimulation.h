@@ -23,11 +23,13 @@ class BuildSimulation : public Simulation
         static const std::string TYPE_CREW;
         static const std::string TYPE_CARGO;
 
-        Store* store;
+        Store* rollBack;
         int iExit = 100;
 
         SpacecraftCreator* heavyCreator = new FalconHeavyCreator();
         SpacecraftCreator* nineCreator = new Falcon9Creator();
+
+        std::vector<State*>* sVector;
     public:
         /**
          *  @fn BuildSimulation()
@@ -43,14 +45,21 @@ class BuildSimulation : public Simulation
 
         virtual void startSim(std::vector<State*>* v) override;
 
-        void buildMode(std::vector<State*>* sVector);
-        void buildTestMode(std::vector<State*>* sVector);
+        void buildMode();
+        void buildTestMode();
         void exitProgram();
         void saveToFile(State* s, int t);
 
-        void buildSattelites(std::vector<State*>* sVector);
-        void buildCrew(std::vector<State*>* sVector);
-        void buildCargo(std::vector<State*>* sVector);
+        void buildSattelites();
+        void buildCrew();
+        void buildCargo();
+
+        void test9();
+        void testHeavy();
+        void testCargo();
+        void testCrewAndSatellite();
+        void testCrew();
+        void testSatellites();
 };
 
 #endif  //BUILDSIMULATION_H

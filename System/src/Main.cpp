@@ -50,22 +50,9 @@ int main() {
 	// 	cout<<CI->next()->toString()<<endl;
 	// }
 
-	// ////////////////////////////////////////////////////////////////  Strategy
-    // std::cout << "----------------------------------------- STRATEGY ---------------------------------------\n";
-    //  Falcon* falconHeavy = new Falcon();
-	//  Dragon* dragon = new CrewDragon(falconHeavy);
-    //  Loader* loader = new Loader(dragon); 
-    //  loader->load();
-
-    //  Dragon* cargoDragon = new CargoDragon(falconHeavy);
-    //  loader->setDragon(cargoDragon);
-    //  loader->load();
-
-    //  delete loader;
-
 	// ////////////////////////////////////////////////////////////////  State
     // std::cout << "----------------------------------------- STATE ---------------------------------------\n";
-    //  Falcon* falconWithState = new Falcon();
+    //Falcon* falconWithState = new Falcon("Test");
     //  std::cout << "Falcon current State: " << falconWithState->getCurrentState() << "\n";
     //  falconWithState->change();
     //  std::cout << "Falcon current State: " << falconWithState->getCurrentState() << "\n";
@@ -79,16 +66,16 @@ int main() {
 	// ////////////////////////////////////////////////////////////////  Satelite
     // std::cout << "----------------------------------------- SATELLITE ---------------------------------------\n";
     // // Ground
-    //  MissionControl* control = new MissionControl();
+    // MissionControl* control = new MissionControl();
 
-    //  Cluster* cluster = new Cluster(falconWithState);
+    // Cluster* cluster = new Cluster(falconWithState);
 
-    //  cluster->generateSatellites(control,10);
-    //  cluster->spreadOutSatellites();
+    // cluster->generateSatellites(control,60);
+    // cluster->spreadOutSatellites();
 
-     SpacecraftCreator* creator = new FalconHeavyCreator();
-     Falcon* falconHeavy = (Falcon*)creator->createSpacecraft(); 
-     std::cout << falconHeavy->getType() << '\n';
+    // std::cout << "\n======Collision Testing======" << std::endl << std::endl << std::endl;
+
+    // cluster->checkCollisions();
 
 	//////////////////////////////////////////////////////////////// 
     std::cout << "----------------------------------------- SIM ---------------------------------------\n";
@@ -179,5 +166,6 @@ void runSims(vector<State*> s) {
         else
             cout << "No --> ";
 		cout << (*it)->getName() << " :: " << (*it)->getVessel()->getType() << endl << endl;
+        (*it)->runCommands();
 	}
 }

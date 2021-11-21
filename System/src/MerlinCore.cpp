@@ -33,7 +33,7 @@ void MerlinCore::on(Engine *colleague) {
 
 /*
  * @fn off(Engine* colleague)
- * @brief Sets the on to flase for the engine parameter
+ * @brief Sets the on to false for the engine parameter
  * @return void
 */
 void MerlinCore::off(Engine *colleague) {

@@ -1,4 +1,4 @@
 Name#TypeOfPayload#NumSattelites
 60_Sat#0#60
-Crew_and_Cargo#1#0
-Cargo#2#0
+Cargo#1#0
+Crew_and_Cargo#2#0

@@ -58,6 +58,8 @@ void SelectSimulation::loadPrefabs() {
     Dragon* dragon;
     Loader* loader;
 
+    CheckEngineCommand* engCom;
+
     std::string name;
     int type;
     int satCount = 0;
@@ -80,37 +82,43 @@ void SelectSimulation::loadPrefabs() {
         switch (type)
         {
         case 0:
-            falcon = new Falcon("Falcon 9");
+            falcon = new Falcon("falcon-9");
             cluster = new Cluster(falcon);
             control = new MissionControl();
 
             cluster->generateSatellites(control, satCount);
 
             tmpState = new State(name, cluster);
+            engCom = new CheckEngineCommand(falcon->getCoreList(), falcon->getVacuumEngine());
+            tmpState->addCommand(engCom);
             tmp->setState(tmpState);
 
             prefabs.push_back(tmp);
             break;
 
         case 1:
-            falcon = new Falcon("Falcon 9");
-            dragon = new CrewDragon(falcon);
+            falcon = new Falcon("falcon-heavy");
+            dragon = new CargoDragon(falcon);
             loader = new Loader(dragon); 
             loader->load(false);
 
             tmpState = new State(name, dragon);
+            engCom = new CheckEngineCommand(falcon->getCoreList(), falcon->getVacuumEngine());
+            tmpState->addCommand(engCom);
             tmp->setState(tmpState);
 
             prefabs.push_back(tmp);
             break;
 
         case 2:
-            falcon = new Falcon("Falcon Heavy");
-            dragon = new CargoDragon(falcon);
+            falcon = new Falcon("falcon-9");
+            dragon = new CrewDragon(falcon);
             loader = new Loader(dragon); 
             loader->load(false);
 
             tmpState = new State(name, dragon);
+            engCom = new CheckEngineCommand(falcon->getCoreList(), falcon->getVacuumEngine());
+            tmpState->addCommand(engCom);
             tmp->setState(tmpState);
 
             prefabs.push_back(tmp);

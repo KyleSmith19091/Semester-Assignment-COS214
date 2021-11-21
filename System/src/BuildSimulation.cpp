@@ -2,14 +2,22 @@
 
 const std::string BuildSimulation::DELIMITER = "#";
 const std::string BuildSimulation::TYPE_SATELLITE = "0";
-const std::string BuildSimulation::TYPE_CREW = "1";
-const std::string BuildSimulation::TYPE_CARGO = "2";
+const std::string BuildSimulation::TYPE_CARGO = "1";
+const std::string BuildSimulation::TYPE_CREW = "2";
 
-BuildSimulation::BuildSimulation() {}
+BuildSimulation::BuildSimulation() : sVector() {
+    rollBack = new Store;
+}
 
-BuildSimulation::~BuildSimulation() {}
+BuildSimulation::~BuildSimulation() {
+    delete rollBack;
+}
 
-void BuildSimulation::startSim(std::vector<State*>* sVector) {
+void BuildSimulation::startSim(std::vector<State*>* v) {
+    sVector = v;
+
+    Memento* tmpMem;
+
     std::cout << "\n==========You Have now entered the building phase.==========\n";
     std::cout << "Would you like to build in test mode?\n\t0: No\n\t1: Yes\n";
     std::cout << "Please choose the apropriate option: ";
@@ -22,20 +30,21 @@ void BuildSimulation::startSim(std::vector<State*>* sVector) {
     switch (optionSelector)
     {
         case 0:
-            buildMode(sVector);
+            buildMode();
             break;
-        case 1:{
-            buildTestMode(sVector);
+        case 1:
+            tmpMem = createMemento();
+            rollBack->storeMemento(tmpMem);
+            buildTestMode();
             break;
 
-        }
         case 100:
             exitProgram();
             break;
     }
 }
 
-void BuildSimulation::buildMode(std::vector<State*>* sVector) {
+void BuildSimulation::buildMode() {
     int selection = 0;
 
     std::cout << "\nWhat kind of rocket would you like to use?" << std::endl;
@@ -45,7 +54,7 @@ void BuildSimulation::buildMode(std::vector<State*>* sVector) {
 
     if (selection < 0 || selection > 1) {
         std::cout << "Choice is not a valid option." << std::endl;
-        buildMode(sVector);
+        buildMode();
     }
 
     switch (selection)
@@ -60,11 +69,12 @@ void BuildSimulation::buildMode(std::vector<State*>* sVector) {
         switch (selection)
         {
         case 0:
-            this->buildCrew(sVector);
+            this->buildCrew();
             break;
 
         case 1:
-            this->buildSattelites(sVector);
+            this->buildSattelites();
+            break;
         
         default:
             break;
@@ -81,96 +91,17 @@ void BuildSimulation::buildMode(std::vector<State*>* sVector) {
         switch (selection)
         {
         case 0:
-            this->buildCargo(sVector);
+            this->buildCargo();
             break;
         
         default:
             break;
         }
+        break;
     
     default:
         break;
     }
-}
-
-void BuildSimulation::buildTestMode(std::vector<State*>* sVector) {
-    int selection = 0;
-    Falcon* falcon;
-
-    Store* rollBack = new Store();
-    State* tmpState;
-
-    Memento* tmpMem = createMemento();
-    rollBack->storeMemento(tmpMem);
-
-    std::cout << "\nWhat kind of rocket would you like to use?" << std::endl;
-    std::cout << "\t0: Falcon 9\n\t1: Falcon Heavy" << std::endl;
-    std::cout << "Please choose the apropriate option: ";
-    std::cin >> selection;
-
-    if (selection < 0 || selection > 1) {
-        std::cout << "Choice is not a valid option." << std::endl;
-        buildTestMode(sVector);
-    }
-
-    switch (selection)
-    {
-    case 0:
-        falcon = (Falcon*)nineCreator->createSpacecraft();
-
-        selection = 0;
-        std::cout << "\nWhat kind of payload would you like to send?" << std::endl;
-        std::cout << "\t0: Crew\n\t1: Sattelites" << std::endl;
-        std::cout << "Please choose the apropriate option: ";
-        std::cin >> selection;
-
-        switch (selection)
-        {
-        case 0:
-            this->buildCrew(sVector);
-            break;
-
-        case 1:
-            this->buildSattelites(sVector);
-        
-        default:
-            break;
-        }
-        break;
-
-    case 1:
-        selection = 0;
-        std::cout << "\nWhat kind of payload would you like to send?" << std::endl;
-        std::cout << "\t0: Cargo and Crew" << std::endl;
-        std::cout << "Please choose the apropriate option: ";
-        std::cin >> selection;
-
-        switch (selection)
-        {
-        case 0:
-            this->buildCargo(sVector);
-            break;
-        
-        default:
-            break;
-        }
-    
-    default:
-        break;
-    }
-}
-
-void BuildSimulation::exitProgram() {
-    cout << "\nAre you sure you want to exit?\n";
-    cout << "Please type 'EXIT' if you wish to exit the program or a 0 if you do not \n";
-    string optionSelector;
-    cin >> optionSelector;
-    while (optionSelector != "0"  && optionSelector !="EXIT"){
-        cout << "Please type 'EXIT' or enter a 0:\n";
-        cin >> optionSelector;
-    }
-    if (optionSelector == "EXIT")
-        exit(0);
 }
 
 void BuildSimulation::saveToFile(State* s, int t) {
@@ -192,14 +123,14 @@ void BuildSimulation::saveToFile(State* s, int t) {
 
     outString += s->getName();
     outString += DELIMITER;
-    outString += (t == 0) ? TYPE_SATELLITE : (t == 1) ? TYPE_CREW : TYPE_CARGO;
+    outString += (t == 0) ? TYPE_SATELLITE : (t == 1) ? TYPE_CARGO : TYPE_CREW;
     outString += DELIMITER;
     outString += (s->getCluster() == 0) ? "0" : to_string(s->getCluster()->getSize());
 
     outFile << "\n" << outString;
 }
 
-void BuildSimulation::buildSattelites(std::vector<State*>* sVector) {
+void BuildSimulation::buildSattelites() {
     int satCount, selection = 0;
 
     std::cout << "\nHow many sattelites would you like to send?" << std::endl;
@@ -232,7 +163,7 @@ void BuildSimulation::buildSattelites(std::vector<State*>* sVector) {
     }
 }
 
-void BuildSimulation::buildCrew(std::vector<State*>* sVector) {
+void BuildSimulation::buildCrew() {
     int selection = 0;
 
     Falcon* tmpFalcon = new Falcon("falcon-9");
@@ -252,7 +183,7 @@ void BuildSimulation::buildCrew(std::vector<State*>* sVector) {
     switch (selection)
     {
     case 0:
-        this->saveToFile(tmpState, 1);
+        this->saveToFile(tmpState, 2);
         break;
     
     default:
@@ -260,7 +191,7 @@ void BuildSimulation::buildCrew(std::vector<State*>* sVector) {
     }
 }
 
-void BuildSimulation::buildCargo(std::vector<State*>* sVector) {
+void BuildSimulation::buildCargo() {
     int selection = 0;
 
     Falcon* tmpFalcon = new Falcon("falcon-heavy");
@@ -286,4 +217,309 @@ void BuildSimulation::buildCargo(std::vector<State*>* sVector) {
     default:
         break;
     }
+}
+
+void BuildSimulation::buildTestMode() {
+    int selection = 0;
+
+    std::cout << "\nWhat kind of rocket would you like to use?" << std::endl;
+    std::cout << "\t0: Falcon 9\n\t1: Falcon Heavy" << std::endl;
+    std::cout << "Please choose the apropriate option: ";
+    std::cin >> selection;
+
+    if (selection < 0 || selection > 1) {
+        std::cout << "Choice is not a valid option." << std::endl;
+        buildTestMode();
+    }
+
+    switch (selection)
+    {
+    case 0:
+        this->test9();
+        break;
+
+    case 1:
+        this->testHeavy();
+        break;
+    
+    default:
+        break;
+    }
+}
+
+void BuildSimulation::test9() {
+    int selection = 0;
+    State* tmpState = this->getState();
+    tmpState->setVessel((Falcon*)nineCreator->createSpacecraft());
+
+    std::cout << "\nFalcon 9 has been created and is in the \"" << tmpState->getVessel()->getType() << "\" state." << std::endl;
+
+    std::cout << "Would you like to change the previous step?" << std::endl;
+    std::cout << "\t0: Yes, I would like to change it.\n\t1: No, I would like to continue with the building process." << std::endl;
+    std::cout << "Please choose the apropriate option: ";
+    std::cin >> selection;
+
+    switch (selection)
+    {
+    case 0:
+        this->setMemento(rollBack->returnMemento());
+        this->buildTestMode();
+        break;
+
+    case 1:
+        rollBack->storeMemento(this->createMemento());
+        this->testCrewAndSatellite();
+        break;
+    
+    default:
+        break;
+    }
+}
+
+void BuildSimulation::testHeavy() {
+    int selection = 0;
+    State* tmpState = this->getState();
+    tmpState->setVessel((Falcon*)heavyCreator->createSpacecraft());
+
+    std::cout << "\nFalcon Heavy has been created and is in the \"" << tmpState->getVessel()->getType() << "\" state." << std::endl;
+
+    std::cout << "Would you like to change the previous step?" << std::endl;
+    std::cout << "\t0: Yes, I would like to change it.\n\t1: No, I would like to continue with the building process." << std::endl;
+    std::cout << "Please choose the apropriate option: ";
+    std::cin >> selection;
+
+    switch (selection)
+    {
+    case 0:
+        this->setMemento(rollBack->returnMemento());
+        this->buildTestMode();
+        break;
+
+    case 1:
+        rollBack->storeMemento(this->createMemento());
+        this->testCargo();
+        break;
+    
+    default:
+        break;
+    }
+}
+
+void BuildSimulation::testCargo() {
+    int selection = 0;
+    State* tmpState = this->getState();
+    Dragon* cargo;
+    Loader* tmpLoader;
+
+    std::cout << "\nWhat kind of payload would you like to send?" << std::endl;
+    std::cout << "\t0: Cargo" << std::endl;
+    std::cout << "Please choose the apropriate option: ";
+    std::cin >> selection;
+
+    if (selection != 0) {
+        std::cout << "Choice is not a valid option." << std::endl;
+        testCargo();
+    }
+
+    switch (selection)
+    {
+    case 0:
+        cargo = new CargoDragon((Falcon*)tmpState->getVessel());
+        tmpLoader = new Loader(cargo);
+        tmpLoader->load(true);
+        tmpState->setVessel(cargo);
+
+        std::cout << "\nCargo Dragon has been created and the cargo has been loaded." << std::endl;
+
+        std::cout << "\nWould you like to change the previous step?" << std::endl;
+        std::cout << "\t0: Yes, I would like to change it.\n\t1: No, I would like to continue with the building process." << std::endl;
+        std::cout << "Please choose the apropriate option: ";
+        std::cin >> selection;
+
+
+        switch (selection)
+        {
+        case 0:
+            this->setMemento(rollBack->returnMemento());
+            this->testCargo();
+            break;
+
+        case 1:
+            rollBack->storeMemento(this->createMemento());
+            std::cout << "\nWould you like to save the current sim?" << std::endl;
+            std::cout << "\t0: Yes\n\t1: No" << std::endl;
+            std::cout << "Please choose the apropriate option: ";
+            std::cin >> selection;
+
+            switch (selection)
+            {
+            case 0:
+                this->saveToFile(tmpState, 1);
+                break;
+            
+            default:
+                break;
+            }
+
+            sVector->push_back(tmpState);
+
+            break;
+        
+        default:
+            break;
+        }
+    
+    default:
+        break;
+    }
+}
+
+void BuildSimulation::testCrewAndSatellite() {
+    int selection = 0;
+
+    std::cout << "\nWhat kind of payload would you like to send?" << std::endl;
+    std::cout << "\t0: Cargo and Crew\n\t1: Satellites" << std::endl;
+    std::cout << "Please choose the apropriate option: ";
+    std::cin >> selection;
+
+    if (selection < 0 || selection > 1) {
+        std::cout << "Choice is not a valid option." << std::endl;
+        testCargo();
+    }
+
+    switch (selection)
+    {
+    case 0:
+        this->testCrew();
+        break;
+
+    case 1:
+        this->testSatellites();
+        break;
+    
+    default:
+        break;
+    }
+}
+
+void BuildSimulation::testCrew() {
+    int selection = 0;
+    State* tmpState = this->getState();
+    Dragon* cargo;
+    Loader* tmpLoader;
+
+    cargo = new CrewDragon((Falcon*)tmpState->getVessel());
+    tmpLoader = new Loader(cargo);
+    tmpLoader->load(true);
+    tmpState->setVessel(cargo);
+
+    std::cout << "\nCrew Dragon has been created, the cargo has been loaded and the crew have boarded." << std::endl;
+
+    std::cout << "\nWould you like to change the previous step?" << std::endl;
+    std::cout << "\t0: Yes, I would like to change it.\n\t1: No, I would like to continue with the building process." << std::endl;
+    std::cout << "Please choose the apropriate option: ";
+    std::cin >> selection;
+        
+    switch (selection)
+    {
+    case 0:
+        this->setMemento(rollBack->returnMemento());
+        this->testCrewAndSatellite();
+        break;
+
+    case 1:
+        rollBack->storeMemento(this->createMemento());
+
+        std::cout << "\nWould you like to save the current sim?" << std::endl;
+        std::cout << "\t0: Yes\n\t1: No" << std::endl;
+        std::cout << "Please choose the apropriate option: ";
+        std::cin >> selection;
+
+        switch (selection)
+        {
+        case 0:
+            this->saveToFile(tmpState, 2);
+            break;
+        
+        default:
+            break;
+        }
+
+        sVector->push_back(tmpState);
+
+        break;
+    
+    default:
+        break;
+    }
+}
+
+void BuildSimulation::testSatellites() {
+    int satCount, selection = 0;
+    State* tmpState = this->getState();
+    Cluster* cluster;
+    MissionControl* control;
+
+    cluster = new Cluster((Falcon*)tmpState->getVessel());
+    control = new MissionControl();
+
+    std::cout << "\nHow many sattelites would you like to send?" << std::endl;
+    std::cout << "Please input a number between 1 and 60 (inclusive): ";
+    std::cin >> satCount;
+
+    cluster->generateSatellites(control, satCount);
+    tmpState->setCluster(cluster);
+
+    std::cout << "\nCluster of " << satCount << " satellites has been created and loaded onto the rocket." << std::endl;
+
+    std::cout << "\nWould you like to change the previous step?" << std::endl;
+    std::cout << "\t0: Yes, I would like to change it.\n\t1: No, I would like to continue with the building process." << std::endl;
+    std::cout << "Please choose the apropriate option: ";
+    std::cin >> selection;
+        
+    switch (selection)
+    {
+    case 0:
+        this->setMemento(rollBack->returnMemento());
+        this->testCrewAndSatellite();
+        break;
+
+    case 1:
+        rollBack->storeMemento(this->createMemento());
+
+        std::cout << "\nWould you like to save the current sim?" << std::endl;
+        std::cout << "\t0: Yes\n\t1: No" << std::endl;
+        std::cout << "Please choose the apropriate option: ";
+        std::cin >> selection;
+
+        switch (selection)
+        {
+        case 0:
+            this->saveToFile(tmpState, 0);
+            break;
+        
+        default:
+            break;
+        }
+
+        sVector->push_back(tmpState);
+
+        break;
+    
+    default:
+        break;
+    }
+}
+
+void BuildSimulation::exitProgram() {
+    cout << "\nAre you sure you want to exit?\n";
+    cout << "Please type 'EXIT' if you wish to exit the program or a 0 if you do not \n";
+    string optionSelector;
+    cin >> optionSelector;
+    while (optionSelector != "0"  && optionSelector !="EXIT"){
+        cout << "Please type 'EXIT' or enter a 0:\n";
+        cin >> optionSelector;
+    }
+    if (optionSelector == "EXIT")
+        exit(0);
 }

@@ -53,6 +53,13 @@ class Cluster {
         void spreadOutSatellites();
 
         /**
+         * @fn checkCollisions()
+         * @brief Check the whole cluster for any collisions.
+         * @return void
+         */
+        void checkCollisions();
+
+        /**
          * @fn getCraft()
          * @brief Return the registered spacecraft
          * @return Falcon*

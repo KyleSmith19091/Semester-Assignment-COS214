@@ -13,6 +13,9 @@
 #include "CrewDragon.h"
 #include "CargoDragon.h"
 #include "Loader.h"
+#include "Command.h"
+
+class Command;
 /****************************************************************************************************
  *  @class State
  *  @brief The abstraction of the State of the simulation.
@@ -23,6 +26,7 @@ class State
         std::string name;
         Spacecraft* vessel;
         Cluster* satellites;
+        std::vector<Command*> commands;
 
     public:
         /**
@@ -59,8 +63,14 @@ class State
         void setName(std::string s);
 
         Spacecraft* getVessel();
+        void setVessel(Spacecraft* s);
 
         Cluster* getCluster();
+        void setCluster(Cluster* c);
+
+        void addCommand(Command* c);
+        void runCommands();
+        std::vector<Command*> getCommands();
 };
 
 #endif  //STATE_H
