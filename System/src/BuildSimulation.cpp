@@ -94,9 +94,6 @@ void BuildSimulation::buildMode(std::vector<State*>* sVector) {
 }
 
 void BuildSimulation::buildTestMode(std::vector<State*>* sVector) {
-    SpacecraftCreator* heavyCreator = new FalconHeavyCreator();
-    SpacecraftCreator* nineCreator = new FalconHeavyCreator();
-
     int selection = 0;
     Falcon* falcon;
 
@@ -209,7 +206,7 @@ void BuildSimulation::buildSattelites(std::vector<State*>* sVector) {
     std::cout << "Please input a number between 1 and 60 (inclusive): ";
     std::cin >> satCount;
 
-    Falcon* tmpFalcon = new Falcon("Falcon 9");
+    Falcon* tmpFalcon = new Falcon("falcon-9");
     Cluster* tmpCluster = new Cluster(tmpFalcon);
     MissionControl* tmpControl = new MissionControl();
 
@@ -238,7 +235,7 @@ void BuildSimulation::buildSattelites(std::vector<State*>* sVector) {
 void BuildSimulation::buildCrew(std::vector<State*>* sVector) {
     int selection = 0;
 
-    Falcon* tmpFalcon = new Falcon("Falcon 9");
+    Falcon* tmpFalcon = new Falcon("falcon-9");
     Dragon* tmpCrew = new CrewDragon(tmpFalcon);
     Loader* tmpLoader = new Loader(tmpCrew);
     tmpLoader->load(false);
@@ -266,7 +263,7 @@ void BuildSimulation::buildCrew(std::vector<State*>* sVector) {
 void BuildSimulation::buildCargo(std::vector<State*>* sVector) {
     int selection = 0;
 
-    Falcon* tmpFalcon = new Falcon("Falcon 9");
+    Falcon* tmpFalcon = new Falcon("falcon-heavy");
     Dragon* tmpCargo = new CargoDragon(tmpFalcon);
     Loader* tmpLoader = new Loader(tmpCargo);
     tmpLoader->load(false);

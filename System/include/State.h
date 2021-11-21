@@ -10,6 +10,9 @@
 
 #include "Spacecraft.h"
 #include "Cluster.h"
+#include "CrewDragon.h"
+#include "CargoDragon.h"
+#include "Loader.h"
 /****************************************************************************************************
  *  @class State
  *  @brief The abstraction of the State of the simulation.
@@ -22,11 +25,17 @@ class State
         Cluster* satellites;
 
     public:
-         /**
+        /**
          *  @fn State()
          *  @brief The constructor for the class.
          */
         State();
+
+        /**
+         *  @fn State()
+         *  @brief The constructor for the class.
+         */
+        State(State* s);
 
         /**
          *  @fn State()

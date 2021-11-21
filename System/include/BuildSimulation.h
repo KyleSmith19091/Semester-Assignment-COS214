@@ -25,6 +25,9 @@ class BuildSimulation : public Simulation
 
         Store* store;
         int iExit = 100;
+
+        SpacecraftCreator* heavyCreator = new FalconHeavyCreator();
+        SpacecraftCreator* nineCreator = new Falcon9Creator();
     public:
         /**
          *  @fn BuildSimulation()
