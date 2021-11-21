@@ -11,7 +11,7 @@ MerlinCore::MerlinCore() {
     for (int i = 0; i < 8; i++)
     {
         Engine* myMerlinEngine2 = myMerlinEngine->clone();
-        this->engineList.push_back(myMerlinEngine);
+        this->engineList.push_back(myMerlinEngine2);
     }
 }
 
