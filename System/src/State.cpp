@@ -69,6 +69,10 @@ void State::addCommand(Command* c) {
     commands.push_back(c);
 }
 
+void State::remLastCommand() {
+    commands.pop_back();
+}
+
 void State::runCommands() {
     for (auto it : commands)
         it->execute();

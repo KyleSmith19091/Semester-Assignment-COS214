@@ -45,7 +45,8 @@ int Cluster::getSize() {
 }
 
 void Cluster::checkCollisions() {
-    for (int i = 0; i < clusterSatellites.size() - 1; i++) {
-        clusterSatellites[i]->sendSatelliteSignal(clusterSatellites[i + 1]);
+    std::cout << "\n";
+    for (int i = 0; i < 5; i++) {
+        clusterSatellites[0]->sendSatelliteSignal(clusterSatellites[0 + (std::rand() % (clusterSatellites.size()))]);
     }
 }

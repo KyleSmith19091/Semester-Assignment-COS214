@@ -60,6 +60,7 @@ void SelectSimulation::loadPrefabs() {
 
     CheckEngineCommand* engCom;
     spreadCommand* spCom;
+    StateChangeCommand* scCom;
 
     std::string name;
     int type;
@@ -94,10 +95,14 @@ void SelectSimulation::loadPrefabs() {
             engCom = new CheckEngineCommand(falcon->getCoreList(), falcon->getVacuumEngine());
             tmpState->addCommand(engCom);
 
+            scCom = new StateChangeCommand(falcon);
+            tmpState->addCommand(scCom);
+
             spCom = new spreadCommand(cluster);
             tmpState->addCommand(spCom);
 
             tmp->setState(tmpState);
+
             prefabs.push_back(tmp);
             break;
 
@@ -108,8 +113,13 @@ void SelectSimulation::loadPrefabs() {
             loader->load(false);
 
             tmpState = new State(name, dragon);
+
             engCom = new CheckEngineCommand(falcon->getCoreList(), falcon->getVacuumEngine());
             tmpState->addCommand(engCom);
+
+            scCom = new StateChangeCommand(falcon);
+            tmpState->addCommand(scCom);
+
             tmp->setState(tmpState);
 
             prefabs.push_back(tmp);
@@ -122,8 +132,13 @@ void SelectSimulation::loadPrefabs() {
             loader->load(false);
 
             tmpState = new State(name, dragon);
+
             engCom = new CheckEngineCommand(falcon->getCoreList(), falcon->getVacuumEngine());
             tmpState->addCommand(engCom);
+
+            scCom = new StateChangeCommand(falcon);
+            tmpState->addCommand(scCom);
+
             tmp->setState(tmpState);
 
             prefabs.push_back(tmp);
@@ -169,7 +184,6 @@ void SelectSimulation::simulateSingle(std::vector<State*>* sVector) {
     sVector->push_back(prefabs[--selection]->getState());
     std::vector<Memento*>::iterator rem = prefabs.begin() + selection;
     prefabs.erase(rem);
-    //std::cout << "Hello, I am now a " << prefabs[--selection]->getState()->getName() << " ship." << std::endl;
 }
 
 void SelectSimulation::simulateBatch(std::vector<State*>* sVector) {

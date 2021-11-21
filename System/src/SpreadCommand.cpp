@@ -15,4 +15,5 @@ void spreadCommand::execute() {
     sleep(1);
 
     myCluster->spreadOutSatellites();
+    myCluster->checkCollisions();
 }

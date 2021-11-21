@@ -33,16 +33,16 @@ void runSims(std::vector<State*> s);
 int main() {
 	// ////////////////////////////////////////////////////////////////  State
     // std::cout << "----------------------------------------- STATE ---------------------------------------\n";
-    //Falcon* falconWithState = new Falcon("Test");
-    //  std::cout << "Falcon current State: " << falconWithState->getCurrentState() << "\n";
-    //  falconWithState->change();
-    //  std::cout << "Falcon current State: " << falconWithState->getCurrentState() << "\n";
-    //  falconWithState->change();
-    //  std::cout << "Falcon current State: " << falconWithState->getCurrentState() << "\n";
-    //  falconWithState->change();
-    //  std::cout << "Falcon current State: " << falconWithState->getCurrentState() << "\n";
-    //  falconWithState->change();
-    //  std::cout << "Falcon current State: " << falconWithState->getCurrentState() << "\n";
+    // Falcon* falconWithState = new Falcon("Test");
+    // std::cout << "Falcon current State: " << falconWithState->getCurrentState() << "\n";
+    // falconWithState->change();
+    // std::cout << "Falcon current State: " << falconWithState->getCurrentState() << "\n";
+    // falconWithState->change();
+    // std::cout << "Falcon current State: " << falconWithState->getCurrentState() << "\n";
+    // falconWithState->change();
+    // std::cout << "Falcon current State: " << falconWithState->getCurrentState() << "\n";
+    // falconWithState->change();
+    // std::cout << "Falcon current State: " << falconWithState->getCurrentState() << "\n";
 
 	// ////////////////////////////////////////////////////////////////  Satelite
     // std::cout << "----------------------------------------- SATELLITE ---------------------------------------\n";
@@ -108,21 +108,21 @@ void simStart() {
                 retVector.clear();
                 sim->execute("b", &retVector);
                 runSims(retVector);
-                delete sim;
-				delete sCom;
-				delete bCom;
-				delete selectSim;
-				delete buildSim;
+                // delete sim;
+				// delete sCom;
+				// delete bCom;
+				// delete selectSim;
+				// delete buildSim;
                 break;
             case 1:
                 retVector.clear();
                 sim->execute("s", &retVector);
                 runSims(retVector);
-                delete sim;
-				delete sCom;
-				delete bCom;
-				delete selectSim;
-				delete buildSim;
+                // delete sim;
+				// delete sCom;
+				// delete bCom;
+				// delete selectSim;
+				// delete buildSim;
                 break;
             case iExit:
 				delete sim;
@@ -151,8 +151,27 @@ void exitProgram(){
 
 void runSims(vector<State*> s) {
     int i = 0;
+
+    std::cout << "Would you like to run the returned simulation(s)?" << std::endl;
+    std::cout << "\t0: Yes\n\t1: No and Exit\n";
+    std::cout << "Please select the appropriate option: ";
+    std::cin >> i;
+
+    if (i < 0 || i > 1) {
+        std::cout << "That was not a valid input." << std::endl;
+        runSims(s);
+    }
+
+    if (i == 1)
+        exitProgram();
+
 	for (auto it = s.begin(); it != s.end(); it++) {
         std::cout << "=== Simulation " << ++i << " starting ===" << std::endl;
         (*it)->runCommands();
+        
+        if (s.size() > 1) {
+            std::cout << "\nPreparing next simulation...\n" << std::endl;
+            sleep(2);
+        }
 	}
 }

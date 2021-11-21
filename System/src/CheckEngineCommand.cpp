@@ -20,17 +20,5 @@ void CheckEngineCommand::execute() {
     for (auto it : myCores)
         it->initiateEngineChecks();
 
-    vacuumEng->checkTemperature();
-
-    std::cout << "Launch starting in 5" << std::endl;
-    sleep(1);
-    std::cout << "Launch starting in 4" << std::endl;
-    sleep(1);
-    std::cout << "Launch starting in 3" << std::endl;
-    sleep(1);
-    std::cout << "Launch starting in 2" << std::endl;
-    sleep(1);
-    std::cout << "Launch starting in 1" << std::endl;
-    sleep(1);
-    std::cout << "Launch starting in now..." << std::endl;
+    vacuumEng->checkEngine();
 }

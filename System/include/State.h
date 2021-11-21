@@ -69,6 +69,7 @@ class State
         void setCluster(Cluster* c);
 
         void addCommand(Command* c);
+        void remLastCommand();
         void runCommands();
         std::vector<Command*> getCommands();
 };

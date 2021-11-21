@@ -134,6 +134,8 @@ void BuildSimulation::buildSattelites() {
     int satCount, selection = 0;
     CheckEngineCommand* engCom;
     spreadCommand* spCom;
+    StateChangeCommand* scCom;
+    
 
     std::cout << "\nHow many sattelites would you like to send?" << std::endl;
     std::cout << "Please input a number between 1 and 60 (inclusive): ";
@@ -149,6 +151,9 @@ void BuildSimulation::buildSattelites() {
 
     engCom = new CheckEngineCommand(tmpFalcon->getCoreList(), tmpFalcon->getVacuumEngine());
     tmpState->addCommand(engCom);
+
+    scCom = new StateChangeCommand(tmpFalcon);
+    tmpState->addCommand(scCom);
 
     spCom = new spreadCommand(tmpCluster);
     tmpState->addCommand(spCom);
@@ -174,6 +179,7 @@ void BuildSimulation::buildSattelites() {
 void BuildSimulation::buildCrew() {
     int selection = 0;
     CheckEngineCommand* engCom;
+    StateChangeCommand* scCom;
 
     Falcon* tmpFalcon = new Falcon("falcon-9");
     Dragon* tmpCrew = new CrewDragon(tmpFalcon);
@@ -184,6 +190,9 @@ void BuildSimulation::buildCrew() {
 
     engCom = new CheckEngineCommand(tmpFalcon->getCoreList(), tmpFalcon->getVacuumEngine());
     tmpState->addCommand(engCom);
+
+    scCom = new StateChangeCommand(tmpFalcon);
+    tmpState->addCommand(scCom);
 
     sVector->push_back(tmpState);
 
@@ -206,6 +215,7 @@ void BuildSimulation::buildCrew() {
 void BuildSimulation::buildCargo() {
     int selection = 0;
     CheckEngineCommand* engCom;
+    StateChangeCommand* scCom;
 
     Falcon* tmpFalcon = new Falcon("falcon-heavy");
     Dragon* tmpCargo = new CargoDragon(tmpFalcon);
@@ -216,6 +226,9 @@ void BuildSimulation::buildCargo() {
 
     engCom = new CheckEngineCommand(tmpFalcon->getCoreList(), tmpFalcon->getVacuumEngine());
     tmpState->addCommand(engCom);
+
+    scCom = new StateChangeCommand(tmpFalcon);
+    tmpState->addCommand(scCom);
 
     sVector->push_back(tmpState);
 
@@ -286,6 +299,7 @@ void BuildSimulation::test9() {
     {
     case 0:
         this->setMemento(rollBack->returnMemento());
+        tmpState->remLastCommand();
         this->buildTestMode();
         break;
 
@@ -302,7 +316,7 @@ void BuildSimulation::test9() {
 void BuildSimulation::testHeavy() {
     int selection = 0;
     State* tmpState = this->getState();
-    Falcon* tmpFalcon = (Falcon*)nineCreator->createSpacecraft();
+    Falcon* tmpFalcon = (Falcon*)heavyCreator->createSpacecraft();
     tmpState->setVessel(tmpFalcon);
     CheckEngineCommand* engCom;
 
@@ -322,6 +336,7 @@ void BuildSimulation::testHeavy() {
     {
     case 0:
         this->setMemento(rollBack->returnMemento());
+        tmpState->remLastCommand();
         this->buildTestMode();
         break;
 
@@ -340,6 +355,7 @@ void BuildSimulation::testCargo() {
     State* tmpState = this->getState();
     Dragon* cargo;
     Loader* tmpLoader;
+    StateChangeCommand* scCom;
 
     std::cout << "\nWhat kind of payload would you like to send?" << std::endl;
     std::cout << "\t0: Cargo" << std::endl;
@@ -375,6 +391,10 @@ void BuildSimulation::testCargo() {
             break;
 
         case 1:
+            scCom = new StateChangeCommand((Falcon*)this->getState()->getVessel());
+            tmpState->addCommand(scCom);
+            tmpState->getCommands()[1]->execute();
+
             rollBack->storeMemento(this->createMemento());
             std::cout << "\nWould you like to save the current sim?" << std::endl;
             std::cout << "\t0: Yes\n\t1: No" << std::endl;
@@ -437,6 +457,7 @@ void BuildSimulation::testCrew() {
     State* tmpState = this->getState();
     Dragon* cargo;
     Loader* tmpLoader;
+    StateChangeCommand* scCom;
 
     cargo = new CrewDragon((Falcon*)tmpState->getVessel());
     tmpLoader = new Loader(cargo);
@@ -458,6 +479,10 @@ void BuildSimulation::testCrew() {
         break;
 
     case 1:
+        scCom = new StateChangeCommand((Falcon*)this->getState()->getVessel());
+        tmpState->addCommand(scCom);
+        tmpState->getCommands()[1]->execute();
+
         rollBack->storeMemento(this->createMemento());
 
         std::cout << "\nWould you like to save the current sim?" << std::endl;
@@ -490,6 +515,7 @@ void BuildSimulation::testSatellites() {
     Cluster* cluster;
     MissionControl* control;
     spreadCommand* spCom;
+    StateChangeCommand* scCom;
 
     cluster = new Cluster((Falcon*)tmpState->getVessel());
     control = new MissionControl();
@@ -501,10 +527,15 @@ void BuildSimulation::testSatellites() {
     cluster->generateSatellites(control, satCount);
     tmpState->setCluster(cluster);
 
+    std::cout << "\nCluster of " << satCount << " satellites has been created and loaded onto the rocket." << std::endl;
+
+    scCom = new StateChangeCommand((Falcon*)this->getState()->getVessel());
+    tmpState->addCommand(scCom);
+    tmpState->getCommands()[1]->execute();
+
     spCom = new spreadCommand(cluster);
     tmpState->addCommand(spCom);
-
-    std::cout << "\nCluster of " << satCount << " satellites has been created and loaded onto the rocket." << std::endl;
+    tmpState->getCommands()[2]->execute();
 
     std::cout << "\nWould you like to change the previous step?" << std::endl;
     std::cout << "\t0: Yes, I would like to change it.\n\t1: No, I would like to continue with the building process." << std::endl;
@@ -515,6 +546,8 @@ void BuildSimulation::testSatellites() {
     {
     case 0:
         this->setMemento(rollBack->returnMemento());
+        tmpState->remLastCommand();
+        tmpState->remLastCommand();
         this->testCrewAndSatellite();
         break;
 
