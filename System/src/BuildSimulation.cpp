@@ -62,7 +62,7 @@ void BuildSimulation::buildMode() {
     case 0:
         selection = 0;
         std::cout << "\nWhat kind of payload would you like to send?" << std::endl;
-        std::cout << "\t0: Crew\n\t1: Sattelites" << std::endl;
+        std::cout << "\t0: Crew and Cargo\n\t1: Sattelites" << std::endl;
         std::cout << "Please choose the apropriate option: ";
         std::cin >> selection;
 
@@ -84,7 +84,7 @@ void BuildSimulation::buildMode() {
     case 1:
         selection = 0;
         std::cout << "\nWhat kind of payload would you like to send?" << std::endl;
-        std::cout << "\t0: Cargo and Crew" << std::endl;
+        std::cout << "\t0: Cargo" << std::endl;
         std::cout << "Please choose the apropriate option: ";
         std::cin >> selection;
 
@@ -180,6 +180,7 @@ void BuildSimulation::buildCrew() {
     int selection = 0;
     CheckEngineCommand* engCom;
     StateChangeCommand* scCom;
+    UnloadCommand* uCom;
 
     Falcon* tmpFalcon = new Falcon("falcon-9");
     Dragon* tmpCrew = new CrewDragon(tmpFalcon);
@@ -193,6 +194,9 @@ void BuildSimulation::buildCrew() {
 
     scCom = new StateChangeCommand(tmpFalcon);
     tmpState->addCommand(scCom);
+
+    uCom = new UnloadCommand(tmpLoader);
+    tmpState->addCommand(uCom);
 
     sVector->push_back(tmpState);
 
@@ -216,6 +220,7 @@ void BuildSimulation::buildCargo() {
     int selection = 0;
     CheckEngineCommand* engCom;
     StateChangeCommand* scCom;
+    UnloadCommand* uCom;
 
     Falcon* tmpFalcon = new Falcon("falcon-heavy");
     Dragon* tmpCargo = new CargoDragon(tmpFalcon);
@@ -229,6 +234,9 @@ void BuildSimulation::buildCargo() {
 
     scCom = new StateChangeCommand(tmpFalcon);
     tmpState->addCommand(scCom);
+
+    uCom = new UnloadCommand(tmpLoader);
+    tmpState->addCommand(uCom);
 
     sVector->push_back(tmpState);
 
@@ -356,6 +364,7 @@ void BuildSimulation::testCargo() {
     Dragon* cargo;
     Loader* tmpLoader;
     StateChangeCommand* scCom;
+    UnloadCommand* uCom;
 
     std::cout << "\nWhat kind of payload would you like to send?" << std::endl;
     std::cout << "\t0: Cargo" << std::endl;
@@ -373,7 +382,7 @@ void BuildSimulation::testCargo() {
         cargo = new CargoDragon((Falcon*)tmpState->getVessel());
         tmpLoader = new Loader(cargo);
         tmpLoader->load(true);
-        tmpState->setVessel(cargo);
+        //tmpState->setVessel(cargo);
 
         std::cout << "\nCargo Dragon has been created and the cargo has been loaded." << std::endl;
 
@@ -394,6 +403,10 @@ void BuildSimulation::testCargo() {
             scCom = new StateChangeCommand((Falcon*)this->getState()->getVessel());
             tmpState->addCommand(scCom);
             tmpState->getCommands()[1]->execute();
+
+            uCom = new UnloadCommand(tmpLoader);
+            tmpState->addCommand(uCom);
+            tmpState->getCommands()[2]->execute();
 
             rollBack->storeMemento(this->createMemento());
             std::cout << "\nWould you like to save the current sim?" << std::endl;
@@ -458,11 +471,12 @@ void BuildSimulation::testCrew() {
     Dragon* cargo;
     Loader* tmpLoader;
     StateChangeCommand* scCom;
+    UnloadCommand* uCom;
 
     cargo = new CrewDragon((Falcon*)tmpState->getVessel());
     tmpLoader = new Loader(cargo);
     tmpLoader->load(true);
-    tmpState->setVessel(cargo);
+    //tmpState->setVessel(cargo);
 
     std::cout << "\nCrew Dragon has been created, the cargo has been loaded and the crew have boarded." << std::endl;
 
@@ -482,6 +496,10 @@ void BuildSimulation::testCrew() {
         scCom = new StateChangeCommand((Falcon*)this->getState()->getVessel());
         tmpState->addCommand(scCom);
         tmpState->getCommands()[1]->execute();
+
+        uCom = new UnloadCommand(tmpLoader);
+        tmpState->addCommand(uCom);
+        tmpState->getCommands()[2]->execute();
 
         rollBack->storeMemento(this->createMemento());
 

@@ -61,6 +61,7 @@ void SelectSimulation::loadPrefabs() {
     CheckEngineCommand* engCom;
     spreadCommand* spCom;
     StateChangeCommand* scCom;
+    UnloadCommand* uCom;
 
     std::string name;
     int type;
@@ -120,6 +121,9 @@ void SelectSimulation::loadPrefabs() {
             scCom = new StateChangeCommand(falcon);
             tmpState->addCommand(scCom);
 
+            uCom = new UnloadCommand(loader);
+            tmpState->addCommand(uCom);
+
             tmp->setState(tmpState);
 
             prefabs.push_back(tmp);
@@ -138,6 +142,9 @@ void SelectSimulation::loadPrefabs() {
 
             scCom = new StateChangeCommand(falcon);
             tmpState->addCommand(scCom);
+
+            uCom = new UnloadCommand(loader);
+            tmpState->addCommand(uCom);
 
             tmp->setState(tmpState);
 

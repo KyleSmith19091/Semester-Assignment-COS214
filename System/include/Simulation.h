@@ -25,6 +25,7 @@
 #include "CheckEngineCommand.h"
 #include "SpreadCommand.h"
 #include "StateChangeCommand.h"
+#include "UnloadCommand.h"
 /****************************************************************************************************
  *  @class Simulation
  *  @brief The interface for all Simulations.
