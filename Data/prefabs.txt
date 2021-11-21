@@ -2,4 +2,6 @@ Name#TypeOfPayload#NumSattelites
 60_Sat#0#60
 Cargo#1#0
 Crew_and_Cargo#2#0
-Sat_40#0#40
+Sat_10#0#10
+Sat_25#0#25
+Sat_43#0#43
