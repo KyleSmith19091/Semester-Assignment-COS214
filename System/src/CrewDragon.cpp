@@ -23,7 +23,7 @@ void CrewDragon::load(bool doPrint) {
             getline(ss,title,',');
             crewMembers->addCrewMember(new Crew(name,title));
             if(doPrint) {
-                std::cout << "[" << name << "]" <<  " boarded Dragon\n";
+                std::cout << "[" << name << "]" <<  " => boarded Dragon\n";
             }
         }
 
@@ -41,11 +41,27 @@ void CrewDragon::load(bool doPrint) {
             getline(ss,weight);
             cargoList->addCargo(new Cargo(description,stod(weight)));
             if(doPrint) {
-                std::cout << "Loaded [" << description << "]" << " {" << weight << "kg} into Dragon\n";
+                std::cout << "Loaded [" << description << "]" << " => {" << weight << "kg} into Dragon\n";
             }
         }
     } else {
         std::cerr << __FILE__ << " " << __LINE__ << " Could not open CargoList";
+    }
+
+}
+
+void CrewDragon::unload(bool doPrint) {
+
+    if(doPrint) {
+        auto crewItertor = crewMembers->createIterator();
+        while(!crewItertor->isDone()) {
+            std::cout << crewItertor->next()->toString() << " leaves Dragon\n";
+        }
+
+        auto cargoIterator = cargoList->createIterator();
+        while(!cargoIterator->isDone()) {
+            std::cout << "Unloaded " << cargoIterator->next()->toString() << " from Dragon\n";
+        }
     }
 
 }

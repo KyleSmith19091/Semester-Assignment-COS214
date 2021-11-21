@@ -40,6 +40,14 @@ class Loader
         void load(bool);
 
         /**
+         *  @fn unload()
+         *  @brief Performs unload action on member dragon.
+         *  @param[in] bool Indicate whether to print loading data
+         *  @return void
+         */
+        void unload(bool);
+
+        /**
          *  @fn ~setDragon()
          *  @brief Changes the reference to the dragon that is going to be loaded.
          *  @return void

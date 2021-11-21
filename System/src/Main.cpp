@@ -59,11 +59,14 @@ int main() {
 	 Dragon* dragon = new CrewDragon(falconHeavy);
      Loader* loader = new Loader(dragon); 
      loader->load(true);
+     loader->unload(true);
 
      std::cout << "Cargo Dragon\n";
      Dragon* cargoDragon = new CargoDragon(falconHeavy);
      loader->setDragon(cargoDragon);
      loader->load(true);
+     loader->unload(true);
+
 
      delete loader;
 

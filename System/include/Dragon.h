@@ -32,10 +32,17 @@ class Dragon : public Spacecraft {
 
         /**
          *  @fn load()
-         *  @brief Template method to load the content of the dragon spacecraft.
+         *  @brief Method to load the content of the dragon spacecraft.
          *  @return void
          */
         virtual void load(bool) =0;
+
+        /**
+         *  @fn unload()
+         *  @brief Method to load the content of the dragon spacecraft.
+         *  @return void
+         */
+        virtual void unload(bool) =0;
 
     private:
         Falcon* falconHeavy;
