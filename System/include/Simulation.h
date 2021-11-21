@@ -23,6 +23,7 @@
 #include "Falcon9Creator.h"
 #include "FalconHeavyCreator.h"
 #include "CheckEngineCommand.h"
+#include "SpreadCommand.h"
 /****************************************************************************************************
  *  @class Simulation
  *  @brief The interface for all Simulations.

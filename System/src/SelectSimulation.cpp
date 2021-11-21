@@ -59,6 +59,7 @@ void SelectSimulation::loadPrefabs() {
     Loader* loader;
 
     CheckEngineCommand* engCom;
+    spreadCommand* spCom;
 
     std::string name;
     int type;
@@ -89,10 +90,14 @@ void SelectSimulation::loadPrefabs() {
             cluster->generateSatellites(control, satCount);
 
             tmpState = new State(name, cluster);
+
             engCom = new CheckEngineCommand(falcon->getCoreList(), falcon->getVacuumEngine());
             tmpState->addCommand(engCom);
-            tmp->setState(tmpState);
 
+            spCom = new spreadCommand(cluster);
+            tmpState->addCommand(spCom);
+
+            tmp->setState(tmpState);
             prefabs.push_back(tmp);
             break;
 

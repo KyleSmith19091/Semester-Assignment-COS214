@@ -132,6 +132,8 @@ void BuildSimulation::saveToFile(State* s, int t) {
 
 void BuildSimulation::buildSattelites() {
     int satCount, selection = 0;
+    CheckEngineCommand* engCom;
+    spreadCommand* spCom;
 
     std::cout << "\nHow many sattelites would you like to send?" << std::endl;
     std::cout << "Please input a number between 1 and 60 (inclusive): ";
@@ -144,6 +146,12 @@ void BuildSimulation::buildSattelites() {
     tmpCluster->generateSatellites(tmpControl, satCount);
 
     State* tmpState = new State("Base Name", tmpCluster);
+
+    engCom = new CheckEngineCommand(tmpFalcon->getCoreList(), tmpFalcon->getVacuumEngine());
+    tmpState->addCommand(engCom);
+
+    spCom = new spreadCommand(tmpCluster);
+    tmpState->addCommand(spCom);
 
     sVector->push_back(tmpState);
 
@@ -165,6 +173,7 @@ void BuildSimulation::buildSattelites() {
 
 void BuildSimulation::buildCrew() {
     int selection = 0;
+    CheckEngineCommand* engCom;
 
     Falcon* tmpFalcon = new Falcon("falcon-9");
     Dragon* tmpCrew = new CrewDragon(tmpFalcon);
@@ -172,6 +181,9 @@ void BuildSimulation::buildCrew() {
     tmpLoader->load(false);
 
     State* tmpState = new State("Base Name", tmpCrew);
+
+    engCom = new CheckEngineCommand(tmpFalcon->getCoreList(), tmpFalcon->getVacuumEngine());
+    tmpState->addCommand(engCom);
 
     sVector->push_back(tmpState);
 
@@ -193,6 +205,7 @@ void BuildSimulation::buildCrew() {
 
 void BuildSimulation::buildCargo() {
     int selection = 0;
+    CheckEngineCommand* engCom;
 
     Falcon* tmpFalcon = new Falcon("falcon-heavy");
     Dragon* tmpCargo = new CargoDragon(tmpFalcon);
@@ -200,6 +213,9 @@ void BuildSimulation::buildCargo() {
     tmpLoader->load(false);
 
     State* tmpState = new State("Base Name", tmpCargo);
+
+    engCom = new CheckEngineCommand(tmpFalcon->getCoreList(), tmpFalcon->getVacuumEngine());
+    tmpState->addCommand(engCom);
 
     sVector->push_back(tmpState);
 
@@ -250,9 +266,16 @@ void BuildSimulation::buildTestMode() {
 void BuildSimulation::test9() {
     int selection = 0;
     State* tmpState = this->getState();
-    tmpState->setVessel((Falcon*)nineCreator->createSpacecraft());
+    Falcon* tmpFalcon = (Falcon*)nineCreator->createSpacecraft();
+    tmpState->setVessel(tmpFalcon);
+    CheckEngineCommand* engCom;
 
-    std::cout << "\nFalcon 9 has been created and is in the \"" << tmpState->getVessel()->getType() << "\" state." << std::endl;
+    std::cout << "\nFalcon 9 has been created and is in the and engines have been added." << std::endl;
+    std::cout << "Starting the engine tests" << std::endl;
+
+    engCom = new CheckEngineCommand(tmpFalcon->getCoreList(), tmpFalcon->getVacuumEngine());
+    tmpState->addCommand(engCom);
+    tmpState->runCommands();
 
     std::cout << "Would you like to change the previous step?" << std::endl;
     std::cout << "\t0: Yes, I would like to change it.\n\t1: No, I would like to continue with the building process." << std::endl;
@@ -279,9 +302,16 @@ void BuildSimulation::test9() {
 void BuildSimulation::testHeavy() {
     int selection = 0;
     State* tmpState = this->getState();
-    tmpState->setVessel((Falcon*)heavyCreator->createSpacecraft());
+    Falcon* tmpFalcon = (Falcon*)nineCreator->createSpacecraft();
+    tmpState->setVessel(tmpFalcon);
+    CheckEngineCommand* engCom;
 
-    std::cout << "\nFalcon Heavy has been created and is in the \"" << tmpState->getVessel()->getType() << "\" state." << std::endl;
+    std::cout << "\nFalcon Heavy has been created and is in the and engines have been added." << std::endl;
+    std::cout << "Starting the engine tests" << std::endl;
+
+    engCom = new CheckEngineCommand(tmpFalcon->getCoreList(), tmpFalcon->getVacuumEngine());
+    tmpState->addCommand(engCom);
+    tmpState->runCommands();
 
     std::cout << "Would you like to change the previous step?" << std::endl;
     std::cout << "\t0: Yes, I would like to change it.\n\t1: No, I would like to continue with the building process." << std::endl;
@@ -459,6 +489,7 @@ void BuildSimulation::testSatellites() {
     State* tmpState = this->getState();
     Cluster* cluster;
     MissionControl* control;
+    spreadCommand* spCom;
 
     cluster = new Cluster((Falcon*)tmpState->getVessel());
     control = new MissionControl();
@@ -469,6 +500,9 @@ void BuildSimulation::testSatellites() {
 
     cluster->generateSatellites(control, satCount);
     tmpState->setCluster(cluster);
+
+    spCom = new spreadCommand(cluster);
+    tmpState->addCommand(spCom);
 
     std::cout << "\nCluster of " << satCount << " satellites has been created and loaded onto the rocket." << std::endl;
 

@@ -20,6 +20,7 @@
 #include "../include/FalconHeavyCreator.h"
 #include "../include/SpacecraftCreator.h"
 #include <iostream>
+#include <unistd.h>
 
 const int iExit = 100;
 bool bRunning = true;
@@ -30,26 +31,6 @@ void simStart();
 void runSims(std::vector<State*> s);
 
 int main() {
-    // //////////////////////////////////////////////////////////////// Iterator
-    // std::cout << "----------------------------------------- ITERATOR ---------------------------------------\n";
-	// Cargo* c1 = new Cargo("one",0.3);
-	// Cargo* c2 = new Cargo("two",2.1);
-	// Cargo* c3 = new Cargo("three",5.7);
-
-	// VectorOfCargo cargoList;
-	// cargoList.addCargo(c1);
-	// cargoList.addCargo(c2);
-	// cargoList.addCargo(c3);
-
-	// Iterator* CI = cargoList.createIterator();
-
-	// cargoList.removeCargo(c2);
-
-	// while (!CI->isDone())
-	// {
-	// 	cout<<CI->next()->toString()<<endl;
-	// }
-
 	// ////////////////////////////////////////////////////////////////  State
     // std::cout << "----------------------------------------- STATE ---------------------------------------\n";
     //Falcon* falconWithState = new Falcon("Test");
@@ -108,7 +89,7 @@ void simStart() {
             cout << "Please enter a 0 or a 1: \n";
             cin >> optionSelector;
         }
-        if (optionSelector==1)
+        if (optionSelector == 1)
             exitProgram();
 
         optionSelector = -1;
@@ -127,11 +108,21 @@ void simStart() {
                 retVector.clear();
                 sim->execute("b", &retVector);
                 runSims(retVector);
+                delete sim;
+				delete sCom;
+				delete bCom;
+				delete selectSim;
+				delete buildSim;
                 break;
             case 1:
                 retVector.clear();
                 sim->execute("s", &retVector);
                 runSims(retVector);
+                delete sim;
+				delete sCom;
+				delete bCom;
+				delete selectSim;
+				delete buildSim;
                 break;
             case iExit:
 				delete sim;
@@ -159,13 +150,9 @@ void exitProgram(){
 }
 
 void runSims(vector<State*> s) {
+    int i = 0;
 	for (auto it = s.begin(); it != s.end(); it++) {
-        cout << "Sattelites : ";
-        if ((*it)->getCluster() != 0)
-            cout << "Yes --> ";
-        else
-            cout << "No --> ";
-		cout << (*it)->getName() << " :: " << (*it)->getVessel()->getType() << endl << endl;
+        std::cout << "=== Simulation " << ++i << " starting ===" << std::endl;
         (*it)->runCommands();
 	}
 }

@@ -11,7 +11,8 @@ int temp = rand()%(100)+20;
 if(temp>=90) 
 {
 cout<<"VACUUM MERLIN ENGINE IS TOO HOT PLEASE ALLOW COOL DOWN"<<endl;
-usleep(10000000);
+//usleep(10000000);
+usleep(100000);
 }
 else
 cout<<"The Vacuum Merlin Engine has a temperature of: "<<temp<<" degrees Celcius, which is still below the dangerous temperature of 90 degrees Celcius"<<endl;
@@ -25,7 +26,8 @@ if(temp<=20)
     cout<<"OIL LEAK DETECTED IN THE LEFT MOST CONTAINER, PLEASE WAIT FOR A PROFESSIONAL TO ARIVE"<<endl;
     else
     cout<<"OIL LEAK DETECTED IN THE RIGHT MOST CONTAINER, PLEASE WAIT FOR A PROFESSIONAL TO ARIVE"<<endl;
-usleep(1000000);
+// usleep(1000000);
+usleep(100000);
 }
 else
 cout<<"Both oil containers have been filled up"<<endl;
