@@ -6,7 +6,6 @@
 
 Iterator* LinkedListOfCrew::createIterator(){
     return new CrewIterator(this);
-
 }
 
 LinkedListOfCrew::LinkedListOfCrew(){
@@ -25,6 +24,10 @@ LinkedListOfCrew::~LinkedListOfCrew(){
 }
 
 void LinkedListOfCrew::removeCrewMember(Crew* member){
+    if(head==NULL || size == 0) {
+        throw "Removing from Empty List";
+    }
+
     if(member == head)
     {
         Crew* temp = head;

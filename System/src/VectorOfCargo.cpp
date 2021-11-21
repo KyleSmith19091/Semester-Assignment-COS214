@@ -13,6 +13,11 @@ Iterator* VectorOfCargo::createIterator() {
 }
 
 void VectorOfCargo::removeCargo(Cargo* cargo) {
+
+    if(CargoList.empty()) {
+        throw "Removing from Empty List";
+    }
+
 	vector<Cargo*>::iterator ptr;
 
 	for (ptr = CargoList.begin(); ptr < CargoList.end(); ptr++) {

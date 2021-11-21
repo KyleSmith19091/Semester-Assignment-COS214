@@ -16,7 +16,6 @@ void Cluster::addSatellite(Satelite* s) {
 
 void Cluster::generateSatellites(MissionControl* control, int numSatellites) {
     if(numSatellites < 0 || numSatellites > 60) {
-        std::cout << "Please enter a valid a number of satellites\n";
         return;
     }
 
