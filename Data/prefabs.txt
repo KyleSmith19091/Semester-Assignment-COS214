@@ -5,3 +5,12 @@ Crew_and_Cargo#2#0
 Sat_10#0#10
 Sat_25#0#25
 Sat_43#0#43
+Hello#1#0
+CargoAndCrew#2#0
+HeavyWithCargo#1#0
+Sat_4#0#4
+Test#1#0
+FalconHeavy#1#0
+2_Sat#0#2
+Falcon_Cargo#1#0
+Falcon_9_Crew_Cargo#2#0
