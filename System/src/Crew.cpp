@@ -18,5 +18,5 @@ string Crew::getJobTitle(){
 }
 
 string Crew::toString(){
-    return "Crew Person Name: "+name+" Crew Person Job Title: "+jobTitle;
+    return "["+name+"] => {Job Title: "+jobTitle + "}";
 }

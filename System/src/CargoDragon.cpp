@@ -30,3 +30,12 @@ void CargoDragon::load(bool doPrint) {
     }
 
 }
+
+void CargoDragon::unload(bool doPrint) {
+    if(doPrint) {
+        auto cargoIterator = cargoList->createIterator();
+        while(!cargoIterator->isDone()) {
+            std::cout << "Unloaded " << cargoIterator->next()->toString() << " from Dragon\n";
+        }
+    }
+}

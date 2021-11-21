@@ -40,10 +40,18 @@ class CrewDragon : public Dragon {
 
         /**
          *  @fn load()
-         *  @brief Template Method for loading Dragon content.
+         *  @brief Method for loading Dragon content.
          *  @param[in] bool Indicate whether to print loading data
          *  @return void
          */
         void load(bool) override;
+
+        /**
+         *  @fn unload()
+         *  @brief Method for unloading Dragon content.
+         *  @param[in] bool Indicate whether to print loading data
+         *  @return void
+         */
+        void unload(bool) override;
 };	
 #endif

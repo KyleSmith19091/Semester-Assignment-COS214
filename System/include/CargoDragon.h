@@ -44,6 +44,14 @@ class CargoDragon : public Dragon {
          */
         void load(bool) override;
 
+        /**
+         *  @fn unload()
+         *  @brief Method for unloading Dragon content.
+         *  @param[in] bool Indicate whether to print loading data
+         *  @return void
+         */
+        void unload(bool) override;
+
     private:
         VectorOfCargo* cargoList;
 };	

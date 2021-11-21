@@ -23,5 +23,5 @@ void Cargo::setType(string s){
 }
 
 string Cargo::toString(){
-    return "Cargo Type: "+type+" Cargo Weight: "+to_string(weight) ;
+    return "["+type+"] => {"+ to_string(weight) + "kg}";
 }
