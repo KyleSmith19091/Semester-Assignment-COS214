@@ -1,24 +1,8 @@
+#include "../include/BuildSimulation.h"
 #include "../include/SelectSimulation.h"
 #include "../include/BuildCommand.h"
-#include "../include/Cargo.h"
-#include "../include/VectorOfCargo.h"
-#include "../include/CargoIterator.h"
-#include "../include/CarryType.h"
-#include "../include/Simulate.h"
 #include "../include/SelectCommand.h"
-#include "../include/BuildCommand.h"
-#include "../include/BuildSimulation.h"
-#include "../include/Dragon.h"
-#include "../include/CrewDragon.h"
-#include "../include/CargoDragon.h"
-#include "../include/Loader.h"
-#include "../include/Falcon.h"
-#include "../include/Satelite.h"
-#include "../include/Cluster.h"
-#include "../include/SatelliteCreator.h"
-#include "../include/Falcon9Creator.h"
-#include "../include/FalconHeavyCreator.h"
-#include "../include/SpacecraftCreator.h"
+
 #include <iostream>
 #include <unistd.h>
 
@@ -84,21 +68,11 @@ void simStart() {
                 retVector.clear();
                 sim->execute("b", &retVector);
                 runSims(retVector);
-                // delete sim;
-				// delete sCom;
-				// delete bCom;
-				// delete selectSim;
-				// delete buildSim;
                 break;
             case 1:
                 retVector.clear();
                 sim->execute("s", &retVector);
                 runSims(retVector);
-                // delete sim;
-				// delete sCom;
-				// delete bCom;
-				// delete selectSim;
-				// delete buildSim;
                 break;
             case iExit:
 				delete sim;
