@@ -9,12 +9,12 @@
 #include "State.h"
 /****************************************************************************************************
  *  @class Memento
- *  @brief "Insert brief description here."
+ *  @brief The Memento for the Memento Design Pattern.
  ***************************************************************************************************/
 class Memento
 {
     private:
-        State* state;
+        State* state; /**< The abstraction of the simulation state. */
     public:
         /**
          *  @fn Memento()

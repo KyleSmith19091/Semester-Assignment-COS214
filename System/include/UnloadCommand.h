@@ -10,16 +10,18 @@
 #include "Loader.h"
 /****************************************************************************************************
  *  @class UnloadCommand
- *  @brief "Insert brief description here."
+ *  @brief Concrete Command for the Command Design Pattern.
  ***************************************************************************************************/
 class UnloadCommand : public Command
 {
     private:
-        Loader* myLoader;
+        Loader* myLoader; /**< The loader to be used as a reciever. */
     public:
         /**
-         *  @fn UnloadCommand()
+         *  @fn UnloadCommand(Loader* l)
          *  @brief The constructor for the class.
+         *  
+         *  @param[in]  l   The loader to be used.
          */
         UnloadCommand(Loader* l);
 
@@ -29,6 +31,12 @@ class UnloadCommand : public Command
          */
         ~UnloadCommand();
 
+        /**
+         *  @fn virtual void execute()
+         *  @brief The implementation of the virtual execute method.
+         *  
+         *  @return void
+         */
         virtual void execute();
 };
 

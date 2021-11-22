@@ -10,8 +10,8 @@ class MerlinCore;
 
 class Engine {
     private:
-        MerlinCore* mediator;
-        bool on;
+        MerlinCore* mediator; /**< The core with which the Engine is registered. */
+        bool on; /**< Boolean to determine whether the Engine is on or off. */
 
     protected:
         /**
@@ -79,6 +79,7 @@ class Engine {
         /**
          *  @fn setOn()
          *  @brief Set on state.
+         *  @param[in] bool The boolean to set the on state of the engine to.
          *  @return void
          */
         void setOn(bool);

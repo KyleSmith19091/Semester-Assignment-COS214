@@ -28,8 +28,8 @@ using namespace std;
 
 class Satelite : public Spacecraft {
     private:
-        MissionControl* missionControl;
-        KeplerianCoords* coords;
+        MissionControl* missionControl; /**< The mission control to communicate with. */
+        KeplerianCoords* coords; /**< The coordinates of the satellite. */
 
     public:
         /**
@@ -41,6 +41,7 @@ class Satelite : public Spacecraft {
         /**
          *  @fn Satelite(const Satelite&)
          *  @brief The copy constructor for the class.
+         *  @param[in] Satelite& The satellite to be copied.
          */
         Satelite(const Satelite&);
 
@@ -74,6 +75,7 @@ class Satelite : public Spacecraft {
         /**
          *  @fn sendSatelliteSignal()
          *  @brief Send laser signal to fellow satellite
+         *  @param[in] Satelite* A pointer to the satellite to check collision with.
          *  @return void
          */
         void sendSatelliteSignal(Satelite*);
@@ -81,6 +83,7 @@ class Satelite : public Spacecraft {
         /**
          *  @fn setMissionControl(MissionControl*)
          *  @brief Set reference to mission control to which radio signals are sent
+         *  @param[in] MissionControl* The mission control to use.
          *  @return void
          */
         void setMissionControl(MissionControl*);

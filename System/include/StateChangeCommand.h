@@ -9,16 +9,17 @@
 #include "Command.h"
 /****************************************************************************************************
  *  @class StateChangeCommand
- *  @brief "Insert brief description here."
+ *  @brief Concrete Command for the Command Design Pattern.
  ***************************************************************************************************/
 class StateChangeCommand : public Command
 {
     private:
-        Falcon* myFalcon;
+        Falcon* myFalcon; /**< The Falcon to be used as a reciever. */
     public:
         /**
          *  @fn StateChangeCommand()
          *  @brief The constructor for the class.
+         *  @param[in] Falcon* The falcon to change the state of.
          */
         StateChangeCommand(Falcon* f);
 
@@ -28,6 +29,12 @@ class StateChangeCommand : public Command
          */
         ~StateChangeCommand();
 
+        /**
+         *  @fn virtual void execute()
+         *  @brief The implementation of the virtual execute method.
+         *  
+         *  @return void
+         */
         virtual void execute();
 };
 

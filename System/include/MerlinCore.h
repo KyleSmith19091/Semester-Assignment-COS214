@@ -14,12 +14,12 @@ using namespace std;
 
 /****************************************************************************************************
  *  @class MerlinCore
- *  @brief "Insert brief description here."
+ *  @brief The Core of engines used on Falcon rockets.
  ***************************************************************************************************/
 class MerlinCore {
 
 private:
-    vector<Engine*> engineList;// list of engines
+    vector<Engine*> engineList; /**< list of engines */
 public:
     /**
      *  @fn MerlinCore()
@@ -27,7 +27,7 @@ public:
      */
     MerlinCore();
 
-    /*
+    /**
      * @fn on(Engine* colleague)
      * @brief Sets the on to true for the engine parameter
      * @param[in] Engine* that will be turned on
@@ -35,7 +35,7 @@ public:
      */
     void on(Engine* colleague);
 
-    /*
+    /**
      * @fn off(Engine* colleague)
      * @brief Sets the on to false for the engine parameter
      * @param[in] Engine* that will be turned off
@@ -47,7 +47,7 @@ public:
      *  @brief The destructor for the class.
      */
     ~MerlinCore();
-    /*
+    /**
      * @fn initiateEngineChecks()
      * @brief check every engine
      * @return void

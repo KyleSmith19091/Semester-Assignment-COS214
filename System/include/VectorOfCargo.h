@@ -19,7 +19,7 @@ using namespace std;
 
 class VectorOfCargo :public Collections {
     private:
-        vector<Cargo*> CargoList;
+        vector<Cargo*> CargoList; /**< The vector of cargo to be used. */
 
     public:
 
@@ -37,12 +37,14 @@ class VectorOfCargo :public Collections {
         /**
          *  @fn removeCargo(Cargo* cargo)
          *  @brief Removes the specified cargo item from the list/collection/vector
+         *  @param[in] Cargo* The specific cargo to be removed from the vector.
          *  @return void
          */
         void removeCargo(Cargo* cargo);
         /**
          *  @fn addCargo()
          *  @brief Adds the specified cargo item to the list/collection/vector
+         *  @param[in] Cargo* The cargo to add to the vector.
          *  @return void
          */
         void addCargo(Cargo* cargo);

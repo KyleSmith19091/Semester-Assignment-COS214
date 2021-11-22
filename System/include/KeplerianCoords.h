@@ -60,12 +60,12 @@ class KeplerianCoords {
         bool operator<(const KeplerianCoords&);
 
     private:
-        int angle; // angle between equator and orbit plane
-        int semiMajorAxis; // meters => size of the orbit
-        int trueAnomaly; // degrees => the angle between perigee and the vehicle (in the orbit plane)
-        int rightAscension; // degrees => the angle between vernal equinox and the point where the orbit crosses the equatorial plane (going north)
-        int argumentOfPerigree; // degrees => the angle between the ascending node and the orbit's point of closest approach to the earth (perigee)
-        const int eccentricty = 1;
+        int angle; /**< angle between equator and orbit plane */
+        int semiMajorAxis; /**<  meters => size of the orbit */
+        int trueAnomaly; /**< degrees => the angle between perigee and the vehicle (in the orbit plane) */
+        int rightAscension; /**< degrees => the angle between vernal equinox and the point where the orbit crosses the equatorial plane (going north) */
+        int argumentOfPerigree; /**< degrees => the angle between the ascending node and the orbit's point of closest approach to the earth (perigee) */
+        const int eccentricty = 1; /**< Constant int for the eccentricity. */
 
 };
 

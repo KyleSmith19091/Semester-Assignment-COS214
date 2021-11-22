@@ -23,9 +23,9 @@ class FalconState;
 
 class Falcon : public Spacecraft {
     private:
-        vector<MerlinCore*> coreList;
-        FalconState* launchState;
-        MerlinVacuumEngine* merlinVacuumEngine;
+        vector<MerlinCore*> coreList; /**< The list of cores the Falcon has. */
+        FalconState* launchState; /**< The current state of the Falcon */
+        MerlinVacuumEngine* merlinVacuumEngine; /**< The Merlin Vacuum Engine the Falcon will use. */
 
     public:
         /**

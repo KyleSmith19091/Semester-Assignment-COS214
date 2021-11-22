@@ -53,6 +53,6 @@ class CargoDragon : public Dragon {
         void unload(bool) override;
 
     private:
-        VectorOfCargo* cargoList;
+        VectorOfCargo* cargoList;  /**< The list of all the cargo stored in the Cargo Dragon. */
 };	
 #endif

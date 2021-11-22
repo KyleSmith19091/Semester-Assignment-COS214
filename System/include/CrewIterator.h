@@ -21,8 +21,8 @@ using namespace std;
 
 class CrewIterator :public Iterator{
     private:
-    LinkedListOfCrew* list;
-    int index;
+    LinkedListOfCrew* list; /**< The list of crew members to iterate over. */
+    int index; /**< The index to determine the current place in the list. */
 
     public:
 

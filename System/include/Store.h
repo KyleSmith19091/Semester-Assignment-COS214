@@ -9,12 +9,12 @@
 #include "Memento.h"
 /****************************************************************************************************
  *  @class Store
- *  @brief "Insert brief description here."
+ *  @brief The Caretaker for the Memento Design Pattern.
  ***************************************************************************************************/
 class Store
 {
     private:
-        Memento* mem;
+        Memento* mem; /**< The memento to save. */
     public:
         /**
          *  @fn Store()
@@ -28,8 +28,22 @@ class Store
          */
         ~Store();
 
+        /**
+         *  @fn storeMemento(Memento* m)
+         *  @brief The method to store a memento.
+         *  
+         *  @param[in]  m   The memento to save.
+         *  
+         *  @return void
+         */
         void storeMemento(Memento* m);
 
+        /**
+         *  @fn returnMemento()
+         *  @brief The getter for the stored memento.
+         *  
+         *  @return Memento*
+         */
         Memento* returnMemento();
 };
 
