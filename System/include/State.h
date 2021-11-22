@@ -53,7 +53,7 @@ class State
 
         /**
          *  @fn State()
-         *  @brief The overloade constructor for the class to be used with a name and a cluster.
+         *  @brief The overloaded constructor for the class to be used with a name and a cluster.
          *  
          *  @param[in]  n   The name of the simulation.
          *  @param[in]  c   The cluster to be used.
