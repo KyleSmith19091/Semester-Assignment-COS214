@@ -112,12 +112,12 @@ void BuildSimulation::saveToFile(State* s, int t) {
     std::string outString = "";
 
     std::cout << "\nWhat would you like to name this simulation?" << std::endl;
-    std::cout << "Please input a name for the simulation (Only letters, numbers and underscores ('_')): ";
+    std::cout << "Please input a name for the simulation (Must not contain pound/hash character's ('#')): ";
     std::cin >> selection;
 
     while (selection.find(DELIMITER) != string::npos) {
-         std::cout << "Name does not contain only letters, numbers and underscores ('_')." << std::endl;
-         std::cout << "Please input a name for the simulation (Only letters, numbers and underscores ('_')): ";
+         std::cout << "Name contains pound/hash character's ('#'), please try again." << std::endl;
+         std::cout << "Please input a name for the simulation (Must not contain pound/hash character's ('#')): ";
          std::cin >> selection;
     }
 

@@ -18,8 +18,8 @@ using namespace std;
 
 class LinkedListOfCrew :public Collections {
     private:
-        Crew* head;
-        int size;
+        Crew* head; /**< The start of the list of crew. */
+        int size; /**< The size of the list of crew. */
 
     public:
 

@@ -11,7 +11,8 @@
 
 class CargoDragonCreator: public SpacecraftCreator{
 public:
-    /* @fn createSpacecraft()
+    /**
+     * @fn createSpacecraft()
      * @brief creates a new CargoDragonCreator
      * @return Spacecraft
      */

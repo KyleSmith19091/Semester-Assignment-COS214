@@ -17,8 +17,8 @@
 class Simulate
 {
     private:
-        Command* buildCommand = 0;
-        Command* selectCommand = 0;
+        Command* buildCommand = 0; /**< A command to be invoked. */
+        Command* selectCommand = 0; /**< A command to be invoked */
 
     public:
         /**

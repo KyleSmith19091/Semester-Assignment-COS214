@@ -17,7 +17,7 @@ using namespace std;
 
 class Spacecraft {
     private:
-        string type;
+        string type; /**< The type of spacecraft. */
     public:
         /**
          *  @fn Spacecraft()

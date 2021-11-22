@@ -19,12 +19,15 @@
 class CheckEngineCommand : public Command
 {
     private:
-        std::vector<MerlinCore*> myCores;
-        MerlinVacuumEngine* vacuumEng;
+        std::vector<MerlinCore*> myCores; /**< The vector of Merlin Cores to be used as recievers. */
+        MerlinVacuumEngine* vacuumEng; /**< The Merlin Vacuum Engine to be used as a reciever. */
     public:
         /**
          *  @fn CheckEngineCommand()
          *  @brief The constructor for the class.
+         *  
+         *  @param[in]  v   The vector of Merlin Cores to be used.
+         *  @param[in]  mv  The Merlin Vacuum Engine to be used.
          */
         CheckEngineCommand(std::vector<MerlinCore*> v, MerlinVacuumEngine* mv);
 
@@ -34,6 +37,12 @@ class CheckEngineCommand : public Command
          */
         ~CheckEngineCommand();
 
+        /**
+         *  @fn virtual void execute()
+         *  @brief The implementation of the virtual execute method.
+         *  
+         *  @return void
+         */
         virtual void execute();
 };
 

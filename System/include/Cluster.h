@@ -21,6 +21,7 @@ class Cluster {
         /**
          *  @fn Cluster()
          *  @brief The constructor for the class.
+         *  @param[in] Falcon* The falcon used to to determine where the cluster is loaded.
          */
         Cluster(Falcon*);
 
@@ -40,13 +41,15 @@ class Cluster {
 
         /**
          * @fn generateSatellites()
-         * @brief Generate 60 satellites and populate cluster
+         * @brief Generate a variable amount of satellites and populate cluster.
+         * @param[in] MissionControl* The mission control used to communicate with the satellites.
+         * @param[in] int The number of satellites to be generated.
          * @return void
          */
         void generateSatellites(MissionControl*,int);
 
         /**
-         * @fn spreadOutSatellites(Satellite*)
+         * @fn spreadOutSatellites()
          * @brief Spread out the satellites
          * @return void
          */
@@ -74,8 +77,8 @@ class Cluster {
         int getSize();
 
     private:
-        Falcon* falcon;
-        std::vector<Satelite*> clusterSatellites;
+        Falcon* falcon; /**< The falcon on which the satellites are loaded. */
+        std::vector<Satelite*> clusterSatellites; /**< The vector containing all the satellites in the cluster. */
 };
 
 #endif  //CLUSTER_H

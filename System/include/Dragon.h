@@ -45,7 +45,7 @@ class Dragon : public Spacecraft {
         virtual void unload(bool) =0;
 
     private:
-        Falcon* falconHeavy;
+        Falcon* falconHeavy; /**< The Falcon which the Dragon will be using. */
 };
 
 #endif

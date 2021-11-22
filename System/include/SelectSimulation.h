@@ -17,9 +17,8 @@
 class SelectSimulation : public Simulation
 {
     private:
-        Store* store;
-        std::vector<Memento*> prefabs;
-        int iExit = 100;
+        std::vector<Memento*> prefabs; /**< The vector of Mementos to load the saved simulations into. */
+        int iExit = 100; /**< The exit code. */
     public:
         /**
          *  @fn SelectSimulation()
@@ -33,11 +32,50 @@ class SelectSimulation : public Simulation
          */
         ~SelectSimulation();
 
+        /**
+         *  @fn startSim(std::vector<State*>* sVector)
+         *  @brief Starts the select simulation.
+         *  
+         *  @param[in] sVector A pointer to the vector of states used to run the simulations.
+         *  
+         *  @return void
+         */
         virtual void startSim(std::vector<State*>* sVector) override;
 
+        /**
+         *  @fn simulateSingle(std::vector<State*>* sVector)
+         *  @brief Simulate a single simulation.
+         *  
+         *  @param[in] sVector A pointer to the vector of states used to run the simulations.
+         *  
+         *  @return void
+         */
         void simulateSingle(std::vector<State*>* sVector);
+
+        /**
+         *  @fn simulateBatch(std::vector<State*>* sVector)
+         *  @brief The simulate multiple simulations.
+         *  
+         *  @param[in] sVector A pointer to the vector of states used to run the simulations.
+         *  
+         *  @return void
+         */
         void simulateBatch(std::vector<State*>* sVector);
+
+        /**
+         *  @fn exitProgram()
+         *  @brief Starts exit procedure.
+         *  
+         *  @return void
+         */
         void exitProgram();
+
+        /**
+         *  @fn loadPrefabs()
+         *  @brief Load saved simulations fro a file.
+         *  
+         *  @return void.
+         */
         void loadPrefabs();
 };
 

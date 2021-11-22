@@ -15,12 +15,12 @@
 class State;
 /****************************************************************************************************
  *  @class Command
- *  @brief The Command for the Command Design Pattern.
+ *  @brief The Command for the Command Design Pattern and the Handler for the Chain of Responsibility.
  ***************************************************************************************************/
 class Command
 {
     private:
-        Command* next;
+        Command* next; /**< The next command in the chain. */
     public:
         /**
          *  @fn Command()
@@ -30,7 +30,7 @@ class Command
 
         /**
          *  @fn virtual ~Command()
-         *  @brief The destructor for the class.
+         *  @brief The virtual destructor for the class.
          */
         virtual ~Command();
 
@@ -41,16 +41,21 @@ class Command
         virtual void execute();
 
         /**
-         *  @fn virtual void execute()
-         *  @brief The virtual execute method.
+         *  @fn virtual void execute(std::string s, std::vector<State*>* v)
+         *  @brief The overloaded virtual execute method used specifically for the chain of resposibility.
+         *  
+         *  @param[in]  s   String to determine which simulation to run based off the chain of responsibility.
+         *  @param[in]  v   A pointer to the vector of states used to run the simulations.
          */
         virtual void execute(std::string s, std::vector<State*>* v);
 
         /**
-         *  @fn void add(Command*)
+         *  @fn void add(Command* c)
          *  @brief The virtual execute method.
+         *  
+         *  @param[in]  c   A pointer to the command to be added to the back of chain.
          */
-        void add(Command* c);
+        void add(Command* c);   
 };
 
 #endif  //COMMAND_H

@@ -16,7 +16,7 @@
 class Loader
 {
     private:
-        Dragon* dragon;
+        Dragon* dragon; /**< The Dragon to load. */
 
     public:
         /**

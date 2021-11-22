@@ -28,13 +28,13 @@
 #include "UnloadCommand.h"
 /****************************************************************************************************
  *  @class Simulation
- *  @brief The interface for all Simulations.
+ *  @brief The interface for all Simulations, the Originator for the Memento Design Pattern and the Reciever for the Command Design Pattern.
  ***************************************************************************************************/
 class Simulation
 {
     private:
-        State* state;
-        std::string filePath = "../Data/prefabs.txt";
+        State* state; /**< The abstraction of the current state of the simulation. */
+        std::string filePath = "../Data/prefabs.txt"; /**< The file path to the saved simulations. */
     public:
         /**
          *  @fn Simulation()
@@ -51,6 +51,8 @@ class Simulation
         /**
          *  @fn Memento* createMemento()
          *  @brief The function to create the memento.
+         *  
+         *  @return Memento*
          */
         Memento* createMemento();
 
@@ -58,7 +60,9 @@ class Simulation
          *  @fn void setMemento(Memento* m);
          *  @brief The function will set the state according to the memento.
          *  
-         *  @param[in]  m   The passed in memento object.
+         *  @param[in]  m   The passed in memento object that will be used to reinstate the State object.
+         *  
+         *  @return void
          */
         void setMemento(Memento* m);
 
@@ -66,12 +70,26 @@ class Simulation
          *  @fn virtual std::vector<State*> startSim() = 0;
          *  @brief The pure virtual function to start the current sim.
          *  
-         *  @return std::vector<State*>: States to run.
+         *  @param[in]  sVector A pointer to the vector of states used to run the simulations.
+         *  
+         *  @return void
          */
         virtual void startSim(std::vector<State*>* sVector) = 0;
 
+        /**
+         *  @fn std::string getFilePath();
+         *  @brief The getter for the file path to the saved simulations.
+         *  
+         *  @return std::string
+         */
         std::string getFilePath();
 
+        /**
+         *  @fn State* getState();
+         *  @brief The getter for the abstraction of the current state.
+         *  
+         *  @return State*
+         */
         State* getState();
 };
 

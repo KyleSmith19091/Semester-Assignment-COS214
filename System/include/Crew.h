@@ -16,41 +16,43 @@
 using namespace std;
 class Crew : public CarryType {
 private:
-	string name;
-	string jobTitle;
+	string name; /**< The name of the crew member. */
+	string jobTitle; /**< The job of the crew member. */
 public:
 
-    Crew* next;
+    Crew* next; /**< The next crew member in the list. */
 
 	/**
-         *  @fn Crew(string name, string jobTitle)
-         *  @brief The constructor of the class.
-         */
+     *  @fn Crew(string name, string jobTitle)
+     *  @brief The constructor of the class.
+     *  @param[in] name The name of the crew member.
+     *  @param[in] jobTitle The job of the crew member.
+     */
 	Crew(string name, string jobTitle);
 
 	/**
-        *  @fn ~Crew()
-        *  @brief The destructor of the class.
-        */
+    *  @fn ~Crew()
+    *  @brief The destructor of the class.
+    */
     ~Crew(); 
 
 	/**
-         *  @fn getName()
-         *  @brief Getter for the Crew member's name.
-         *  @return string
-         */
+     *  @fn getName()
+     *  @brief Getter for the Crew member's name.
+     *  @return string
+     */
 	string getName();
 	/**
-         *  @fn getJobTitle()
-         *  @brief Getter for the Crew member's job title.
-         *  @return string
-         */
+     *  @fn getJobTitle()
+     *  @brief Getter for the Crew member's job title.
+     *  @return string
+     */
 	string getJobTitle();
 	/**
-         *  @fn toString()
-         *  @brief Returns a summary of the Crew member's information.
-         *  @return string
-         */
+     *  @fn toString()
+     *  @brief Returns a summary of the Crew member's information.
+     *  @return string
+     */
 	string toString() override;
 
 };	
