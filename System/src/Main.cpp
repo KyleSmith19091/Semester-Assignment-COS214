@@ -29,6 +29,8 @@ void simStart() {
 	SelectCommand* sCom = new SelectCommand(selectSim);
 	BuildCommand* bCom = new BuildCommand(buildSim);
 
+    std::string type;
+
     sim->add(sCom);
     sim->add(bCom);
 	
@@ -62,27 +64,41 @@ void simStart() {
         }
         optionSelector = stoi(input);
 
-        switch (optionSelector)
-        {
-            case 0:
-                retVector.clear();
-                sim->execute("b", &retVector);
-                runSims(retVector);
-                break;
-            case 1:
-                retVector.clear();
-                sim->execute("s", &retVector);
-                runSims(retVector);
-                break;
-            case iExit:
-				delete sim;
-				delete sCom;
-				delete bCom;
-				delete selectSim;
-				delete buildSim;
-                exitProgram();
-                break;
+        if (optionSelector == iExit) {
+            delete sim;
+            delete sCom;
+            delete bCom;
+            delete selectSim;
+            delete buildSim;
+            exitProgram();
         }
+
+        type = (optionSelector == 0) ? "b" : "s";
+        retVector.clear();
+        sim->execute(type, &retVector);
+        runSims(retVector);
+
+        // switch (optionSelector)
+        // {
+        //     case 0:
+        //         retVector.clear();
+        //         sim->execute("b", &retVector);
+        //         runSims(retVector);
+        //         break;
+        //     case 1:
+        //         retVector.clear();
+        //         sim->execute("s", &retVector);
+        //         runSims(retVector);
+        //         break;
+        //     case iExit:
+		// 		delete sim;
+		// 		delete sCom;
+		// 		delete bCom;
+		// 		delete selectSim;
+		// 		delete buildSim;
+        //         exitProgram();
+        //         break;
+        // }
     }
 }
 
