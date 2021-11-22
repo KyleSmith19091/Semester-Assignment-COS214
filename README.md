@@ -16,7 +16,7 @@
 |    +-- build - executable files
 |    +-- test - Test.cpp -> Unit Tests
 |    +-- makefile
-|    +-- README - explaining git branching strategy and was used as guidelin
+|    +-- README - explaining git branching strategy and was used as guide for git workflow
 ```
 
 ## Compiling, Running, Testing System
