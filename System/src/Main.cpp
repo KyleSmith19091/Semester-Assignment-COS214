@@ -136,7 +136,7 @@ void runSims(vector<State*> s) {
         std::cout << "=== Simulation " << ++i << " starting ===" << std::endl;
         (*it)->runCommands();
         
-        if (s.size() > 1) {
+        if (s.size() > 1 && i != s.size()) {
             std::cout << "\nPreparing next simulation...\n" << std::endl;
             sleep(2);
         }
